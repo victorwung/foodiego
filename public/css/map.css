@@ -1,0 +1,23 @@
+@import "common.css";
+
+body{
+  padding: 10px 10px;
+	font-size:16px;
+	font-family:"Noto Sans TC", "微軟正黑體", "新細明體", arial, sans-serif;
+	color:#3f3a3a;line-height:2.5em;
+}
+
+figure {
+  max-width:64rem;
+  width:100%;
+  max-height:30.875rem;
+  height:100%;
+  margin:1.25rem auto;
+  padding:1.051%;
+  background-color:#666;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+}

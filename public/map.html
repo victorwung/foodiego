@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Foodie Go</title>
-<!-- <link rel="stylesheet" type="text/css" href="css/music.css" media="all" /> -->
-<!-- <script src="js/music.js"></script> -->
-</head>
-<body>
-  <h3>Foodie Go test</h3>
-  <div id="map_container">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foodie Go</title>
+  <link rel="stylesheet" type="text/css" href="css/map.css" media="all" />
+  <!-- <script src="js/map.js"></script> -->
+  </head>
+  <body>
+    <h3>Google Maps Demo</h3>
+    <div id="map">
 
-  </div>
-</body>
-<!-- <script src="js/music.js"></script> -->
+    </div>
+    <div id="search-section">
+      <form method="post" action="/api/1.0/food">
+        好想吃 <input type="text" name="food" value="豬"/> <br/>
+        <input type="submit" value="Search" />
+      </form>     
+    </div>
+    <script src="js/map.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSRW2nLmUc9T0QdJNNt5ME9HlYWAIsXDQ&callback=initMap">
+    </script>
+  </body>
 </html>
