@@ -19,13 +19,13 @@ app.use(bodyparser.urlencoded({extended:true}));
 // app.use(cors());
 
 // // API routes
-// app.use('/api/' + API_VERSION,
-//     [
-//         // require('./server/routes/admin_route'),
-//         require('./server/routes/music_route'),
-//         // require('./server/routes/user_route'),
-//     ]
-// );
+app.use('/api/' + API_VERSION,
+    [
+        // require('./server/routes/admin_route'),
+        require('./server/routes/map_route'),
+        // require('./server/routes/user_route'),
+    ]
+);
 
 app.get('/', (req, res) => {
   res.send('hello foodie');
