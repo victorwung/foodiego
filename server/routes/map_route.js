@@ -21,7 +21,8 @@ const {
 } = require('../controllers/map_controller');
 
 router.route('/map/review')
-    .get(getReviews);
+    .post(getReviews);   
+    // .get(getReviews);
     // .get(wrapAsync(getMusicHot));
 
 module.exports = router;

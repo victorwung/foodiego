@@ -13,13 +13,13 @@
 
     </div>
     <div id="search-section">
-      <form method="post" action="/api/1.0/search">
-        好想吃 <input type="text" name="food" value="豬"/> <br/>
+      <form method="post" action="/api/1.0/map/review">
+        好想吃 <input type="text" name="food" value="牛"/> <br/>
         <input type="submit" value="Search" />
       </form>     
     </div>
     <script src="js/map.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=MY_KEY">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_KEY&callback=initMap">
     </script>
   </body>
 </html>
