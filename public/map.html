@@ -6,28 +6,34 @@
     <title>Foodie Go</title>
     <link rel="stylesheet" type="text/css" href="css/map.css" media="all" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="js/review.js"></script>
+    <!-- <script src="js/review.js"></script> -->
+    <script src="js/map.js"></script>
   </head>
   <body>
-    <h3>Google Maps Demo</h3>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSRW2nLmUc9T0QdJNNt5ME9HlYWAIsXDQ&callback=initMap">
+    </script>
+    <h3>Foodie Go Demo</h3>
     <div id="map">
 
     </div>
-    <div id="search-section">
+    <!-- <div id="search-section-form">
       <form method="post" action="/api/1.0/map/review">
         好想吃 <input type="text" name="food" value="牛"/> <br/>
         <input type="submit" value="Search" />
       </form>     
-    </div>
-    <div id="search-section-form">
+    </div> -->
+    <div id="search-section">
         Wanna Eat <input id="search-food-text" type="text" name="food" value="牛"/><br/>
         <button id="search-food-btn" class="search-btn" onclick=searchFood()>Search</button>
     </div>
     <div id="review-container">
 
     </div>
-    <script src="js/map.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSRW2nLmUc9T0QdJNNt5ME9HlYWAIsXDQ&callback=initMap">
-    </script>
+    <div id="marker-test">
+        <button id="add-marker" onclick=addMarker()>Add Marker</button>
+    </div>
+    <!-- <script src="js/map.js"></script> -->
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSRW2nLmUc9T0QdJNNt5ME9HlYWAIsXDQ&callback=initMap">
+    </script> -->
   </body>
 </html>

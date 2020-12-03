@@ -33,7 +33,7 @@ function showReviews(data) {
   for (let i = 0; i < data.length; i ++) {
     var oneReview = document.createElement("div");
     oneReview.setAttribute("class","review-list");
-    var oneReviewText = document.createTextNode(`餐廳: ${data[i].place_name}, match數: ${data[i].review_count}`);
+    var oneReviewText = document.createTextNode(`ID: ${data[i].place_id}, 餐廳: ${data[i].place_name}, match數: ${data[i].review_count}`);
     oneReview.appendChild(oneReviewText);
     reviewContainer.appendChild(oneReview);
   }  
