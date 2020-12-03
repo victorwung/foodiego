@@ -3,12 +3,12 @@ const {query, transaction, commit, rollback} = require('./mysqlcon');
 const getReviewContents = async (food) => {
     const reviewContents = await query(
       "SELECT review_id \
-       FROM review2 \
+       FROM review3 \
        WHERE review_content LIKE ?", ['%'+food+'%']);
 
     // const reviewContents = await query(
     //     "SELECT place_id, place_name, review_id, review_content \
-    //      FROM review2 \
+    //      FROM review3 \
     //      WHERE review_content LIKE ?", ['%'+food+'%']);
 
     if (reviewContents.length === 0) {
@@ -25,8 +25,8 @@ const getReviews = async (food) => {
     // console.log(reveiwsMatch);
 
     const reviewGroupByCnt = await query(
-      "SELECT place_id, place_name, count(review_id) AS review_count \
-       FROM review2 \
+      "SELECT t1.place_id, t1.place_name, t2.place_lat, t2.place_lng, count(t1.review_id) AS review_count \
+       FROM review3 AS t1 LEFT JOIN place AS t2 ON t1.place_id = t2.place_id \
        WHERE review_content LIKE ? \
        GROUP BY place_id", ['%'+food+'%']);
 

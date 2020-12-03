@@ -1,10 +1,10 @@
 @import "common.css";
 
 body{
-  padding: 5px 5px;
-	font-size: 12px;
+  padding: 2px 5px;
+	font-size: 10px;
 	font-family:"Noto Sans TC", "微軟正黑體", "新細明體", arial, sans-serif;
-	color:#3f3a3a;line-height:2.5em;
+	color:#3f3a3a;line-height:1em;
 }
 
 figure {
@@ -18,7 +18,7 @@ figure {
 }
 
 #map {
-  height: 400px;
+  height: 500px;
   width: 100%;
 }
 
