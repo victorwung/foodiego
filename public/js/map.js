@@ -117,8 +117,8 @@ function reloadMarkers() {
 }
 
 function showReviewsList(data) {
-  console.log('In show review');
-  console.log(data);
+  // console.log('In show review');
+  // console.log(data);
 
   let reviewContainer = document.querySelector("#review-container");
   let placeList = document.querySelector("#place-list-group");
@@ -186,14 +186,34 @@ function showReviewsList(data) {
 }
 
 function getRatingDistribution(place_id) {
-  // console.log('In rating distribution');
-  // console.log(place_id);
-  axios.post("/api/1.0/map/review/analysis_rating",{place: place_id})
+  let food = document.querySelector("#search-food-text").value;
+
+  axios.post("/api/1.0/map/review/analysis_rating",{place: place_id, food: food})
     .then(res=> {
-      // console.log(res.data);
-      console.log(res.data.data[0]);
+      console.log(res.data);
+      // console.log(res.data.data[0]);
+      drawRatingDistribution(res.data.data[0]);
     })
     .catch(err => {
       console.log(err, err.response);
     });
+}
+
+function drawRatingDistribution(data) {
+  var colorList = ['#2A9D8F', '#E9C46A', '#F4A261'];
+  var ratingData = [{
+    values: [data.positvie_cnt, data.neutral_cnt, data.negative_cnt],
+    labels: ['好評', '普通', '負評'],
+    marker: {
+      colors: colorList
+    },
+    type: 'pie'
+  }];
+  
+  var layout = {
+    height: 400,
+    width: 450
+  };
+  
+  Plotly.newPlot('pie', ratingData, layout);
 }

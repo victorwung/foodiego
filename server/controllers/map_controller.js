@@ -29,14 +29,15 @@ const getReviews = async (req, res) => {
 
 const getPlaceRatingDistribution = async (req, res) => {
   const {place} = req.body;
+  const {food} = req.body;
   // const {place} = req.query;
   // const place = 'ChIJhyEhFcWrQjQRgght_BCEXyU';
   console.log(place);
-  if(!place) {
-    res.status(400).send({error:'Request Error: place_id is required.'});
+  if(!place || !food) {
+    res.status(400).send({error:'Request Error: place and food is required.'});
     return;
   }
-  const distribution = await MapReview.getPlaceRatingDistribution(place);
+  const distribution = await MapReview.getPlaceRatingDistribution(place, food);
   res.status(200).send({data: distribution});
 };
 
