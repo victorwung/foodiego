@@ -64,27 +64,28 @@ function addMarkersToMap(data) {
     beaches.push(curLoc);
   }
   // beaches = locations;
-  console.log('beaches:')
+  console.log('beaches')
   console.log(beaches);
 
   console.log('To reload');
   reloadMarkers();
-  console.log('To set markers');
+
+  beaches=[]; // clear
 }
 
 function setMarkers(locations) {
   var infowindow = new google.maps.InfoWindow();
 
-  for (var i = 0; i < locations.length; i++) {
+  for (var i = 0; i < beaches.length; i++) {
       // beach = locations[i];
-      var beach = locations[i];
-      var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
+      var loc = locations[i]; // get each location
+      var myLatLng = new google.maps.LatLng(loc[1], loc[2]);
       var marker = new google.maps.Marker({
           position: myLatLng,
           map: map,
           animation: google.maps.Animation.DROP,
-          title: beach[0],
-          zIndex: beach[4]
+          title: loc[0],
+          zIndex: loc[4]
       });
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -172,7 +173,7 @@ function showReviewsList(data) {
     var placeSection4 = document.createElement("div");
     placeSection4.setAttribute("class","mb-1 place-tags");
     var placeTags = document.createElement("p");
-    placeTags.innerHTML = "#鐵板燒(65) #牛小排(50) #鱸魚(20)";
+    placeTags.innerHTML = "#TAG1(65) #TAG2(50) #TAG3(20)";
     placeSection4.append(placeTags);
     placeA.append(placeSection4);
     // placeA.append(placeTags);
