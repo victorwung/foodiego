@@ -27,7 +27,21 @@ const getReviews = async (req, res) => {
   res.status(200).send({data: matchReviews});
 };
 
+const getPlaceRatingDistribution = async (req, res) => {
+  const {place} = req.body;
+  // const {place} = req.query;
+  // const place = 'ChIJhyEhFcWrQjQRgght_BCEXyU';
+  console.log(place);
+  if(!place) {
+    res.status(400).send({error:'Request Error: place_id is required.'});
+    return;
+  }
+  const distribution = await MapReview.getPlaceRatingDistribution(place);
+  res.status(200).send({data: distribution});
+};
+
 module.exports = {
     getReviews,
-    getReviewContents
+    getReviewContents,
+    getPlaceRatingDistribution
 };

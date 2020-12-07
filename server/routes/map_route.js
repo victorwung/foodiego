@@ -19,6 +19,7 @@ const router = require('express').Router();
 const {
     getReviews,
     getReviewContents,
+    getPlaceRatingDistribution,
 } = require('../controllers/map_controller');
 
 router.route('/map/review')
@@ -28,5 +29,9 @@ router.route('/map/review')
 router.route('/map/review_content')
     .get(getReviewContents);
     // .post(getReviewContents);
+
+router.route('/map/review/analysis_rating')
+    .post(getPlaceRatingDistribution);
+    // .get(getPlaceRatingDistribution);
 
 module.exports = router;

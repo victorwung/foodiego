@@ -6,8 +6,11 @@
     <title>Foodie Go</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/map.css" media="all" />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style id="plotly.js-style-global"></style>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="js/map.js"></script>
+    <!-- <script src="js/map_chart.js"></script> -->
   </head>
   <body>
     <!-- nav -->
@@ -18,11 +21,6 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <!-- <form class="form-inline my-2 my-lg-0">
-          <div id="search-food-title">Wanna Eat</div>
-          <input class="form-control mr-sm-2" type="search" placeholder="日式" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0 search-food-btn" type="submit" onclick=searchFood()>Search</button>
-        </form> -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
@@ -52,16 +50,16 @@
       </div> -->
     
       <div id="main-content">
-        <!-- <div id="search-section">
-          <div id="search-food-title">好想吃</div>
-          <input id="search-food-text" type="text" name="food" value="日式"/><br/>
-          <button id="search-food-btn" class="search-btn" onclick=searchFood()>Search</button>
-        </div> -->
-
       <!-- map -->
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSRW2nLmUc9T0QdJNNt5ME9HlYWAIsXDQ&callback=initMap">
         </script>    
         <div id="map">
+
+        </div>
+        <div id="chart-section">
+          <div id="pie" class="info_block js-plotly-plot">
+
+          </div>
 
         </div>
       </div>
