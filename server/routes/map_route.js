@@ -23,6 +23,7 @@ const {
 
 router.route('/map/review')
     .post(getReviews);
+    // .get(getReviews);
     
 router.route('/map/review_content')
     .get(getReviewContents);
