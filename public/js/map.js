@@ -58,8 +58,10 @@ function addMarkersToMap(data) {
     curLoc.push(data[i].place_name);
     curLoc.push(data[i].place_lat);
     curLoc.push(data[i].place_lng);
-    curLoc.push(data[i].review_count);
-    curLoc.push(i+1);
+    curLoc.push(data[i].match_count);
+    // curLoc.push(data[i].review_count);
+    curLoc.push(data[i].total_count);
+    curLoc.push(i+1); // marker order
     // locations.push(curLoc);
     beaches.push(curLoc);
   }
@@ -143,7 +145,8 @@ function showReviewsList(data) {
     placeSection1.append(placeName);
     var matchCount = document.createElement("h6");
     matchCount.setAttribute("class","match-count");
-    matchCount.innerHTML = data[i].review_count;
+    matchCount.innerHTML = data[i].match_count;
+    // matchCount.innerHTML = data[i].review_count;
     placeSection1.append(matchCount);
     placeA.append(placeSection1);
 
@@ -156,7 +159,7 @@ function showReviewsList(data) {
     placeSection2.append(placeRating);
     var totalReviewCount = document.createElement("h6");
     totalReviewCount.setAttribute("class","total-review-count");
-    totalReviewCount.innerHTML = " (500)"; // test
+    totalReviewCount.innerHTML = `(${data[i].total_count})`; // test
     placeSection2.append(totalReviewCount);
     placeA.append(placeSection2);
 
