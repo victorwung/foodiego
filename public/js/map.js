@@ -26,6 +26,7 @@ function searchFood() {
       // console.log(res.data.data);
       addMarkersToMap(res.data.data);
       showReviewsList(res.data.data);
+      drawPlaceNumber(res.data.data.length);
       // reloadMarkers();
     })
     .catch(err => {
@@ -186,6 +187,11 @@ function showReviewsList(data) {
     // total place list
     reviewContainer.append(placeList);
   }
+}
+
+function drawPlaceNumber(data_length) {
+  let placeNumber = document.getElementById("place-number");
+  placeNumber.textContent = `Places: ${data_length}`;
 }
 
 function getRatingDistribution(place_id) {
