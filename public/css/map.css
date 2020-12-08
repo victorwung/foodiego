@@ -20,7 +20,7 @@ figure {
 }
 
 #map {
-  height: 600px;
+  height: 700px;
   width: 100%;
 }
 
@@ -55,12 +55,12 @@ figure {
 } */
 
 #main-content {
-  width: 70%;
+  width: 73%;
   /* background-color:white; */
 }
 
 #right-content {
-  width: 30%;
+  width: 27%;
   /* background-color:#FFE48C; */
 }
 
@@ -69,6 +69,11 @@ figure {
 }
 
 /* dashboard */
+
+#chart-section {
+  padding: 30px;
+}
+
 .info_block {
   width: 50%;
   height: 50%;

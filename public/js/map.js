@@ -1,5 +1,6 @@
 let map;
 let markers = [];
+let circles = [];
 let beaches = [];
 // let beaches = [
 //   ['上海灘茶餐廳', 25.0404831, 121.5503003, 2],
@@ -73,7 +74,11 @@ function addMarkersToMap(data) {
   console.log('To reload');
   reloadMarkers();
 
-  beaches=[]; // clear
+  // beaches=[]; // clear
+
+  console.log('Try add circle');
+  // addCircle();
+  // reloadCircles();
 }
 
 function setMarkers(locations) {
@@ -90,6 +95,15 @@ function setMarkers(locations) {
           title: loc[0],
           zIndex: loc[4]
       });
+      // var marker = new google.maps.Circle({
+      //   center: myLatLng,
+      //   fillColor: "red",
+      //   fillOpacity: 0.4,
+      //   radius: 500,
+      //   // scale: Math.pow(2, magnitude) / 2,
+      //   strokeColor: "white",
+      //   strokeWeight: 0.5
+      // });
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
@@ -117,6 +131,39 @@ function reloadMarkers() {
 
   // Call set markers to re-add markers
   setMarkers(beaches);
+}
+
+function addCircle() {
+  // var myCity = new google.maps.Circle({
+  //   center:{lat: 25.033, lng: 121.543},
+  //   radius:1000,
+  //   strokeColor:"#0000FF",
+  //   strokeOpacity:0.8,
+  //   strokeWeight:2,
+  //   fillColor:"#0000FF",
+  //   fillOpacity:0.4
+  // });
+  
+  var place = new google.maps.Circle({
+    center:{lat: 25.033, lng: 121.543},
+    fillColor: "red",
+    fillOpacity: 0.4,
+    radius: 500,
+    // scale: Math.pow(2, magnitude) / 2,
+    strokeColor: "white",
+    strokeWeight: 0.5
+  });
+
+  // google.maps.event.addListener(place, 'click', (function(place, i) {
+  //   return function() {
+  //     infowindow.setContent('餐廳');
+  //     infowindow.setOptions({maxWidth: 200});
+  //     infowindow.open(map,place);
+  //   }
+  // }) (place, i));
+  
+  place.setMap(map);
+  console.log('set map with circle');
 }
 
 function showReviewsList(data) {
@@ -191,7 +238,7 @@ function showReviewsList(data) {
 
 function drawPlaceNumber(data_length) {
   let placeNumber = document.getElementById("place-number");
-  placeNumber.textContent = `Places: ${data_length}`;
+  placeNumber.textContent = `餐廳數: ${data_length}`;
 }
 
 function getRatingDistribution(place_id) {
@@ -220,6 +267,7 @@ function drawRatingDistribution(data) {
   }];
   
   var layout = {
+    title: data.place_name,
     height: 400,
     width: 450
   };
