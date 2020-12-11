@@ -23,7 +23,7 @@ app.use('/api/' + API_VERSION,
     [
         // require('./server/routes/admin_route'),
         require('./server/routes/map_route'),
-        // require('./server/routes/user_route'),
+        require('./server/routes/review_route'),
     ]
 );
 
