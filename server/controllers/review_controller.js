@@ -6,14 +6,37 @@ const Review = require('../models/review_model');
 
 const getReviewCategories = async (req, res) => {
   // const {place} = req.body;
-  const place = 'FLUGEL';
-  // console.log(food);
+  const categoryService = '服務';
+  const categoryEnvironment = '環境';
+  const place = 'ChIJwQPcmc-rQjQRtXDQA__PPwg';
+  // const place = 'ChIJV-_wCdCrQjQRqOP_SmDYbZs';
+  // console.log('In controller')
+  // console.log(categoryService, categoryEnvironment, place);
+
   if(!place) {
-    res.status(400).send({error:'Request Error: food is required.'});
+    res.status(400).send({error:'Request Error: place is required.'});
     return;
   }
-  const matchReviews = await Review.getReviewCategories(place);
-  res.status(200).send({data: matchReviews});
+  const reviewService = await Review.getReviewService(categoryService, place);
+  const reviewEnvironment = await Review.getReviewEnvironment(categoryEnvironment, place);
+  res.status(200).send({
+    data: {
+      place_id: reviewService[0].place_id,
+      place_name: reviewService[0].place_name,
+      service: {
+        total_cnt: reviewService[0].total_cnt,
+        positvie_cnt: reviewService[0].positvie_cnt,
+        neutral_cnt: reviewService[0].neutral_cnt,
+        negative_cnt: reviewService[0].negative_cnt
+      },
+      environment: {
+        total_cnt: reviewEnvironment[0].total_cnt,
+        positvie_cnt: reviewEnvironment[0].positvie_cnt,
+        neutral_cnt: reviewEnvironment[0].neutral_cnt,
+        negative_cnt: reviewEnvironment[0].negative_cnt
+      }
+    }
+  });
 };
 
 module.exports = {
