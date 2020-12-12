@@ -1,34 +1,49 @@
 let map;
 let markers = [];
-let circles = [];
 let beaches = [];
-// let beaches = [
-//   ['上海灘茶餐廳', 25.0404831, 121.5503003, 2],
-//   ['波記茶餐廳', 25.0404831, 121.5503003, 1]
-// ];
+let citymap = {
+  chicago: {
+    center: { lat: 41.878, lng: -87.629 },
+    population: 2714856,
+  },
+};
+
+// const citymap = {
+//   chicago: {
+//     center: { lat: 41.878, lng: -87.629 },
+//     population: 2714856,
+//   },
+//   newyork: {
+//     center: { lat: 40.714, lng: -74.005 },
+//     population: 8405837,
+//   },
+//   losangeles: {
+//     center: { lat: 34.052, lng: -118.243 },
+//     population: 3857799,
+//   },
+//   vancouver: {
+//     center: { lat: 49.25, lng: -123.1 },
+//     population: 603502,
+//   },
+// };
 
 function initMap() {
   var uluru = {lat: 25.033, lng: 121.543};
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 13,
+    zoom: 14,
     center: uluru
   });
-
-  // setMarkers(beaches);
 }
 
 function searchFood() {
-  // console.log('click');
   let food = document.querySelector("#search-food-text").value;
-  console.log('food:', food);
+  console.log('Search Food:', food);
   axios.post("/api/1.0/map/review",{food: food})
     .then(res=> {
-      // console.log(res.data);
-      // console.log(res.data.data);
-      addMarkersToMap(res.data.data);
+      // addMarkersToMap(res.data.data);
+      addCirclesToMap(res.data.data);
       showReviewsList(res.data.data);
       drawPlaceNumber(res.data.data.length);
-      // reloadMarkers();
     })
     .catch(err => {
       console.log(err, err.response);
@@ -77,8 +92,6 @@ function addMarkersToMap(data) {
   // beaches=[]; // clear
 
   console.log('Try add circle');
-  // addCircle();
-  // reloadCircles();
 }
 
 function setMarkers(locations) {
@@ -133,43 +146,54 @@ function reloadMarkers() {
   setMarkers(beaches);
 }
 
-function addCircle() {
-  // var myCity = new google.maps.Circle({
-  //   center:{lat: 25.033, lng: 121.543},
-  //   radius:1000,
-  //   strokeColor:"#0000FF",
-  //   strokeOpacity:0.8,
-  //   strokeWeight:2,
-  //   fillColor:"#0000FF",
-  //   fillOpacity:0.4
-  // });
-  
-  var place = new google.maps.Circle({
-    center:{lat: 25.033, lng: 121.543},
-    fillColor: "red",
-    fillOpacity: 0.4,
-    radius: 500,
-    // scale: Math.pow(2, magnitude) / 2,
-    strokeColor: "white",
-    strokeWeight: 0.5
-  });
+function addCirclesToMap(data) {
+  // let citymap = {};
+  console.log('Clear circles with reload map!');
+  citymap = {};
+  initMap();
 
-  // google.maps.event.addListener(place, 'click', (function(place, i) {
-  //   return function() {
-  //     infowindow.setContent('餐廳');
-  //     infowindow.setOptions({maxWidth: 200});
-  //     infowindow.open(map,place);
-  //   }
-  // }) (place, i));
-  
-  place.setMap(map);
-  console.log('set map with circle');
+  console.log('Draw circles!');
+
+  for (let i = 0; i < data.length; i ++) {
+    var place = data[i].place_id;
+    citymap[place] = {
+      'name':data[i].place_name,
+      'center':{
+        'lat':Number(data[i].place_lat),
+        'lng':Number(data[i].place_lng)
+      },
+      'match_count':data[i].match_count,
+      'total_count':data[i].total_count
+    };
+  }
+  console.log(citymap);
+
+  const infowindow = new google.maps.InfoWindow();
+
+  for (const city in citymap) {
+    // Add the circle for this city to the map.
+    const cityCircle = new google.maps.Circle({
+      strokeColor: "#FF0000",
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: "#FF0000",
+      fillOpacity: 0.35,
+      map,
+      center: citymap[city].center,
+      radius: Math.sqrt(citymap[city].match_count) * 50,
+      // radius: Math.sqrt(citymap[city].population) * 100,
+    });
+
+    google.maps.event.addListener(cityCircle, 'click', function(ev){
+      infowindow.setPosition(cityCircle.getCenter());
+      infowindow.setContent(`${citymap[city].name} (${citymap[city].match_count})`);
+      // infowindow.setContent(city);
+      infowindow.open(map);
+    });
+  }
 }
 
 function showReviewsList(data) {
-  // console.log('In show review');
-  // console.log(data);
-
   let reviewContainer = document.querySelector("#review-container");
   let placeList = document.querySelector("#place-list-group");
   // remove all childs
