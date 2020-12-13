@@ -1,0 +1,32 @@
+#map {
+  height: 45rem;
+  width: 100%;
+}
+/* 
+#example2_wrapper .dataTables_scrollBody {
+  max-height: 33.25rem !important; } */
+
+.dataTables_scrollBody {
+  max-height: 45rem !important; }
+  
+.jsgrid-grid-body::-webkit-scrollbar,
+.dataTables_scrollBody::-webkit-scrollbar,
+.table-responsive::-webkit-scrollbar {
+  background-color: #F5F5F5;
+  width: 8px;
+  height: 8px; }
+  
+  
+.jsgrid-grid-body::-webkit-scrollbar-track,
+.dataTables_scrollBody::-webkit-scrollbar-track,
+.table-responsive::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5; }
+
+.jsgrid-grid-body::-webkit-scrollbar-thumb,
+.dataTables_scrollBody::-webkit-scrollbar-thumb,
+.table-responsive::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #BDBDC7; }
