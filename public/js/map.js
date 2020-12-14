@@ -41,7 +41,7 @@ function searchFood() {
   axios.post("/api/1.0/map/review",{food: food})
     .then(res=> {
       // addMarkersToMap(res.data.data);
-      addCirclesToMap(res.data.data);
+      addCirclesToMap(res.data.total, res.data.data);
       showReviewsList(res.data.data);
       drawPlaceNumber(res.data.data.length);
     })
@@ -146,7 +146,7 @@ function reloadMarkers() {
   setMarkers(beaches);
 }
 
-function addCirclesToMap(data) {
+function addCirclesToMap(total_match_count, data) {
   // let citymap = {};
   console.log('Clear circles with reload map!');
   citymap = {};
@@ -180,7 +180,8 @@ function addCirclesToMap(data) {
       fillOpacity: 0.35,
       map,
       center: citymap[city].center,
-      radius: Math.sqrt(citymap[city].match_count) * 50,
+      // radius:  Math.sqrt(citymap[city].match_count) * 20
+      radius:  Math.sqrt(citymap[city].match_count/total_match_count ) * 300
       // radius: Math.sqrt(citymap[city].population) * 100,
     });
 
@@ -188,6 +189,7 @@ function addCirclesToMap(data) {
       infowindow.setPosition(cityCircle.getCenter());
       infowindow.setContent(`${citymap[city].name} (${citymap[city].match_count})`);
       // infowindow.setContent(city);
+      infowindow.setOptions({maxWidth: 200});
       infowindow.open(map);
     });
   }
@@ -248,7 +250,18 @@ function showReviewsList(data) {
     var placeSection4 = document.createElement("div");
     placeSection4.setAttribute("class","mb-1 place-tags");
     var placeTags = document.createElement("p");
-    placeTags.innerHTML = "#TAG1(65) #TAG2(50) #TAG3(20)";
+    var tags = data[i].place_tags;
+    var tagStr = '';
+    for (let i = 0; i < 5; i ++) {
+      var tag = tags[i];
+      if (tag) {
+        tagStr = tagStr +`#${tag} `;
+      } else {
+        break;
+      }
+    }
+    placeTags.innerHTML = tagStr;
+    // placeTags.innerHTML = "#TAG1(65) #TAG2(50) #TAG3(20)";
     placeSection4.append(placeTags);
     placeA.append(placeSection4);
     // placeA.append(placeTags);
