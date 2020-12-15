@@ -52,7 +52,21 @@ const getReviewContentByPlace = async (req, res) => {
   res.status(200).send({data: reviewContents});
 };
 
+const getPlaceTags = async (req, res) => {
+  const {place} = req.body;
+  // const {place} = req.query;
+  // const place = 'ChIJaU_-FyqrQjQRbLmzDXFaj5E';
+  console.log(place);
+  if(!place) {
+    res.status(400).send({error:'Request Error: place is required.'});
+    return;
+  }
+  const placeTags = await Review.getPlaceTags(place);
+  res.status(200).send({data: placeTags});
+};
+
 module.exports = {
   getReviewCategories,
-  getReviewContentByPlace
+  getReviewContentByPlace,
+  getPlaceTags
 };

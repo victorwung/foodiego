@@ -4,6 +4,7 @@ const router = require('express').Router();
 const {
     // getReviewCategories,
     getReviewContentByPlace,
+    getPlaceTags,
 } = require('../controllers/review_controller');
 
 // router.route('/review/categories')
@@ -13,5 +14,9 @@ const {
 router.route('/review/contents')
     .post(getReviewContentByPlace);
     // .get(getReviewContentByPlace);
+
+router.route('/review/tags')
+    .post(getPlaceTags);
+    // .get(getPlaceTags);
 
 module.exports = router;

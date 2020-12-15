@@ -43,7 +43,7 @@ function searchFood() {
       // addMarkersToMap(res.data.data);
       addCirclesToMap(res.data.total, res.data.data);
       showReviewsList(res.data.data);
-      drawPlaceNumber(res.data.data.length);
+      // drawPlaceNumber(res.data.data.length);
     })
     .catch(err => {
       console.log(err, err.response);
@@ -207,8 +207,9 @@ function showReviewsList(data) {
     // placeA.setAttribute("href", `./bmap.html?place=${data[i].place_id}`);
     placeA.setAttribute("class","list-group-item list-group-item-action");
     placeA.addEventListener("click", () => {
-      getRatingDistribution(data[i].place_id);
-      getReviewContents(data[i].place_id);
+      getRatingDistribution(data[i].place_id); // pie chart
+      getReviewContents(data[i].place_id); // review content
+      getPlaceTags(data[i].place_id); // place tags
     });
 
     // section 1
@@ -379,5 +380,75 @@ function showReviewContentList(data) {
     reviewList.append(placeA);
     // total place list
     reviewContainer.append(reviewList);
+  }
+}
+
+function getPlaceTags(place_id) {
+  axios.post("/api/1.0/review/tags",{place: place_id})
+    .then(res=> {
+      // console.log(res.data.data[0]);
+      // showPlaceTags(res.data.data[0]);
+      showPlaceTagsBtn(res.data.data[0]);
+    })
+    .catch(err => {
+      console.log(err, err.response);
+    });
+}
+
+// function showPlaceTags(data) {
+//   let tagContainer = document.querySelector("#place-tags-container");
+//   let tagList = document.querySelector("#place-tags-list-group");
+//   // remove all childs
+//   tagList.innerHTML = '';
+
+//   let tag_keys = data.token_key.split(",");
+//   let tag_values = data.token_value.split(",");
+//   console.log(tag_keys);
+//   console.log(tag_values);
+
+//   // show first 8 tags
+//   for (let i = 0; i < 8; i ++) {
+//     // section 2
+//     var placeSection2 = document.createElement("div");
+//     placeSection2.setAttribute("class","d-flex w-100");
+//     var placeRating = document.createElement("h6");
+//     placeRating.setAttribute("class","mb-1 tag-key");
+//     placeRating.innerHTML = tag_keys[i];
+//     placeSection2.append(placeRating);
+//     var totalReviewCount = document.createElement("h6");
+//     totalReviewCount.setAttribute("class","tag-value");
+//     totalReviewCount.innerHTML = `(${tag_values[i]})`; // test
+//     placeSection2.append(totalReviewCount);
+//     placeA.append(placeSection2);
+
+//     // one place
+//     tagList.append(placeA);
+//     // total place list
+//     tagContainer.append(tagList);
+//   }
+// }
+
+function showPlaceTagsBtn(data) {
+  let tagContainer = document.querySelector("#place-tags-container");
+  // let tagList = document.querySelector("#place-tags-list-group");
+  // remove all childs
+  tagContainer.innerHTML = '';
+
+  let tag_keys = data.token_key.split(",");
+  let tag_values = data.token_value.split(",");
+  // console.log(tag_keys);
+  // console.log(tag_values);
+
+  // show first 8 tags
+  for (let i = 0; i < 8; i ++) {
+    // var tagDiv = document.createElement("div");
+    // tagDiv.setAttribute("class","tag-div");
+
+    var tag = document.createElement("button");
+    tag.setAttribute("class","btn btn-secondary btn-rounded btn-sm");
+    tag.innerHTML = `${tag_keys[i]} ${tag_values[i]}`;
+    // tagDiv.append(tag);
+    // tagContainer.append(tagDiv);
+    tagContainer.append(tag);
   }
 }

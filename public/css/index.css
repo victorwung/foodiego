@@ -30,6 +30,10 @@
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #BDBDC7; }
 
+/* .list-group-item:hover {
+  background-color: #9186ee !important;
+} */
+
 .place-rating,
 .content-rating {
   color: #E7711b;
@@ -38,4 +42,10 @@
 .match-count {
   color: #6B5DEF;
   /* color: #212529; */
+}
+
+#card-feeling,
+#card-tag {
+  /* height: 15rem; */
+  height: 20rem;
 }

@@ -64,8 +64,24 @@ const getReviewContentByPlace = async (place) => {
     }
 };
 
+const getPlaceTags = async (place) => {
+    // console.log('In model getReviewContentBtPlac');
+    // console.log(place);
+    const placeTags = await query(
+      "SELECT t.place_id, t.place_name, t.token_key, t.token_value \
+       FROM place_token AS t \
+       WHERE t.place_id=?", [place]);
+
+    if (placeTags.length === 0) {
+        return {result: 'Not Found'};
+    } else {
+        return placeTags;
+    }
+};
+
 module.exports = {
     getReviewService,
     getReviewEnvironment,
     getReviewContentByPlace,
+    getPlaceTags,
 };
