@@ -49,8 +49,8 @@ const getReviewEnvironment = async (category, place) => {
 };
 
 const getReviewContentByPlace = async (place) => {
-    console.log('In model getReviewContentBtPlac');
-    console.log(place);
+    // console.log('In model getReviewContentBtPlac');
+    // console.log(place);
     const reviewContents = await query(
       "SELECT t.place_id, t.review_id, t.user_name, t.review_content, t.rating, t.rel_date \
        FROM review AS t\

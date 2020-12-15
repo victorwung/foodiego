@@ -40,9 +40,9 @@ const getReviewCategories = async (req, res) => {
 };
 
 const getReviewContentByPlace = async (req, res) => {
-  // const {place} = req.body;
+  const {place} = req.body;
   // const {place} = req.query;
-  const place = 'ChIJaU_-FyqrQjQRbLmzDXFaj5E';
+  // const place = 'ChIJaU_-FyqrQjQRbLmzDXFaj5E';
   console.log(place);
   if(!place) {
     res.status(400).send({error:'Request Error: place is required.'});
