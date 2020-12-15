@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Focus - Bootstrap Admin Dashboard </title>
+    <title>Foodie Helper </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
     <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.carousel.min.css">
@@ -313,8 +313,9 @@
                         <div class="card">
                             <div class="stat-widget-two card-body">
                                 <div class="stat-content">
-                                    <div class="stat-text">Today Expenses </div>
-                                    <div class="stat-digit"> <i class="fa fa-usd"></i>8500</div>
+                                    <div class="stat-text">Seerch Area </div>
+                                    <!-- <div class="stat-digit"> <i class="fa fa-usd"></i>8500</div> -->
+                                    <div class="stat-digit"> <i></i>大安區</div>
                                 </div>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-success w-85" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
@@ -326,8 +327,9 @@
                         <div class="card">
                             <div class="stat-widget-two card-body">
                                 <div class="stat-content">
-                                    <div class="stat-text">Income Detail</div>
-                                    <div class="stat-digit"> <i class="fa fa-usd"></i>7800</div>
+                                    <div class="stat-text">Restaurants</div>
+                                    <!-- <div class="stat-digit"> <i class="fa fa-usd"></i>7800</div> -->
+                                    <div class="stat-digit"> <i></i>100</div>
                                 </div>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-primary w-75" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
@@ -339,8 +341,9 @@
                         <div class="card">
                             <div class="stat-widget-two card-body">
                                 <div class="stat-content">
-                                    <div class="stat-text">Task Completed</div>
-                                    <div class="stat-digit"> <i class="fa fa-usd"></i> 500</div>
+                                    <div class="stat-text">Reviews</div>
+                                    <!-- <div class="stat-digit"> <i class="fa fa-usd"></i> 500</div> -->
+                                    <div class="stat-digit"> <i></i> 8352</div>
                                 </div>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-warning w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -352,8 +355,9 @@
                         <div class="card">
                             <div class="stat-widget-two card-body">
                                 <div class="stat-content">
-                                    <div class="stat-text">Task Completed</div>
-                                    <div class="stat-digit"> <i class="fa fa-usd"></i>650</div>
+                                    <div class="stat-text">Reviewers</div>
+                                    <!-- <div class="stat-digit"> <i class="fa fa-usd"></i>650</div> -->
+                                    <div class="stat-digit"> <i></i>7835</div>
                                 </div>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-danger w-65" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
@@ -368,7 +372,7 @@
                     <div class="col-xl-8 col-lg-8 col-md-8">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Sales Overview</h4>
+                                <h4 class="card-title">Foodie Map</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -402,7 +406,7 @@
                         </div> -->
                         <div class="card">
                           <div class="card-header">
-                              <h4 class="card-title">New Orders</h4>
+                              <h4 class="card-title">Restaurants</h4>
                           </div>
                           <div class="card-body ">
                               <div class="table-responsive" id="review-container">
@@ -525,7 +529,34 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <!-- pie section -->
+                    <div class="col-sm-12 col-md-12 col-xxl-6 col-xl-4 col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Feeling</h4>
+                                <div class="card-action">
+                                    <div class="dropdown custom-dropdown">
+                                        <div data-toggle="dropdown">
+                                            <i class="ti-more-alt"></i>
+                                        </div>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#">Option 1</a>
+                                            <a class="dropdown-item" href="#">Option 2</a>
+                                            <a class="dropdown-item" href="#">Option 3</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart py-4">
+                                    <!-- <canvas id="sold-product"></canvas> -->
+                                    <div id="pie" class="info_block js-plotly-plot"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- quote section -->
+                    <!-- <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="testimonial-widget-one p-17">
@@ -585,7 +616,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-header">

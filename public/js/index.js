@@ -306,9 +306,9 @@ function drawRatingDistribution(data) {
   }];
   
   var layout = {
-    title: data.place_name,
-    height: 400,
-    width: 450
+    // title: data.place_name,
+    height: 300,
+    width: 280
   };
   
   Plotly.newPlot('pie', ratingData, layout);
