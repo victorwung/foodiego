@@ -48,7 +48,24 @@ const getReviewEnvironment = async (category, place) => {
     }
 };
 
+const getReviewContentByPlace = async (place) => {
+    console.log('In model getReviewContentBtPlac');
+    console.log(place);
+    const reviewContents = await query(
+      "SELECT t.place_id, t.review_id, t.user_name, t.review_content, t.rating, t.rel_date \
+       FROM review AS t\
+       WHERE t.place_id=?", [place]);
+
+    if (reviewContents.length === 0) {
+        return {result: 'Not Found'};
+    } else {
+        // console.log(results); // check
+        return reviewContents;
+    }
+};
+
 module.exports = {
     getReviewService,
     getReviewEnvironment,
+    getReviewContentByPlace,
 };

@@ -208,6 +208,7 @@ function showReviewsList(data) {
     placeA.setAttribute("class","list-group-item list-group-item-action");
     placeA.addEventListener("click", () => {
       getRatingDistribution(data[i].place_id);
+      getReviewContents(data[i].place_id);
     });
 
     // section 1
@@ -312,4 +313,71 @@ function drawRatingDistribution(data) {
   };
   
   Plotly.newPlot('pie', ratingData, layout);
+}
+
+function getReviewContents(place_id) {
+  axios.post("/api/1.0/review/contents",{place: place_id})
+    .then(res=> {
+      console.log(res.data.data);
+      showReviewContentList(res.data.data);
+    })
+    .catch(err => {
+      console.log(err, err.response);
+    });
+}
+
+function showReviewContentList(data) {
+  let reviewContainer = document.querySelector("#review-content-container");
+  let reviewList = document.querySelector("#place-review-content-list-group");
+  // remove all childs
+  reviewList.innerHTML = '';
+
+  for (let i = 0; i < data.length; i ++) {
+    var placeA = document.createElement("div");
+    placeA.setAttribute("class","list-group-item list-group-item-action");
+    // placeA.addEventListener("click", () => {
+    //   getRatingDistribution(data[i].place_id);
+    // });
+
+    // section 1
+    var placeSection1 = document.createElement("div");
+    placeSection1.setAttribute("class","d-flex w-100 justify-content-between");
+    var placeName = document.createElement("h6");
+    placeName.setAttribute("class","mb-1 user-name");
+    placeName.innerHTML = data[i].user_name;
+    placeSection1.append(placeName);
+    var matchCount = document.createElement("h6");
+    matchCount.setAttribute("class","rel-date");
+    matchCount.innerHTML = data[i].rel_date;
+    // matchCount.innerHTML = data[i].review_count;
+    placeSection1.append(matchCount);
+    placeA.append(placeSection1);
+
+    // section 2
+    var placeSection2 = document.createElement("div");
+    placeSection2.setAttribute("class","d-flex w-100");
+    var placeRating = document.createElement("h6");
+    placeRating.setAttribute("class","mb-1 content-rating");
+    placeRating.innerHTML = data[i].rating;
+    placeSection2.append(placeRating);
+    // var totalReviewCount = document.createElement("h6");
+    // totalReviewCount.setAttribute("class","total-review-count");
+    // totalReviewCount.innerHTML = `(${data[i].total_count})`; // test
+    // placeSection2.append(totalReviewCount);
+    placeA.append(placeSection2);
+
+    // section 3
+    var placeSection3 = document.createElement("div");
+    placeSection3.setAttribute("class","mb-1 review-content");
+    var placeAddr = document.createElement("p");
+    placeAddr.innerHTML = data[i].review_content;
+    placeSection3.append(placeAddr);
+    placeA.append(placeSection3);
+    // placeA.append(placeAddr);
+
+    // one place
+    reviewList.append(placeA);
+    // total place list
+    reviewContainer.append(reviewList);
+  }
 }
