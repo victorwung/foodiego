@@ -437,25 +437,22 @@ function getPlaceTags(place_id) {
 
 function showPlaceTagsBtn(data) {
   let tagContainer = document.querySelector("#place-tags-container");
-  // let tagList = document.querySelector("#place-tags-list-group");
   // remove all childs
   tagContainer.innerHTML = '';
 
   let tag_keys = data.token_key.split(",");
   let tag_values = data.token_value.split(",");
-  // console.log(tag_keys);
-  // console.log(tag_values);
 
   // show first 8 tags
   for (let i = 0; i < 8; i ++) {
-    // var tagDiv = document.createElement("div");
-    // tagDiv.setAttribute("class","tag-div");
-
-    var tag = document.createElement("button");
-    tag.setAttribute("class","btn btn-secondary btn-rounded btn-tag");
-    tag.innerHTML = `${tag_keys[i]} ${tag_values[i]}`;
-    // tagDiv.append(tag);
-    // tagContainer.append(tagDiv);
-    tagContainer.append(tag);
+    // if no more tags, break
+    if (!tag_keys[i]) {
+      break;
+    } else {
+      var tag = document.createElement("button");
+      tag.setAttribute("class","btn btn-secondary btn-rounded btn-tag");
+      tag.innerHTML = `${tag_keys[i]} ${tag_values[i]}`;
+      tagContainer.append(tag);
+    }
   }
 }
