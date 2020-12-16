@@ -49,3 +49,12 @@
   /* height: 15rem; */
   height: 20rem;
 }
+
+#pie-container {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-tag {
+  margin: 5px;
+}

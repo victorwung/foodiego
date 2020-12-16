@@ -309,8 +309,15 @@ function drawRatingDistribution(data) {
   
   var layout = {
     // title: data.place_name,
-    height: 300,
-    width: 280
+    height: 235,
+    width: 235,
+    margin: {
+      l: 0,
+      r: 0,
+      b: 0,
+      t: 0,
+      pad: 0
+    },
   };
   
   Plotly.newPlot('pie', ratingData, layout);
@@ -445,7 +452,7 @@ function showPlaceTagsBtn(data) {
     // tagDiv.setAttribute("class","tag-div");
 
     var tag = document.createElement("button");
-    tag.setAttribute("class","btn btn-secondary btn-rounded btn-sm");
+    tag.setAttribute("class","btn btn-secondary btn-rounded btn-tag");
     tag.innerHTML = `${tag_keys[i]} ${tag_values[i]}`;
     // tagDiv.append(tag);
     // tagContainer.append(tagDiv);
