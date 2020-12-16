@@ -30,8 +30,4 @@ router.route('/map/review_content')
     .get(getReviewContents);
     // .post(getReviewContents);
 
-router.route('/map/review/analysis_rating')
-    .post(getPlaceRatingDistribution);
-    // .get(getPlaceRatingDistribution);
-
 module.exports = router;

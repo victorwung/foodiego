@@ -39,6 +39,19 @@ const getReviewCategories = async (req, res) => {
   });
 };
 
+const getPlaceRatingDistribution = async (req, res) => {
+  const {place} = req.body;
+  const {food} = req.body;
+  // const {place} = req.query;
+  // const place = 'ChIJhyEhFcWrQjQRgght_BCEXyU';
+  if(!place || !food) {
+    res.status(400).send({error:'Request Error: place and food is required.'});
+    return;
+  }
+  const distribution = await Review.getPlaceRatingDistribution(place, food);
+  res.status(200).send({data: distribution});
+};
+
 const getReviewContentByPlace = async (req, res) => {
   const {place} = req.body;
   // const {place} = req.query;
@@ -66,7 +79,8 @@ const getPlaceTags = async (req, res) => {
 };
 
 module.exports = {
-  getReviewCategories,
+  // getReviewCategories,
+  getPlaceRatingDistribution,
   getReviewContentByPlace,
   getPlaceTags
 };

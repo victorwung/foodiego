@@ -285,7 +285,8 @@ function drawPlaceNumber(data_length) {
 function getRatingDistribution(place_id) {
   let food = document.querySelector("#search-food-text").value;
 
-  axios.post("/api/1.0/map/review/analysis_rating",{place: place_id, food: food})
+  // axios.post("/api/1.0/map/review/analysis_rating",{place: place_id, food: food})
+  axios.post("/api/1.0/review/rating",{place: place_id, food: food})
     .then(res=> {
       console.log(res.data);
       // console.log(res.data.data[0]);

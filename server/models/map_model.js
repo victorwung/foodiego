@@ -52,29 +52,8 @@ const getReviews = async (food) => {
         return reviewGroupByCnt;
     }
 };
-// console.log(getReviews('牛'));
-// console.log('HERE');
-
-const getPlaceRatingDistribution = async (place, food) => {
-
-    const ratingDistribution = await query(
-      "SELECT place_id, place_name, COUNT(review_id) AS total_cnt, ROUND(AVG(t.rating),1) AS avg_rating,\
-        SUM(CASE WHEN t.rating IN (4,5) THEN 1 ELSE 0 END) AS positvie_cnt, \
-        SUM(CASE WHEN t.rating IN (3) THEN 1 ELSE 0 END) AS neutral_cnt, \
-        SUM(CASE WHEN t.rating IN (1,2) THEN 1 ELSE 0 END) AS negative_cnt \
-       FROM review t \
-       WHERE place_id = ? AND review_content LIKE ? ", [place, '%'+food+'%']);
-
-    if (ratingDistribution.length === 0) {
-        return {result: 'Not Found'};
-    } else {
-        // console.log(results); // check
-        return ratingDistribution;
-    }
-};
 
 module.exports = {
     getReviews,
     getReviewContents,
-    getPlaceRatingDistribution,
 };
