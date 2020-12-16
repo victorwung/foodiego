@@ -19,7 +19,6 @@ const router = require('express').Router();
 const {
     getReviews,
     getReviewContents,
-    getPlaceRatingDistribution,
 } = require('../controllers/map_controller');
 
 router.route('/map/review')

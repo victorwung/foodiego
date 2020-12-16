@@ -6,6 +6,7 @@ const {
     getPlaceRatingDistribution,
     getReviewContentByPlace,
     getPlaceTags,
+    getPlacePeople,
 } = require('../controllers/review_controller');
 
 // router.route('/review/categories')
@@ -23,5 +24,9 @@ router.route('/review/contents')
 router.route('/review/tags')
     .post(getPlaceTags);
     // .get(getPlaceTags);
+
+router.route('/review/people')
+    .post(getPlacePeople);
+    // .get(getPlacePeople  
 
 module.exports = router;

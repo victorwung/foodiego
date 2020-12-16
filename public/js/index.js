@@ -207,6 +207,7 @@ function showReviewsList(data) {
     // placeA.setAttribute("href", `./bmap.html?place=${data[i].place_id}`);
     placeA.setAttribute("class","list-group-item list-group-item-action");
     placeA.addEventListener("click", () => {
+      getPlacePeopleBar(data[i].place_id); // bar chart
       getRatingDistribution(data[i].place_id); // pie chart
       getReviewContents(data[i].place_id); // review content
       getPlaceTags(data[i].place_id); // place tags
@@ -456,4 +457,59 @@ function showPlaceTagsBtn(data) {
       tagContainer.append(tag);
     }
   }
+}
+
+function getPlacePeopleBar(place_id) {
+  axios.post("/api/1.0/review/people",{place: place_id})
+    .then(res=> {
+      console.log('getPlacePeopleBar');
+      console.log(res.data.data[0]);
+      // showPlacePeopleBar(res.data.data[0]);
+      showPlacePeopleBarPoltly(res.data.data[0]);
+    })
+    .catch(err => {
+      console.log(err, err.response);
+    });
+}
+
+function showPlacePeopleBar(data) {
+  let familyBar = document.querySelector("#bar-family");
+  let friendBar = document.querySelector("#bar-friend");
+  let mateBar = document.querySelector("#bar-mate");
+  let childBar = document.querySelector("#bar-child");
+
+  console.log(data);
+
+  let familyCnt = data.family_cnt;
+  familyBar.classList.add(`w-${familyCnt}`);
+}
+
+function showPlacePeopleBarPoltly(data) {
+  // let familyBar = document.querySelector("#bar-family");
+  // let friendBar = document.querySelector("#bar-friend");
+  // let mateBar = document.querySelector("#bar-mate");
+  // let childBar = document.querySelector("#bar-child");
+  var colorList = ['#2A9D8F', '#E9C46A', '#F4A261'];
+
+  var data = [{
+    type: 'bar',
+    x: [data.mate_cnt, data.friend_cnt, data.family_cnt],
+    y: ['情侶', '朋友', '家人'],
+    orientation: 'h'
+  }];
+
+  var layout = {
+    // title: data.place_name,
+    height: 200,
+    width: 250,
+    margin: {
+      // l: 0,
+      r: 0,
+      b: 0,
+      t: 0,
+      pad: 0
+    },
+  };
+  
+  Plotly.newPlot('bar', data, layout);
 }

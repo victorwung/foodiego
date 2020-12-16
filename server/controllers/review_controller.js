@@ -78,9 +78,25 @@ const getPlaceTags = async (req, res) => {
   res.status(200).send({data: placeTags});
 };
 
+const getPlacePeople = async (req, res) => {
+  const {place} = req.body;
+  const category = '與會人';
+  // const place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0';
+  // const category = '與會人';
+  console.log(place, category)
+
+  if(!place||!category) {
+    res.status(400).send({error:'Request Error: place is required.'});
+    return;
+  }
+  const people = await Review.getPlacePeople(place, category);
+  res.status(200).send({data: people});
+};
+
 module.exports = {
   // getReviewCategories,
   getPlaceRatingDistribution,
   getReviewContentByPlace,
-  getPlaceTags
+  getPlaceTags,
+  getPlacePeople
 };

@@ -455,12 +455,15 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="card">
+                        <div class="card" id="card-people">
                             <div class="card-header">
                                 <h4 class="card-title">People</h4>
                             </div>
                             <div class="card-body">
-                                <div class="current-progress">
+                                <div id="bar-container">
+                                    <div id="bar" class="info_block js-plotly-plot"></div>
+                                </div>
+                                <!-- <div class="current-progress">
                                     <div class="progress-content py-2">
                                         <div class="row">
                                             <div class="col-lg-4">
@@ -469,7 +472,7 @@
                                             <div class="col-lg-8">
                                                 <div class="current-progressbar">
                                                     <div class="progress">
-                                                        <div class="progress-bar progress-bar-primary w-50" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+                                                        <div class="progress-bar progress-bar-primary w-50" id="bar-family" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
                                                             50%
                                                         </div>
                                                     </div>
@@ -485,7 +488,7 @@
                                             <div class="col-lg-8">
                                                 <div class="current-progressbar">
                                                     <div class="progress">
-                                                        <div class="progress-bar progress-bar-primary w-70" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                                                        <div class="progress-bar progress-bar-primary w-70" id="bar-friend" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
                                                             70%
                                                         </div>
                                                     </div>
@@ -501,7 +504,7 @@
                                             <div class="col-lg-8">
                                                 <div class="current-progressbar">
                                                     <div class="progress">
-                                                        <div class="progress-bar progress-bar-primary w-60" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                                        <div class="progress-bar progress-bar-primary w-60" id="bar-mate" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
                                                             60%
                                                         </div>
                                                     </div>
@@ -517,7 +520,7 @@
                                             <div class="col-lg-8">
                                                 <div class="current-progressbar">
                                                     <div class="progress">
-                                                        <div class="progress-bar progress-bar-primary w-20" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                                        <div class="progress-bar progress-bar-primary w-20" id="bar-child" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
                                                             20%
                                                         </div>
                                                     </div>
@@ -525,7 +528,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

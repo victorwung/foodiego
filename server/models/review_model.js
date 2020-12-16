@@ -97,10 +97,33 @@ const getPlaceTags = async (place) => {
     }
 };
 
+const getPlacePeople = async (place, category) => {
+    // console.log(place, category);
+    const people = await query(
+            " SELECT t.place_id, t.place_name, COUNT(t.review_id) AS total_cnt, \
+              SUM(CASE WHEN t.subcategory_name='家人' THEN 1 ELSE 0 END) AS family_cnt, \
+              SUM(CASE WHEN t.subcategory_name='朋友' THEN 1 ELSE 0 END) AS friend_cnt, \
+              SUM(CASE WHEN t.subcategory_name='兒童' THEN 1 ELSE 0 END) AS child_cnt, \
+              SUM(CASE WHEN t.subcategory_name='情侶' THEN 1 ELSE 0 END) AS mate_cnt, \
+              SUM(CASE WHEN t.subcategory_name='寵物' THEN 1 ELSE 0 END) AS pet_cnt \
+             FROM \
+              (SELECT t1.place_id, t1.place_name, t1.review_id, t2.subcategory_name, t1.review_content \
+              FROM review t1 \
+              JOIN (SELECT DISTINCT subcategory_name, word FROM review_category WHERE category_name=?) t2 \
+              ON t1.review_content LIKE CONCAT('%',word,'%') \
+              WHERE place_id=?) AS t", [category, place]);
+    if (people.length === 0) {
+        return {result: 'Not Found'};
+    } else {
+        return people;
+    }
+};
+
 module.exports = {
     // getReviewService,
     // getReviewEnvironment,
     getPlaceRatingDistribution,
     getReviewContentByPlace,
     getPlaceTags,
+    getPlacePeople,
 };
