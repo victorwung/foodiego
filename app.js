@@ -18,12 +18,13 @@ app.use(bodyparser.urlencoded({extended:true}));
 // CORS allow all
 // app.use(cors());
 
-// // API routes
+// API routes
 app.use('/api/' + API_VERSION,
     [
         // require('./server/routes/admin_route'),
         require('./server/routes/map_route'),
         require('./server/routes/review_route'),
+        require('./server/routes/user_route'),
     ]
 );
 
