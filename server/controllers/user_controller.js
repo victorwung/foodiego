@@ -28,9 +28,6 @@ const signUp = async (req, res) => {
     }
 
     const {accessToken, loginAt, user} = result;
-    // const {loginAt, user} = result;
-    console.log('In user controller');
-    console.log(accessToken, loginAt, user);
 
     if (!user) {
         res.status(500).send({error: 'Database Query Error'});
@@ -64,24 +61,24 @@ const nativeSignIn = async (email, password) => {
     }
 };
 
-const facebookSignIn = async (accessToken) => {
-    if (!accessToken) {
-        return {error: 'Request Error: access token is required.', status: 400};
-    }
+// const facebookSignIn = async (accessToken) => {
+//     if (!accessToken) {
+//         return {error: 'Request Error: access token is required.', status: 400};
+//     }
 
-    try {
-        const profile = await User.getFacebookProfile(accessToken);
-        const {id, name, email} = profile;
+//     try {
+//         const profile = await User.getFacebookProfile(accessToken);
+//         const {id, name, email} = profile;
 
-        if(!id || !name || !email){
-            return {error: 'Permissions Error: facebook access token can not get user id, name or email'};
-        }
+//         if(!id || !name || !email){
+//             return {error: 'Permissions Error: facebook access token can not get user id, name or email'};
+//         }
 
-        return await User.facebookSignIn(id, name, email, accessToken, expire);
-    } catch (error) {
-        return {error: error};
-    }
-};
+//         return await User.facebookSignIn(id, name, email, accessToken, expire);
+//     } catch (error) {
+//         return {error: error};
+//     }
+// };
 
 const signIn = async (req, res) => {
     const data = req.body;
@@ -120,33 +117,33 @@ const signIn = async (req, res) => {
                 provider: user.provider,
                 name: user.name,
                 email: user.email,
-                picture: user.picture
+                // picture: user.picture
             }
         }
     });
 };
 
-const getUserProfile = async (req, res) => {
-  let accessToken = req.get('Authorization');
-	if (accessToken) {
-		accessToken = accessToken.replace('Bearer ', '');
-	} else {
-		res.status(400).send({error: 'Wrong Request: authorization is required.'});
-		return;
-    }
-    const profile = await User.getUserProfile(accessToken);
-    if (profile.error) {
-        res.status(403).send({error: profile.error});
-        return;
-    } else {
-        res.status(200).send(profile);
-    }
-};
+// const getUserProfile = async (req, res) => {
+//   let accessToken = req.get('Authorization');
+// 	if (accessToken) {
+// 		accessToken = accessToken.replace('Bearer ', '');
+// 	} else {
+// 		res.status(400).send({error: 'Wrong Request: authorization is required.'});
+// 		return;
+//     }
+//     const profile = await User.getUserProfile(accessToken);
+//     if (profile.error) {
+//         res.status(403).send({error: profile.error});
+//         return;
+//     } else {
+//         res.status(200).send(profile);
+//     }
+// };
 
 const getUserInfo = async (req, res) => {
   // Get auth header value
   const bearerHeader = req.headers["authorization"];
-  console.log("bearerHeader");
+  console.log("BearerHeader");
   console.log(bearerHeader);
 
   if(typeof bearerHeader !== "undefined") {
@@ -160,12 +157,7 @@ const getUserInfo = async (req, res) => {
         res.status(403).send({error: 'Wrong Request: invalid access token.'});
       } else {
         console.log(authData);
-        const profile = {
-          data: authData.userinfo,
-          iat: authData.iat,
-          exp: authData.exp
-        }
-        res.status(200).send(profile);
+        res.status(200).send({data: authData.userinfo});
         // res.status(200).json({
         //   data: authData.userinfo
         // });
@@ -182,6 +174,6 @@ const getUserInfo = async (req, res) => {
 module.exports = {
     signUp,
     signIn,
-    getUserProfile,
+    // getUserProfile,
     getUserInfo
 };

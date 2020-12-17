@@ -37,14 +37,16 @@ const signUp = async (name, email, password, expire) => {
 
         await commit();
 
+        // JWT
         const userinfo = {
             id: result.insertId, 
             provider: user.provider,
             name: user.name,
             email: user.email
         };
-        const accessToken = jwt.sign({userinfo}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30d' }) // 30 days
-        // const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10800s' }) //3hr
+        const accessToken = jwt.sign({userinfo}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10800s' }) // 3 hrs
+        // const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30d' }) // 30 days
+
         return {accessToken, loginAt, user};
     } catch (error) {
         await rollback();
@@ -65,14 +67,25 @@ const nativeSignIn = async (email, password, expire) => {
         }
 
         const loginAt = new Date();
-        const sha = crypto.createHash('sha256');
-        sha.update(email + password + loginAt);
-        const accessToken = sha.digest('hex');
+        // const sha = crypto.createHash('sha256');
+        // sha.update(email + password + loginAt);
+        // const accessToken = sha.digest('hex');
 
-        const queryStr = 'UPDATE user SET access_token = ?, access_expired = ?, login_at = ? WHERE id = ?';
-        await query(queryStr, [accessToken, expire, loginAt, user.id]);
+        // const queryStr = 'UPDATE user SET access_token = ?, access_expired = ?, login_at = ? WHERE id = ?';
+        // await query(queryStr, [accessToken, expire, loginAt, user.id]);
 
         await commit();
+     
+        // JWT
+        const userinfo = {
+          id: user.id, 
+          provider: user.provider,
+          name: user.name,
+          email: user.email
+        };
+        // console.log(user);
+        const accessToken = jwt.sign({userinfo}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10800s' }) // 3 hrs
+        // const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30d' }) // 30 days
 
         return {accessToken, loginAt, user};
     } catch (error) {
@@ -118,22 +131,22 @@ const nativeSignIn = async (email, password, expire) => {
 //     }
 // };
 
-const getUserProfile = async (accessToken) => {
-    const results = await query('SELECT * FROM user WHERE access_token = ?', [accessToken]);
-    if (results.length === 0) {
-        return {error: 'Invalid Access Token'};
-    } else {
-        return {
-            data:{
-                id: results[0].id,
-                provider: results[0].provider,
-                name: results[0].name,
-                email: results[0].email,
-                picture: results[0].picture
-            }
-        };
-    }
-};
+// const getUserProfile = async (accessToken) => {
+//     const results = await query('SELECT * FROM user WHERE access_token = ?', [accessToken]);
+//     if (results.length === 0) {
+//         return {error: 'Invalid Access Token'};
+//     } else {
+//         return {
+//             data:{
+//                 id: results[0].id,
+//                 provider: results[0].provider,
+//                 name: results[0].name,
+//                 email: results[0].email,
+//                 picture: results[0].picture
+//             }
+//         };
+//     }
+// };
 
 // const getFacebookProfile = async function(accessToken){
 //     try {
@@ -151,6 +164,6 @@ module.exports = {
     signUp,
     nativeSignIn,
     // facebookSignIn,
-    getUserProfile,
+    // getUserProfile,
     // getFacebookProfile,
 };
