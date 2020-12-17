@@ -490,13 +490,39 @@ function showPlacePeopleBarPoltly(data) {
   // let mateBar = document.querySelector("#bar-mate");
   // let childBar = document.querySelector("#bar-child");
   var colorList = ['#2A9D8F', '#E9C46A', '#F4A261'];
+  
+  var xValue = [data.pet_cnt, data.child_cnt, data.mate_cnt, data.friend_cnt, data.family_cnt];
+  var yValue = ['寵物  ','兒童  ','情侶  ', '朋友  ', '家人  '];
 
-  var data = [{
+  var trace1 = {
+    x: xValue,
+    y: yValue,
     type: 'bar',
-    x: [data.mate_cnt, data.friend_cnt, data.family_cnt],
-    y: ['情侶', '朋友', '家人'],
+    text: xValue.map(String),
+    textposition: 'auto',
+    hoverinfo: 'none',
+    marker: {
+      color: 'rgb(89,59,219)',
+      opacity: 0.7,
+      // line: {
+      //   color: 'rgb(8,48,107)',
+      //   width: 1.5
+      // }
+    },
     orientation: 'h'
-  }];
+  };
+
+  var data = [trace1];
+  // var data = [{
+  //   type: 'bar',
+  //   x: xValue,
+  //   y: yValue,
+  //   // text: yValue.map(String),
+  //   text: xValue.map(String),
+  //   textposition: 'auto',
+  //   hoverinfo: 'none',
+  //   orientation: 'h'
+  // }];
 
   var layout = {
     // title: data.place_name,
