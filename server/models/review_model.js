@@ -100,7 +100,7 @@ const getPlaceTags = async (place) => {
 const getPlacePeople = async (place, category) => {
     // console.log(place, category);
     const people = await query(
-            " SELECT t.place_id, t.place_name, COUNT(t.review_id) AS total_cnt, \
+            "SELECT t.place_id, t.place_name, COUNT(t.review_id) AS total_cnt, \
               SUM(CASE WHEN t.subcategory_name='家人' THEN 1 ELSE 0 END) AS family_cnt, \
               SUM(CASE WHEN t.subcategory_name='朋友' THEN 1 ELSE 0 END) AS friend_cnt, \
               SUM(CASE WHEN t.subcategory_name='兒童' THEN 1 ELSE 0 END) AS child_cnt, \
@@ -119,6 +119,96 @@ const getPlacePeople = async (place, category) => {
     }
 };
 
+const getReviewFeatureService = async (place) => {
+    console.log('In model getReviewFeatureService');
+    console.log(place);
+    const service = await query(
+      "SELECT t1.place_id, COUNT(t1.review_id) AS total_cnt, \
+        SUM(CASE WHEN t1.service_score >=0.3 THEN 1 ELSE 0 END) AS positvie_cnt, \
+        SUM(CASE WHEN t1.service_score <=0.3 AND t1.service_score>=-0.4 THEN 1 ELSE 0 END) AS neutral_cnt, \
+        SUM(CASE WHEN t1.service_score <-0.4 THEN 1 ELSE 0 END) AS negative_cnt \
+       FROM review_feature t1 \
+       WHERE t1.place_id=? AND t1.service is not null;", [place]);
+
+    if (service.length === 0) {
+        return {result: 'Not Found'};
+    } else {
+        return service;
+    }
+};
+
+const getReviewFeatureEnvironment = async (place) => {
+    console.log('In model getReviewFeatureEnvironment');
+    console.log(place);
+    const environment = await query(
+      "SELECT t1.place_id, COUNT(t1.review_id) AS total_cnt, \
+        SUM(CASE WHEN t1.environment_score >=0.3 THEN 1 ELSE 0 END) AS positvie_cnt, \
+        SUM(CASE WHEN t1.environment_score <=0.3 AND t1.environment_score>=-0.4 THEN 1 ELSE 0 END) AS neutral_cnt, \
+        SUM(CASE WHEN t1.environment_score <-0.4 THEN 1 ELSE 0 END) AS negative_cnt \
+       FROM review_feature t1 \
+       WHERE t1.place_id=? AND t1.environment is not null;", [place]);
+
+    if (environment.length === 0) {
+        return {result: 'Not Found'};
+    } else {
+        return environment;
+    }
+};
+
+const getReviewFeaturePrice = async (place) => {
+    console.log('In model getReviewFeaturePrice');
+    console.log(place);
+    const price = await query(
+      "SELECT t1.place_id, COUNT(t1.review_id) AS total_cnt, \
+        SUM(CASE WHEN t1.price_score >=0.3 THEN 1 ELSE 0 END) AS positvie_cnt, \
+        SUM(CASE WHEN t1.price_score <=0.3 AND t1.price_score>=-0.4 THEN 1 ELSE 0 END) AS neutral_cnt, \
+        SUM(CASE WHEN t1.price_score <-0.4 THEN 1 ELSE 0 END) AS negative_cnt \
+       FROM review_feature t1 \
+       WHERE t1.place_id=? AND t1.price is not null;", [place]);
+
+    if (price.length === 0) {
+        return {result: 'Not Found'};
+    } else {
+        return price;
+    }
+};
+
+const getReviewFeatureCpvalue = async (place) => {
+    console.log('In model getReviewFeatureCpvalue');
+    console.log(place);
+    const cpvalue = await query(
+      "SELECT t1.place_id, COUNT(t1.review_id) AS total_cnt, \
+        SUM(CASE WHEN t1.cpvalue_score >=0.3 THEN 1 ELSE 0 END) AS positvie_cnt, \
+        SUM(CASE WHEN t1.cpvalue_score <=0.3 AND t1.cpvalue_score>=-0.4 THEN 1 ELSE 0 END) AS neutral_cnt, \
+        SUM(CASE WHEN t1.cpvalue_score <-0.4 THEN 1 ELSE 0 END) AS negative_cnt \
+       FROM review_feature t1 \
+       WHERE t1.place_id=? AND t1.cpvalue is not null;", [place]);
+
+    if (cpvalue.length === 0) {
+        return {result: 'Not Found'};
+    } else {
+        return cpvalue;
+    }
+};
+
+const getReviewFeatureMeal = async (place) => {
+    console.log('In model getReviewFeatureMeal');
+    console.log(place);
+    const cpvalue = await query(
+      "SELECT t1.place_id, COUNT(t1.review_id) AS total_cnt, \
+        SUM(CASE WHEN t1.meal_score >=0.3 THEN 1 ELSE 0 END) AS positvie_cnt, \
+        SUM(CASE WHEN t1.meal_score <=0.3 AND t1.meal_score>=-0.4 THEN 1 ELSE 0 END) AS neutral_cnt, \
+        SUM(CASE WHEN t1.meal_score <-0.4 THEN 1 ELSE 0 END) AS negative_cnt \
+       FROM review_feature t1 \
+       WHERE t1.place_id=? AND t1.meal is not null;", [place]);
+
+    if (cpvalue.length === 0) {
+        return {result: 'Not Found'};
+    } else {
+        return cpvalue;
+    }
+};
+
 module.exports = {
     // getReviewService,
     // getReviewEnvironment,
@@ -126,4 +216,9 @@ module.exports = {
     getReviewContentByPlace,
     getPlaceTags,
     getPlacePeople,
+    getReviewFeatureService,
+    getReviewFeatureEnvironment,
+    getReviewFeaturePrice,
+    getReviewFeatureCpvalue,
+    getReviewFeatureMeal,
 };

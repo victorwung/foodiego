@@ -83,7 +83,7 @@ const getPlacePeople = async (req, res) => {
   const category = '與會人';
   // const place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0';
   // const category = '與會人';
-  console.log(place, category)
+  // console.log(place, category);
 
   if(!place||!category) {
     res.status(400).send({error:'Request Error: place is required.'});
@@ -93,10 +93,63 @@ const getPlacePeople = async (req, res) => {
   res.status(200).send({data: people});
 };
 
+const getReviewFeatures = async (req, res) => {
+  // const {place} = req.body;
+  const place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0';
+
+  if(!place) {
+    res.status(400).send({error:'Request Error: place is required.'});
+    return;
+  }
+  // const feature = await Review.getReviewFeature(place);
+  const featureService = await Review.getReviewFeatureService(place);
+  const featureEnvironment = await Review.getReviewFeatureEnvironment(place);
+  const featurePrice = await Review.getReviewFeaturePrice(place);
+  const featureCpvalue = await Review.getReviewFeatureCpvalue(place);
+  const featureMeal = await Review.getReviewFeatureMeal(place);
+  // res.status(200).send({data: featureService});
+  res.status(200).send({
+    data: {
+      place_id: place,
+      service: {
+        total_cnt: featureService[0].total_cnt,
+        positvie_cnt: featureService[0].positvie_cnt,
+        neutral_cnt: featureService[0].neutral_cnt,
+        negative_cnt: featureService[0].negative_cnt
+      },
+      environment: {
+        total_cnt: featureEnvironment[0].total_cnt,
+        positvie_cnt: featureEnvironment[0].positvie_cnt,
+        neutral_cnt: featureEnvironment[0].neutral_cnt,
+        negative_cnt: featureEnvironment[0].negative_cnt
+      },
+      price: {
+        total_cnt: featurePrice[0].total_cnt,
+        positvie_cnt: featurePrice[0].positvie_cnt,
+        neutral_cnt: featurePrice[0].neutral_cnt,
+        negative_cnt: featurePrice[0].negative_cnt
+      },
+      cpvalue: {
+        total_cnt: featureCpvalue[0].total_cnt,
+        positvie_cnt: featureCpvalue[0].positvie_cnt,
+        neutral_cnt: featureCpvalue[0].neutral_cnt,
+        negative_cnt: featureCpvalue[0].negative_cnt
+      },
+      meal: {
+        total_cnt: featureMeal[0].total_cnt,
+        positvie_cnt: featureMeal[0].positvie_cnt,
+        neutral_cnt: featureMeal[0].neutral_cnt,
+        negative_cnt: featureMeal[0].negative_cnt
+      }
+    }
+  });
+};
+
 module.exports = {
   // getReviewCategories,
   getPlaceRatingDistribution,
   getReviewContentByPlace,
   getPlaceTags,
-  getPlacePeople
+  getPlacePeople,
+  getReviewFeatures
 };
