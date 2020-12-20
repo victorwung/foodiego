@@ -211,6 +211,7 @@ function showReviewsList(data) {
       getRatingDistribution(data[i].place_id); // pie chart
       getReviewContents(data[i].place_id); // review content
       getPlaceTags(data[i].place_id); // place tags
+      getReviewFeatureBar(data[i].place_id); // review feature bar
     });
 
     // section 1
@@ -484,15 +485,9 @@ function showPlacePeopleBar(data) {
   familyBar.classList.add(`w-${familyCnt}`);
 }
 
-function showPlacePeopleBarPoltly(data) {
-  // let familyBar = document.querySelector("#bar-family");
-  // let friendBar = document.querySelector("#bar-friend");
-  // let mateBar = document.querySelector("#bar-mate");
-  // let childBar = document.querySelector("#bar-child");
-  var colorList = ['#2A9D8F', '#E9C46A', '#F4A261'];
-  
+function showPlacePeopleBarPoltly(data) { 
   var xValue = [data.pet_cnt, data.child_cnt, data.mate_cnt, data.friend_cnt, data.family_cnt];
-  var yValue = ['寵物  ','兒童  ','情侶  ', '朋友  ', '家人  '];
+  var yValue = ['Pets  ','Children  ','Mates  ', 'Friends  ', 'Family  '];
 
   var trace1 = {
     x: xValue,
@@ -513,16 +508,6 @@ function showPlacePeopleBarPoltly(data) {
   };
 
   var data = [trace1];
-  // var data = [{
-  //   type: 'bar',
-  //   x: xValue,
-  //   y: yValue,
-  //   // text: yValue.map(String),
-  //   text: xValue.map(String),
-  //   textposition: 'auto',
-  //   hoverinfo: 'none',
-  //   orientation: 'h'
-  // }];
 
   var layout = {
     // title: data.place_name,
@@ -537,5 +522,64 @@ function showPlacePeopleBarPoltly(data) {
     },
   };
   
-  Plotly.newPlot('bar', data, layout);
+  Plotly.newPlot('bar-people', data, layout);
+}
+
+function getReviewFeatureBar(place_id) {
+  axios.post("/api/1.0/review/feature/stars",{place: place_id})
+    .then(res=> {
+      console.log('getReviewFeatureBar');
+      console.log(res.data.data[0]);
+      showReviewFeatureBar(res.data.data[0]);
+    })
+    .catch(err => {
+      console.log(err, err.response);
+    });
+}
+
+function showReviewFeatureBar(data) { 
+  var xValue = [Math.round(data.price_star*10)/10, Math.round(data.cpvalue_star*10)/10, Math.round(data.environment_star*10)/10, Math.round(data.service_star*10)/10, Math.round(data.meal_star*10)/10];
+  var yValue = ['Price ','CP value ','Environment ', 'Service ', 'Meal '];
+
+  var textValue = [`${xValue[0]} (${data.price_cnt})`, 
+    `${xValue[1]} (${data.cpvalue_cnt})`, 
+    `${xValue[2]} (${data.environment_cnt})`, 
+    `${xValue[3]} (${data.service_cnt})`, 
+    `${xValue[4]} (${data.meal_cnt})`];
+
+
+  var trace1 = {
+    x: xValue,
+    y: yValue,
+    type: 'bar',
+    text: textValue.map(String),
+    textposition: 'auto',
+    hoverinfo: 'none',
+    marker: {
+      color: 'rgb(89,59,219)',
+      opacity: 0.7,
+      // line: {
+      //   color: 'rgb(8,48,107)',
+      //   width: 1.5
+      // }
+    },
+    orientation: 'h'
+  };
+
+  var data = [trace1];
+
+  var layout = {
+    // title: data.place_name,
+    height: 200,
+    width: 350,
+    margin: {
+      // l: 1,
+      r: 0,
+      b: 0,
+      t: 0,
+      // pad: 1
+    },
+  };
+  
+  Plotly.newPlot('bar-feature', data, layout);
 }

@@ -146,10 +146,10 @@ const getReviewFeatures = async (req, res) => {
 };
 
 const getReviewFeatureStars = async (req, res) => {
-  // const {place} = req.body;
+  const {place} = req.body;
   // const place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0'; // 凱恩
   // const place = 'ChIJaU_-FyqrQjQRbLmzDXFaj5E'; // 馬友友
-  const place = 'ChIJzzXuMcSrQjQRG5ig5eeROuQ'; // 波記 
+  // const place = 'ChIJzzXuMcSrQjQRG5ig5eeROuQ'; // 波記W
 
   if(!place) {
     res.status(400).send({error:'Request Error: place is required.'});

@@ -36,7 +36,7 @@ router.route('/review/features')
     .get(getReviewFeatures);
 
 router.route('/review/feature/stars')
-    // .post(getReviewFeature);
-    .get(getReviewFeatureStars);
+    .post(getReviewFeatureStars);
+    // .get(getReviewFeatureStars);
 
 module.exports = router;

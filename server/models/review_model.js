@@ -210,8 +210,7 @@ const getReviewFeatureMeal = async (place) => {
 };
 
 const getReviewFeatureStars = async (place) => {
-    console.log('In model getReviewFeatureStars');
-    console.log(place);
+    // console.log(place);
     const stars = await query(
         "SELECT t1.place_id, \
           (SUM(t1.service_star)/COUNT(t1.service)) AS service_star, COUNT(t1.service) AS service_cnt, \
