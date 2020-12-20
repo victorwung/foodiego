@@ -209,6 +209,26 @@ const getReviewFeatureMeal = async (place) => {
     }
 };
 
+const getReviewFeatureStars = async (place) => {
+    console.log('In model getReviewFeatureStars');
+    console.log(place);
+    const stars = await query(
+        "SELECT t1.place_id, \
+          (SUM(t1.service_star)/COUNT(t1.service)) AS service_star, COUNT(t1.service) AS service_cnt, \
+          (SUM(t1.environment_star)/COUNT(t1.environment)) AS environment_star, COUNT(t1.environment) AS environment_cnt, \
+          (SUM(t1.price_star)/COUNT(t1.price)) AS price_star, COUNT(t1.price) AS price_cnt, \
+          (SUM(t1.cpvalue_star)/COUNT(t1.cpvalue)) AS cpvalue_star, COUNT(t1.cpvalue) AS cpvalue_cnt, \
+          (SUM(t1.meal_star)/COUNT(t1.meal)) AS meal_star, COUNT(t1.meal) AS meal_cnt \
+         FROM review_feature_star t1 \
+         WHERE t1.place_id=?;", [place]);
+
+    if (stars.length === 0) {
+        return {result: 'Not Found'};
+    } else {
+        return stars;
+    }
+};
+
 module.exports = {
     // getReviewService,
     // getReviewEnvironment,
@@ -221,4 +241,5 @@ module.exports = {
     getReviewFeaturePrice,
     getReviewFeatureCpvalue,
     getReviewFeatureMeal,
+    getReviewFeatureStars,
 };

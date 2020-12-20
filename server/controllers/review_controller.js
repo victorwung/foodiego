@@ -145,11 +145,26 @@ const getReviewFeatures = async (req, res) => {
   });
 };
 
+const getReviewFeatureStars = async (req, res) => {
+  // const {place} = req.body;
+  // const place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0'; // 凱恩
+  // const place = 'ChIJaU_-FyqrQjQRbLmzDXFaj5E'; // 馬友友
+  const place = 'ChIJzzXuMcSrQjQRG5ig5eeROuQ'; // 波記 
+
+  if(!place) {
+    res.status(400).send({error:'Request Error: place is required.'});
+    return;
+  }
+  const stars = await Review.getReviewFeatureStars(place);
+  res.status(200).send({data: stars});
+};
+
 module.exports = {
   // getReviewCategories,
   getPlaceRatingDistribution,
   getReviewContentByPlace,
   getPlaceTags,
   getPlacePeople,
-  getReviewFeatures
+  getReviewFeatures,
+  getReviewFeatureStars
 };

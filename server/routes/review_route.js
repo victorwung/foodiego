@@ -8,6 +8,7 @@ const {
     getPlaceTags,
     getPlacePeople,
     getReviewFeatures,
+    getReviewFeatureStars,
 } = require('../controllers/review_controller');
 
 // router.route('/review/categories')
@@ -33,5 +34,9 @@ router.route('/review/people')
 router.route('/review/features')
     // .post(getReviewFeature);
     .get(getReviewFeatures);
+
+router.route('/review/feature/stars')
+    // .post(getReviewFeature);
+    .get(getReviewFeatureStars);
 
 module.exports = router;
