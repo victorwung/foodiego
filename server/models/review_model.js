@@ -228,6 +228,24 @@ const getReviewFeatureStars = async (place) => {
     }
 };
 
+const getPlaceInfo = async (food, place) => {
+    // console.log(place);
+    const info = await query(
+        "SELECT t1.place_id, t1.place_name, t2.place_lat, t2.place_lng, \
+            t2.place_rating, t2.place_addr, t2.place_phone, \
+            COUNT(t1.review_id) AS total_count, \
+            SUM(CASE WHEN t1.review_content LIKE ? THEN 1 ELSE 0 END) AS match_count \
+            FROM review AS t1 \
+            LEFT JOIN place AS t2 ON t1.place_id = t2.place_id \
+            WHERE t1.place_id=?", ['%'+food+'%', place]);
+
+    if (info.length === 0) {
+        return {result: 'Not Found'};
+    } else {
+        return info;
+    }
+};
+
 module.exports = {
     // getReviewService,
     // getReviewEnvironment,
@@ -241,4 +259,5 @@ module.exports = {
     getReviewFeatureCpvalue,
     getReviewFeatureMeal,
     getReviewFeatureStars,
+    getPlaceInfo,
 };

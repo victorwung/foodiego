@@ -159,6 +159,23 @@ const getReviewFeatureStars = async (req, res) => {
   res.status(200).send({data: stars});
 };
 
+const getPlaceInfo = async (req, res) => {
+  // const {food} = req.body;
+  // const {place} = req.body;
+
+  const food = '牛排'; // food
+  const place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0'; // 凱恩
+  // const place = 'ChIJaU_-FyqrQjQRbLmzDXFaj5E'; // 馬友友
+  // const place = 'ChIJzzXuMcSrQjQRG5ig5eeROuQ'; // 波記W
+
+  if(!food||!place) {
+    res.status(400).send({error:'Request Error: place is required.'});
+    return;
+  }
+  const placeInfo = await Review.getPlaceInfo(food, place);
+  res.status(200).send({data: placeInfo});
+};
+
 module.exports = {
   // getReviewCategories,
   getPlaceRatingDistribution,
@@ -166,5 +183,6 @@ module.exports = {
   getPlaceTags,
   getPlacePeople,
   getReviewFeatures,
-  getReviewFeatureStars
+  getReviewFeatureStars,
+  getPlaceInfo
 };

@@ -534,7 +534,7 @@ function showPlacePeopleBarPoltly(data) {
       }
     },
     height: 300,
-    width: 320,
+    width: 400,
     margin: {
       // l: 0,
       r: 0,
@@ -602,7 +602,7 @@ function showReviewFeatureBar(data) {
     },
     barmode: 'bar',
     height: 300,
-    width: 320,
+    width: 400,
     margin: {
       // l: 1,
       r: 0,

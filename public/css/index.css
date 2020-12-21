@@ -59,3 +59,28 @@
 .btn-tag {
   margin: 5px;
 }
+
+#bar-section-container {
+  /* height: 45rem !important; */
+  height: 45rem !important;
+  max-height: 45rem !important;
+}
+
+#bar-feature-container{
+  margin-bottom: 7.5rem !important; 
+  /* margin-bottom: 3.5rem !important;  */
+}
+
+/* #bar-people-container{
+  margin-bottom: 3rem !important; 
+} */
+
+#card-info-title {
+  /* color: #593DBD; */
+  font-size: 1.05rem;
+  font-weight:bold;
+}
+
+#card-info-rating {
+  color: #E7711b;
+}
