@@ -457,12 +457,12 @@
                     <div class="col-lg-4">
                         <div class="card" id="card-people">
                             <div class="card-header">
-                                <h4 class="card-title">People</h4>
+                                <h4 class="card-title">Resturant Information</h4>
                             </div>
                             <div class="card-body">
-                                <div id="bar-people-container">
+                                <!-- <div id="bar-people-container">
                                     <div id="bar-people" class="info_block js-plotly-plot"></div>
-                                </div>
+                                </div> -->
                                 <!-- <div class="current-progress">
                                     <div class="progress-content py-2">
                                         <div class="row">
@@ -537,7 +537,7 @@
                     <!-- <div class="col-lg-4"> -->
                         <div class="card" id="card-feeling">
                             <div class="card-header">
-                                <h4 class="card-title">Feeling About the Food</h4>
+                                <h4 id="card-feeling-tite" class="card-title">Feeling About the Food</h4>
                                 <!-- <div class="card-action">
                                     <div class="dropdown custom-dropdown">
                                         <div data-toggle="dropdown">
@@ -646,13 +646,14 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Restaurant Reviews</h4>
+                                <h4 class="card-title">Insight From Reviews</h4>
                             </div>
                             <div class="card-body">
-                                <!-- <div id="vmap13" class="vmap"></div> -->
-                                <div class="table-responsive" id="review-content-container">
-                                    <div id="place-review-content-list-group" class="list-group dataTables_scrollBody">
-                                    </div>
+                                <div id="bar-feature-container">
+                                    <div id="bar-feature" class="info_block js-plotly-plot"></div>
+                                </div>
+                                <div id="bar-people-container">
+                                    <div id="bar-people" class="info_block js-plotly-plot"></div>
                                 </div>
                             </div>
                         </div>
@@ -660,95 +661,13 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Rating of Each Item</h4>
+                                <h4 class="card-title">Restaurant Reviews</h4>
                             </div>
                             <div class="card-body">
-                                <div id="bar-feature-container">
-                                    <div id="bar-feature" class="info_block js-plotly-plot"></div>
+                                <div class="table-responsive" id="review-content-container">
+                                    <div id="place-review-content-list-group" class="list-group dataTables_scrollBody">
+                                    </div>
                                 </div>
-                                <!-- <div class="table-responsive">
-                                    <table class="table mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Name</th>
-                                                <th>Product</th>
-                                                <th>quantity</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>Lew Shawon</td>
-                                                <td><span>Dell-985</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>Lew Shawon</td>
-                                                <td><span>Asus-565</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>lew Shawon</td>
-                                                <td><span>Dell-985</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>Lew Shawon</td>
-                                                <td><span>Asus-565</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>lew Shawon</td>
-                                                <td><span>Dell-985</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>Lew Shawon</td>
-                                                <td><span>Asus-565</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-warning">Pending</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div> -->
                             </div>
                         </div>
                     </div>

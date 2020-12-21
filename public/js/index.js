@@ -157,6 +157,7 @@ function addCirclesToMap(total_match_count, data) {
   for (let i = 0; i < data.length; i ++) {
     var place = data[i].place_id;
     citymap[place] = {
+      'id': data[i].place_id,
       'name':data[i].place_name,
       'center':{
         'lat':Number(data[i].place_lat),
@@ -191,6 +192,12 @@ function addCirclesToMap(total_match_count, data) {
       // infowindow.setContent(city);
       infowindow.setOptions({maxWidth: 200});
       infowindow.open(map);
+      // add listeners to call all dashboard items
+      getPlacePeopleBar(citymap[city].id); // bar chart
+      getRatingDistribution(citymap[city].id); // pie chart
+      getPlaceTags(citymap[city].id); // place tags
+      getReviewContents(citymap[city].id); // review content
+      getReviewFeatureBar(citymap[city].id); // review feature bar
     });
   }
 }
@@ -518,14 +525,21 @@ function showPlacePeopleBarPoltly(data) {
   var data = [trace1];
 
   var layout = {
-    // title: data.place_name,
-    height: 200,
-    width: 250,
+    // title: 'Paticipants',
+    title: {
+      text:'Paticipants Mentioned',
+      font: {
+        family: 'Roboto',
+        size: 18
+      }
+    },
+    height: 300,
+    width: 320,
     margin: {
       // l: 0,
       r: 0,
       b: 0,
-      t: 0,
+      // t: 0,
       pad: 0
     },
   };
@@ -578,15 +592,22 @@ function showReviewFeatureBar(data) {
 
   var data = [trace1];
   var layout = {
-    // title: data.place_name,
+    // title: 'Rating of Each Items',
+    title: {
+      text:'Rating of Each Items',
+      font: {
+        family: 'Roboto',
+        size: 18
+      }
+    },
     barmode: 'bar',
-    height: 200,
-    width: 350,
+    height: 300,
+    width: 320,
     margin: {
       // l: 1,
       r: 0,
       b: 0,
-      t: 0,
+      // t: 0,
       // pad: 1
     },
   };
