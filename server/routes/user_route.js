@@ -6,6 +6,7 @@ const {
     signIn,
     // getUserProfile,
     getUserInfo,
+    likePlace,
 } = require('../controllers/user_controller');
 
 router.route('/user/signup')
@@ -20,5 +21,9 @@ router.route('/user/profile')
     .get(getUserInfo);
     // .get(getUserProfile);
     // .get(wrapAsync(getUserProfile));
+
+router.route('/user/like')
+    .get(likePlace);
+    // .post(likePlace);
 
 module.exports = router;

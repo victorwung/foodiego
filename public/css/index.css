@@ -84,3 +84,7 @@
 #card-info-rating {
   color: #E7711b;
 }
+
+#btn-like {
+  display: none;
+}

@@ -160,10 +160,25 @@ const nativeSignIn = async (email, password, expire) => {
 //     }
 // };
 
+const likePlace = async (user, place) => {
+    console.log('user:',user,'place',place);
+    const likeplace = await query(
+        "SELECT t1.place_id, t1.place_name \
+            FROM place AS t1 \
+            WHERE t1.place_id=?", [place]);
+
+    if (likeplace.length === 0) {
+        return {result: 'Not Found'};
+    } else {
+        return likeplace;
+    }
+};
+
 module.exports = {
     signUp,
     nativeSignIn,
     // facebookSignIn,
     // getUserProfile,
     // getFacebookProfile,
+    likePlace,
 };

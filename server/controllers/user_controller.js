@@ -49,11 +49,10 @@ const signUp = async (req, res) => {
     });
 };
 
-const nativeSignIn = async (email, password) => {
+const nativeSignIn = async (req, res) => {
     if(!email || !password){
         return {error: 'Request Error: email and password are required.', status: 400};
     }
-
     try {
         return await User.nativeSignIn(email, password, expire);
     } catch (error) {
@@ -171,9 +170,22 @@ const getUserInfo = async (req, res) => {
   }
 };
 
+const likePlace = async (req, res) => {
+    let user = 1;
+    let place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0';
+    // let {user} = req.body;
+    // let {place} = req.body;
+    if(!user||!place){
+        return {error: 'Request Error: user and place is required.', status: 400};
+    }
+    const likeplace =  await User.likePlace(user, place);
+    res.status(200).send({data: likeplace});
+};
+
 module.exports = {
     signUp,
     signIn,
     // getUserProfile,
-    getUserInfo
+    getUserInfo,
+    likePlace
 };

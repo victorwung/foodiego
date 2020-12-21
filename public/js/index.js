@@ -637,7 +637,10 @@ function getPlaceInfo(place_id) {
     });
 }
 
-function showPlaceInfo(data, food) {;
+function showPlaceInfo(data, food) {
+  // save place_id
+  window.localStorage.setItem("place", data.place_id);
+
   let infoContainer = document.querySelector("#place-info-container");
   let title = document.querySelector("#card-info-title");
   let rating = document.querySelector("#card-info-rating");
@@ -647,4 +650,25 @@ function showPlaceInfo(data, food) {;
   rating.innerHTML = data.place_rating;
   cnt.innerHTML = `${data.total_count} reviews, ${data.match_count} reviews about ${food}`
   detail.innerHTML = `${data.place_addr}<br/> ${data.place_phone}<br/>`
+
+  let likebtn = document.querySelector("#btn-like");
+  likebtn.style.display = "block";
+  // var like = document.createElement("button");
+  // like.setAttribute("class","btn btn-secondary");
+  // like.setAttribute("id","btn-like");
+  // like.innerHTML = 'Like';
+  // infoContainer.append(like);
+}
+
+function likePlace() {
+  let place = localStorage.getItem("place"); 
+  // let likeBtn = document.querySelector("#btn-like");
+  
+  axios.post("/api/1.0/user/like",{place: place})
+    .then(res=> {
+      console.log(res.data.data[0])
+    })
+    .catch(err => {
+      console.log(err, err.response);
+    });
 }
