@@ -41,7 +41,7 @@ router.route('/review/feature/stars')
     // .get(getReviewFeatureStars);
 
 router.route('/review/placeinfo')
-    // .post(getPlaceInfo);
-    .get(getPlaceInfo);
+    .post(getPlaceInfo);
+    // .get(getPlaceInfo);
 
 module.exports = router;

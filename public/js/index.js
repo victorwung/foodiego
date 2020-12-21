@@ -193,6 +193,7 @@ function addCirclesToMap(total_match_count, data) {
       infowindow.setOptions({maxWidth: 200});
       infowindow.open(map);
       // add listeners to call all dashboard items
+      getPlaceInfo(citymap[city].id); // place info
       getPlacePeopleBar(citymap[city].id); // bar chart
       getRatingDistribution(citymap[city].id); // pie chart
       getPlaceTags(citymap[city].id); // place tags
@@ -214,6 +215,7 @@ function showReviewsList(data) {
     // placeA.setAttribute("href", `./bmap.html?place=${data[i].place_id}`);
     placeA.setAttribute("class","list-group-item list-group-item-action");
     placeA.addEventListener("click", () => {
+      getPlaceInfo(data[i].place_id); // place info
       getPlacePeopleBar(data[i].place_id); // bar chart
       getRatingDistribution(data[i].place_id); // pie chart
       getReviewContents(data[i].place_id); // review content
@@ -307,7 +309,13 @@ function getRatingDistribution(place_id) {
 }
 
 function drawRatingDistribution(data) {
+  
+  let feelingHeader = document.querySelector("#card-feeling-title");
+  let food = document.querySelector("#search-food-text").value; // get searchbox food
+  feelingHeader.innerHTML = `Feeling About the Food ${food}`
+
   var colorList = ['#2A9D8F', '#E9C46A', '#F4A261'];
+  // var colorList = ['#2A9D8F', '#E9C46A', '#d598a3'];
   var ratingData = [{
     values: [data.positvie_cnt, data.neutral_cnt, data.negative_cnt],
     labels: ['好評', '普通', '負評'],
@@ -495,7 +503,7 @@ function showPlacePeopleBar(data) {
 function showPlacePeopleBarPoltly(data) { 
   var xValue = [data.pet_cnt, data.child_cnt, data.mate_cnt, data.friend_cnt, data.family_cnt];
   var yValue = ['寵物  ','兒童  ','情侶  ', '朋友  ', '家人  '];
-  // var yValue = ['Pets  ','Children  ','Mates  ', 'Friends  ', 'Family  '];
+  // var yValue = ['Pets ','Children ','Mates ', 'Friends ', 'Family '];
 
   var textValue = [`${xValue[0]} `, 
   `${xValue[1]} `, 
@@ -613,4 +621,30 @@ function showReviewFeatureBar(data) {
   };
   
   Plotly.newPlot('bar-feature', data, layout);
+}
+
+function getPlaceInfo(place_id) {
+  let food = document.querySelector("#search-food-text").value; // get searchbox food
+  // console.log('food:',food,'place',place_id);
+  axios.post('/api/1.0/review/placeinfo',{food: food, place: place_id})
+    .then(res=> {
+      console.log('getPlaceInfo');
+      console.log(res.data.data[0], food);
+      showPlaceInfo(res.data.data[0], food);
+    })
+    .catch(err => {
+      console.log(err, err.response);
+    });
+}
+
+function showPlaceInfo(data, food) {;
+  let infoContainer = document.querySelector("#place-info-container");
+  let title = document.querySelector("#card-info-title");
+  let rating = document.querySelector("#card-info-rating");
+  let cnt = document.querySelector("#card-info-both-cnt");
+  let detail = document.querySelector("#card-info-detail");
+  title.innerHTML = data.place_name;
+  rating.innerHTML = data.place_rating;
+  cnt.innerHTML = `${data.total_count} reviews, ${data.match_count} reviews about ${food}`
+  detail.innerHTML = `${data.place_addr}<br/> ${data.place_phone}<br/>`
 }
