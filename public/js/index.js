@@ -487,13 +487,21 @@ function showPlacePeopleBar(data) {
 
 function showPlacePeopleBarPoltly(data) { 
   var xValue = [data.pet_cnt, data.child_cnt, data.mate_cnt, data.friend_cnt, data.family_cnt];
-  var yValue = ['Pets  ','Children  ','Mates  ', 'Friends  ', 'Family  '];
+  var yValue = ['寵物  ','兒童  ','情侶  ', '朋友  ', '家人  '];
+  // var yValue = ['Pets  ','Children  ','Mates  ', 'Friends  ', 'Family  '];
+
+  var textValue = [`${xValue[0]} `, 
+  `${xValue[1]} `, 
+  `${xValue[2]} `, 
+  `${xValue[3]} `, 
+  `${xValue[4]} `];
+
 
   var trace1 = {
     x: xValue,
     y: yValue,
     type: 'bar',
-    text: xValue.map(String),
+    text: textValue.map(String),
     textposition: 'auto',
     hoverinfo: 'none',
     marker: {
@@ -539,14 +547,14 @@ function getReviewFeatureBar(place_id) {
 
 function showReviewFeatureBar(data) { 
   var xValue = [Math.round(data.price_star*10)/10, Math.round(data.cpvalue_star*10)/10, Math.round(data.environment_star*10)/10, Math.round(data.service_star*10)/10, Math.round(data.meal_star*10)/10];
-  var yValue = ['Price ','CP value ','Environment ', 'Service ', 'Meal '];
+  var yValue = ['價格  ','CP值  ','環境  ', '服務  ', '餐點  '];
+  // var yValue = ['Price ','CP value ','Environment ', 'Service ', 'Meal '];
 
-  var textValue = [`${xValue[0]} (${data.price_cnt})`, 
-    `${xValue[1]} (${data.cpvalue_cnt})`, 
-    `${xValue[2]} (${data.environment_cnt})`, 
-    `${xValue[3]} (${data.service_cnt})`, 
-    `${xValue[4]} (${data.meal_cnt})`];
-
+  var textValue = [`${xValue[0]} (${data.price_cnt}) `, 
+    `${xValue[1]} (${data.cpvalue_cnt}) `, 
+    `${xValue[2]} (${data.environment_cnt}) `, 
+    `${xValue[3]} (${data.service_cnt}) `, 
+    `${xValue[4]} (${data.meal_cnt}) `];
 
   var trace1 = {
     x: xValue,
@@ -554,22 +562,24 @@ function showReviewFeatureBar(data) {
     type: 'bar',
     text: textValue.map(String),
     textposition: 'auto',
+    textfont_size: 30,
+    // textposition: 'outside',
     hoverinfo: 'none',
     marker: {
-      color: 'rgb(89,59,219)',
-      opacity: 0.7,
+      color: 'rgb(231,113,27)',
+      opacity: 0.86,
       // line: {
       //   color: 'rgb(8,48,107)',
       //   width: 1.5
       // }
     },
-    orientation: 'h'
+    orientation: 'h',
   };
 
   var data = [trace1];
-
   var layout = {
     // title: data.place_name,
+    barmode: 'bar',
     height: 200,
     width: 350,
     margin: {
