@@ -37,6 +37,7 @@ function initMap() {
 
 function searchFood() {
   let food = document.querySelector("#search-food-text").value;
+  food = food.trim(); // remove blank space/
   console.log('Search Food:', food);
   axios.post("/api/1.0/map/review",{food: food})
     .then(res=> {

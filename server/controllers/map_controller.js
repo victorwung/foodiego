@@ -19,7 +19,6 @@ const getReviewContents = async (req, res) => {
 const getReviews = async (req, res) => {
   const {food} = req.body;
   // const food = '牛排';
-  // console.log(food);
   if(!food) {
     res.status(400).send({error:'Request Error: food is required.'});
     return;
