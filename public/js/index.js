@@ -662,13 +662,76 @@ function showPlaceInfo(data, food) {
 
 function likePlace() {
   let place = localStorage.getItem("place"); 
-  // let likeBtn = document.querySelector("#btn-like");
-  
-  axios.post("/api/1.0/user/like",{place: place})
+  let likeBtn = document.querySelector("#btn-like");
+  // likeBtn.innerHTML = 'Unlike';
+
+  axios.post('/api/1.0/user/like',{place:place})
     .then(res=> {
-      console.log(res.data.data[0])
+      console.log('getPlaceLike');
+      console.log(res.data.data[0], place);
     })
     .catch(err => {
       console.log(err, err.response);
     });
+
+  likeBtn.innerHTML = 'Unlike';
 }
+
+function getUserInfo(){
+  console.log(localStorage.getItem("token"));
+  axios.get("/api/1.0/user/profile",
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer" + " " + localStorage.getItem("token")
+      }
+    }
+  )
+  .then(res=> {
+    console.log("Profile");
+    console.log(res.data.data);
+    // let name = res.data.data[0].name;
+    // let email = res.data.data[0].email;
+    // let id = res.data.data[0].id;
+    // console.log(id, name, email);
+    // addUserProfile(name, email);
+  })
+  .catch(err => {
+    console.log(err, err.response);
+  });
+}
+
+function clickLikePlace(){
+  let token = localStorage.getItem("token"); 
+  if (token) {
+    console.log("has token");
+    console.log(token);
+    alert("has token");
+    // getUserInfo();
+    axios.get("/api/1.0/user/profile",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer" + " " + localStorage.getItem("token")
+        }
+      }
+    )
+    .then(res=> {
+      console.log("Profile");
+      // console.log(res.data);
+      console.log(res.data.data);
+    })
+    .catch(err => {
+      console.log(err, err.response);
+    });
+  }
+  else {
+    console.log("no token");
+    alert("no token");
+    // window.location.href="/signinup.html";
+  }
+}
+
+// function insertLikePlace(data) {
+
+// }

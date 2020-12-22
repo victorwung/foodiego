@@ -81,6 +81,8 @@ const nativeSignIn = async (req, res) => {
 
 const signIn = async (req, res) => {
     const data = req.body;
+    console.log("here!!!!!!!!");
+    console.log(data);
 
     let result;
     switch (data.provider) {
@@ -156,10 +158,10 @@ const getUserInfo = async (req, res) => {
         res.status(403).send({error: 'Wrong Request: invalid access token.'});
       } else {
         console.log(authData);
-        res.status(200).send({data: authData.userinfo});
-        // res.status(200).json({
-        //   data: authData.userinfo
-        // });
+        // res.status(200).send({data: authData});
+        res.status(200).json({
+          data: authData
+        });
       }
     });
   } else {
@@ -172,9 +174,11 @@ const getUserInfo = async (req, res) => {
 
 const likePlace = async (req, res) => {
     let user = 1;
-    let place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0';
+    // let place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0';
     // let {user} = req.body;
-    // let {place} = req.body;
+    // console.log(place);
+    let {place} = req.body;
+    console.log('here:',place);
     if(!user||!place){
         return {error: 'Request Error: user and place is required.', status: 400};
     }

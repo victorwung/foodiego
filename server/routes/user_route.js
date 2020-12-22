@@ -23,7 +23,7 @@ router.route('/user/profile')
     // .get(wrapAsync(getUserProfile));
 
 router.route('/user/like')
-    .get(likePlace);
-    // .post(likePlace);
+    // .get(likePlace);
+    .post(likePlace);
 
 module.exports = router;
