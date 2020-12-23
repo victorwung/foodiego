@@ -36,8 +36,7 @@ function initMap() {
 }
 
 function searchFood() {
-  let food = document.querySelector("#search-food-text").value;
-  food = food.trim(); // remove blank space/
+  let food = document.querySelector("#search-food-text").value.replace(/\s+/g, ''); // remove blank space
   console.log('Search Food:', food);
   axios.post("/api/1.0/map/review",{food: food})
     .then(res=> {
@@ -295,7 +294,7 @@ function drawPlaceNumber(data_length) {
 }
 
 function getRatingDistribution(place_id) {
-  let food = document.querySelector("#search-food-text").value;
+  let food = document.querySelector("#search-food-text").value.replace(/\s+/g, '');
 
   // axios.post("/api/1.0/map/review/analysis_rating",{place: place_id, food: food})
   axios.post("/api/1.0/review/rating",{place: place_id, food: food})
@@ -312,7 +311,7 @@ function getRatingDistribution(place_id) {
 function drawRatingDistribution(data) {
   
   let feelingHeader = document.querySelector("#card-feeling-title");
-  let food = document.querySelector("#search-food-text").value; // get searchbox food
+  let food = document.querySelector("#search-food-text").value.replace(/\s+/g, ''); // get searchbox food
   feelingHeader.innerHTML = `Feeling About the Food ${food}`
 
   var colorList = ['#2A9D8F', '#E9C46A', '#F4A261'];
@@ -625,7 +624,7 @@ function showReviewFeatureBar(data) {
 }
 
 function getPlaceInfo(place_id) {
-  let food = document.querySelector("#search-food-text").value; // get searchbox food
+  let food = document.querySelector("#search-food-text").value.replace(/\s+/g, ''); // get searchbox food
   // console.log('food:',food,'place',place_id);
   axios.post('/api/1.0/review/placeinfo',{food: food, place: place_id})
     .then(res=> {
@@ -662,11 +661,11 @@ function showPlaceInfo(data, food) {
 }
 
 function likePlace() {
-  let place = localStorage.getItem("place"); 
+  // let place = localStorage.getItem("place"); 
   let likeBtn = document.querySelector("#btn-like");
   // likeBtn.innerHTML = 'Unlike';
-
-  axios.post('/api/1.0/user/like',{place:place})
+  place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0';
+  axios.post('/api/1.0/user/like', {food: food})
     .then(res=> {
       console.log('getPlaceLike');
       console.log(res.data.data[0], place);
