@@ -49,10 +49,11 @@ const signUp = async (req, res) => {
     });
 };
 
-const nativeSignIn = async (req, res) => {
+const nativeSignIn = async (email, password) => {
     if(!email || !password){
         return {error: 'Request Error: email and password are required.', status: 400};
     }
+
     try {
         return await User.nativeSignIn(email, password, expire);
     } catch (error) {
@@ -81,8 +82,6 @@ const nativeSignIn = async (req, res) => {
 
 const signIn = async (req, res) => {
     const data = req.body;
-    console.log("here!!!!!!!!");
-    console.log(data);
 
     let result;
     switch (data.provider) {

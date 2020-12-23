@@ -44,8 +44,8 @@ const signUp = async (name, email, password, expire) => {
             name: user.name,
             email: user.email
         };
-        // const accessToken = jwt.sign({userinfo}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10800s' }) // 3 hrs
-        const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30d' }) // 30 days
+        const accessToken = jwt.sign({userinfo}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30d' }) // 30 days
+        // const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10800s' }) // 3 hrs 
 
         return {accessToken, loginAt, user};
     } catch (error) {
@@ -55,8 +55,6 @@ const signUp = async (name, email, password, expire) => {
 };
 
 const nativeSignIn = async (email, password, expire) => {
-    console.log('Model');
-    console.log(email);
     try {
         await transaction();
 
@@ -86,8 +84,8 @@ const nativeSignIn = async (email, password, expire) => {
           email: user.email
         };
         // console.log(user);
-        // const accessToken = jwt.sign({userinfo}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10800s' }) // 3 hrs
-        const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30d' }) // 30 days
+        const accessToken = jwt.sign({userinfo}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30d' }) // 30 days
+        // const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10800s' }) // 3 hrs 
 
         return {accessToken, loginAt, user};
     } catch (error) {
