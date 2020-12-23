@@ -14,14 +14,14 @@ const token = localStorage.getItem("token");
 function checkToken() {
   if (token) {
     console.log("has token");
-    getUserInfo();
+    getUserInfoName();
   }
   else {
     console.log("no token");
   }
 }
 
-function getUserInfo(){
+function getUserInfoName(){
   axios.get("/api/1.0/user/profile",
     {
       headers: {
@@ -695,27 +695,66 @@ function showPlaceInfo(data, food) {
   likebtn.style.display = "block";
 }
 
+function getUserInfoId(){
+  axios.get("/api/1.0/user/profile",
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer" + " " + localStorage.getItem("token")
+      }
+    }
+  )
+  .then(res=> {
+    // console.log(res.data.data);
+    console.log('userid:', res.data.data.userinfo.id);
+  })
+  .catch(err => {
+    console.log(err, err.response);
+  });
+}
+
 function likePlace() {
-  // let place = localStorage.getItem("place"); 
+  let place = localStorage.getItem("place");
   let likeBtn = document.querySelector("#btn-like");
-  // likeBtn.innerHTML = 'Unlike';
-  place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0';
-  axios.post('/api/1.0/user/like', {food: food})
+  console.log('click like!');
+
+  if (token) {
+    console.log("has token");
+    // get user id
+    axios.get("/api/1.0/user/profile",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer" + " " + localStorage.getItem("token")
+        }
+      }
+    )
     .then(res=> {
-      console.log('getPlaceLike');
-      console.log(res.data.data[0], place);
+      // console.log(res.data.data);
+      console.log('userid:', res.data.data.userinfo.id, 'place:', place);
+      updateLikePlace(res.data.data.userinfo.id, place);
+
+      // alter css
+      likeBtn.innerHTML = 'Unlike';
     })
     .catch(err => {
       console.log(err, err.response);
     });
-
-  likeBtn.innerHTML = 'Unlike';
+  } else {
+      console.log("no token");
+      alert('Please login');
+      window.location.href="/signin.html";
+  }
 }
 
-function clickLikePlace(){
-
+function updateLikePlace(user, place) {
+  axios.post('/api/1.0/user/like', {user: user, place: place})
+  .then(res=> {
+    console.log('updateLikePlace');
+    console.log(res.data.data[0]);
+    // console.log(res.data.data[0], place);
+  })
+  .catch(err => {
+    console.log(err, err.response);
+  });
 }
-
-// function insertLikePlace(data) {
-
-// }

@@ -172,12 +172,12 @@ const getUserInfo = async (req, res) => {
 };
 
 const likePlace = async (req, res) => {
-    let user = 1;
+    // let user = 1;
     // let place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0';
-    // let {user} = req.body;
-    // console.log(place);
+    let {user} = req.body;
     let {place} = req.body;
-    console.log('here:',place);
+    console.log('in controller');
+    console.log('user:', user, 'place:', place);
     if(!user||!place){
         return {error: 'Request Error: user and place is required.', status: 400};
     }

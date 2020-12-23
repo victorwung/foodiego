@@ -161,6 +161,7 @@ const nativeSignIn = async (email, password, expire) => {
 // };
 
 const likePlace = async (user, place) => {
+    console.log('in model');
     console.log('user:',user,'place',place);
     const likeplace = await query(
         "SELECT t1.place_id, t1.place_name, t1.place_lat, t1.place_lng \
