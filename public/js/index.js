@@ -8,6 +8,46 @@ let citymap = {
   },
 };
 
+// USER SECTION START
+const token = localStorage.getItem("token");
+
+function checkToken() {
+  if (token) {
+    console.log("has token");
+    getUserInfo();
+  }
+  else {
+    console.log("no token");
+  }
+}
+
+function getUserInfo(){
+  axios.get("/api/1.0/user/profile",
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer" + " " + localStorage.getItem("token")
+      }
+    }
+  )
+  .then(res=> {
+    // console.log(res.data.data);
+    console.log('username:', res.data.data.userinfo.name);
+    setUserName(res.data.data.userinfo.name);
+  })
+  .catch(err => {
+    console.log(err, err.response);
+  });
+}
+
+function setUserName(name){
+  let welcome = document.querySelector("#welcome-user-slogan");
+  welcome.innerHTML = `Welcome, ${name}!`;
+}
+
+checkToken();
+// USER SECTION END
+
 // const citymap = {
 //   chicago: {
 //     center: { lat: 41.878, lng: -87.629 },
@@ -653,11 +693,6 @@ function showPlaceInfo(data, food) {
 
   let likebtn = document.querySelector("#btn-like");
   likebtn.style.display = "block";
-  // var like = document.createElement("button");
-  // like.setAttribute("class","btn btn-secondary");
-  // like.setAttribute("id","btn-like");
-  // like.innerHTML = 'Like';
-  // infoContainer.append(like);
 }
 
 function likePlace() {
@@ -677,59 +712,8 @@ function likePlace() {
   likeBtn.innerHTML = 'Unlike';
 }
 
-function getUserInfo(){
-  console.log(localStorage.getItem("token"));
-  axios.get("/api/1.0/user/profile",
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer" + " " + localStorage.getItem("token")
-      }
-    }
-  )
-  .then(res=> {
-    console.log("Profile");
-    console.log(res.data.data);
-    // let name = res.data.data[0].name;
-    // let email = res.data.data[0].email;
-    // let id = res.data.data[0].id;
-    // console.log(id, name, email);
-    // addUserProfile(name, email);
-  })
-  .catch(err => {
-    console.log(err, err.response);
-  });
-}
-
 function clickLikePlace(){
-  let token = localStorage.getItem("token"); 
-  if (token) {
-    console.log("has token");
-    console.log(token);
-    alert("has token");
-    // getUserInfo();
-    axios.get("/api/1.0/user/profile",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer" + " " + localStorage.getItem("token")
-        }
-      }
-    )
-    .then(res=> {
-      console.log("Profile");
-      // console.log(res.data);
-      console.log(res.data.data);
-    })
-    .catch(err => {
-      console.log(err, err.response);
-    });
-  }
-  else {
-    console.log("no token");
-    alert("no token");
-    // window.location.href="/signinup.html";
-  }
+
 }
 
 // function insertLikePlace(data) {
