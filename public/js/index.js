@@ -693,6 +693,7 @@ function showPlaceInfo(data, food) {
 
   let likebtn = document.querySelector("#btn-like");
   likebtn.style.display = "block";
+  // likeBtn.innerHTML = 'Like';
 }
 
 function getUserInfoId(){
@@ -751,10 +752,43 @@ function updateLikePlace(user, place) {
   axios.post('/api/1.0/user/like', {user: user, place: place})
   .then(res=> {
     console.log('updateLikePlace');
-    console.log(res.data.data[0]);
+    console.log(res.data.data);
     // console.log(res.data.data[0], place);
+    addLikeMarkerToMap(res.data.data.place_id, res.data.data.place_name, res.data.data.place_lat, res.data.data.place_lng);
   })
   .catch(err => {
     console.log(err, err.response);
   });
+}
+
+function addLikeMarkerToMap(place_id, place_name, place_lat, place_lng) {
+  console.log('to draw');
+
+  var myLatlng = new google.maps.LatLng(place_lat, place_lng);
+
+  // const goldStar = {
+  //   path:
+  //     "M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z",
+  //   fillColor: "gold",
+  //   fillOpacity: 0.8,
+  //   scale: 1,
+  //   strokeColor: "gold",
+  //   strokeWeight: 14,
+  // };
+  
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      // icon: goldStar,
+      // icon: "../images/flag.png",
+      icon: {
+        // url: "../images/star.png",
+        url: "../images/flag.png",
+        scaledSize: new google.maps.Size(25, 25)
+      },
+      title: place_name
+  });
+  
+  // To add the marker to the map, call setMap();
+  marker.setMap(map);
+  console.log(`Add marker ${place_id} done.`)
 }

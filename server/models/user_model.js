@@ -161,17 +161,41 @@ const nativeSignIn = async (email, password, expire) => {
 // };
 
 const likePlace = async (user, place) => {
-    console.log('in model');
-    console.log('user:',user,'place',place);
-    const likeplace = await query(
-        "SELECT t1.place_id, t1.place_name, t1.place_lat, t1.place_lng \
+    try {
+        await transaction();
+      
+        const userlike = {
+          user_id: user,
+          place_id: place,
+          status: 1
+        };
+      
+        const queryStr = 'INSERT INTO user_like SET ?';
+      
+        const like = await query(queryStr, userlike);
+        userlike.id = like.insertId;
+      
+        await commit();
+
+        const placeInfo = await query(
+            "SELECT t1.place_id, t1.place_name, t1.place_lat, t1.place_lng \
             FROM place AS t1 \
             WHERE t1.place_id=?", [place]);
 
-    if (likeplace.length === 0) {
-        return {result: 'Not Found'};
-    } else {
-        return likeplace;
+        if (placeInfo.length === 0){
+            await commit();
+            return {error: 'Not Found'};
+        }
+
+        userlike.place_name = placeInfo[0].place_name;
+        userlike.place_lat = placeInfo[0].place_lat;
+        userlike.place_lng = placeInfo[0].place_lng;
+      
+        return userlike;
+
+    } catch (error) {
+        await rollback();
+        return {error};
     }
 };
 

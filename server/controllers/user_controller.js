@@ -143,8 +143,8 @@ const signIn = async (req, res) => {
 const getUserInfo = async (req, res) => {
   // Get auth header value
   const bearerHeader = req.headers["authorization"];
-  console.log("BearerHeader");
-  console.log(bearerHeader);
+//   console.log("BearerHeader");
+//   console.log(bearerHeader);
 
   if(typeof bearerHeader !== "undefined") {
     const bearer = bearerHeader.split(" ");
@@ -176,13 +176,14 @@ const likePlace = async (req, res) => {
     // let place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0';
     let {user} = req.body;
     let {place} = req.body;
-    console.log('in controller');
-    console.log('user:', user, 'place:', place);
     if(!user||!place){
         return {error: 'Request Error: user and place is required.', status: 400};
     }
     const likeplace =  await User.likePlace(user, place);
+    // const {userlike, placeInfo} =  await User.likePlace(user, place);
+    // console.log(likeplace);
     res.status(200).send({data: likeplace});
+    // res.status(200).send({data: {userlike, placeInfo}});
 };
 
 module.exports = {
