@@ -77,17 +77,28 @@ function initMap() {
 
 function searchFood() {
   let food = document.querySelector("#search-food-text").value.replace(/\s+/g, ''); // remove blank space
-  console.log('Search Food:', food);
-  axios.post("/api/1.0/map/review",{food: food})
-    .then(res=> {
-      // addMarkersToMap(res.data.data);
-      addCirclesToMap(res.data.total, res.data.data);
-      showReviewsList(res.data.data);
-      // drawPlaceNumber(res.data.data.length);
-    })
-    .catch(err => {
-      console.log(err, err.response);
-    });
+  if (food === '') {
+    console.log('No search food.');
+    Swal.fire('Please try again!', 'Type some food name in the search box.');
+  } else {
+    console.log('Search Food:', food);
+    axios.post("/api/1.0/map/review",{food: food})
+      .then(res=> {
+        if(res.data.total === 0) {
+          Swal.fire('Please try again!', 'No related reviews about this food.').then((result) => {
+            if (result.isConfirmed) {
+              document.querySelector("#search-food-text").value = '';
+            }
+          })
+        } else {
+          addCirclesToMap(res.data.total, res.data.data);
+          showReviewsList(res.data.data);
+        }
+      })
+      .catch(err => {
+        console.log(err, err.response);
+      });
+  }
 }
 
 // function showReviews(data) {
