@@ -74,7 +74,7 @@
                         <div class="header-left">
                             <div class="search_bar dropdown">
                                 <!-- <span class="search_icon p-3 c-pointer" data-toggle="dropdown"> -->
-                                <span class="search_icon p-3 c-pointer search-food-btn" data-toggle="dropdown" onclick=searchFood()>
+                                <span id="search-food-btn" class="search_icon p-3 c-pointer" data-toggle="dropdown" onclick=searchFood()>
                                     <i class="mdi mdi-magnify"></i>
                                     <!-- <button class="btn btn-outline-success my-2 my-sm-0 search-food-btn" onclick=searchFood()>Search</button> -->
                                 </span>
@@ -83,11 +83,13 @@
                                         <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                                     </form> -->
                                     <!-- <input id="search-food-text" class="form-control mr-sm-2" type="search" placeholder="Search Food" aria-label="Search" name="food"> -->
-                                    <input id="search-food-text" class="form-control mr-sm-2" type="search" placeholder="Search Food" aria-label="Search" name="food" value="牛排">
-
+                                    <div id="search-food-text-container">  
+                                        <input id="search-food-text" class="form-control mr-sm-2" type="search" placeholder="Search Food" aria-label="Search" name="food" value="牛排">
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                         <div id="welcome-user-section">
                             <div id="welcome-user-slogan">Welcome, Guest!</div>
                             <!-- <div id="welcome-user-slogan">Welcome, foodie!</div> -->

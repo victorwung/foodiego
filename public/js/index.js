@@ -75,6 +75,14 @@ function initMap() {
   });
 }
 
+const searchBox = document.querySelector("#search-food-text");
+searchBox.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("search-food-btn").click();
+  }
+});
+
 function searchFood() {
   let food = document.querySelector("#search-food-text").value.replace(/\s+/g, ''); // remove blank space
   if (food === '') {
