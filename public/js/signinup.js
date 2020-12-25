@@ -22,7 +22,7 @@ function goSignIn() {
     })
     .then(res=> {
       console.log("redirect");
-      window.location.href="/index.html";
+      window.location.href="/main.html";
     })
     .catch(err => {
       console.log(err, err.response);
