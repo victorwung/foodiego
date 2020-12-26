@@ -67,12 +67,12 @@
         <!--**********************************
             Header start
         ***********************************-->
-        <div class="header">
+        <div id="main-header" class="header">
             <div class="header-content">
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                            <div class="search_bar dropdown">
+                        <div id="main-header-left" class="header-left">
+                            <div id="main-search-bar" class="search_bar dropdown">
                                 <!-- <span class="search_icon p-3 c-pointer" data-toggle="dropdown"> -->
                                 <span id="search-food-btn" class="search_icon p-3 c-pointer" data-toggle="dropdown" onclick=searchFood()>
                                     <i class="mdi mdi-magnify"></i>
@@ -84,18 +84,24 @@
                                     </form> -->
                                     <!-- <input id="search-food-text" class="form-control mr-sm-2" type="search" placeholder="Search Food" aria-label="Search" name="food"> -->
                                     <div id="search-food-text-container">  
-                                        <input id="search-food-text" class="form-control mr-sm-2" type="search" placeholder="Search Food" aria-label="Search" name="food">
+                                        <input id="search-food-text" class="form-control mr-sm-2" type="search" placeholder="Food" aria-label="Search" name="food">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> -->
+                        <button id="main-search-food-btn" class="btn btn-success my-2 my-sm-0 search-food-btn" onclick=searchFood()>Search</button>
+                        <!-- <div class="form-inline my-2 my-lg-0">
+                            <div id="search-food-title">Wanna Eat</div>
+                            <input id="search-food-text" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="food" value="燉飯">
+                            <button class="btn btn-outline-success my-2 my-sm-0 search-food-btn" onclick=searchFood()>Search</button>
+                        </div> -->
+                        <!-- <div id="search-food-result">Total 50 Restaurnts Match 義大利麵</div> -->
                         <div id="welcome-user-section">
                             <div id="welcome-user-slogan">Welcome, Guest!</div>
                             <!-- <div id="welcome-user-slogan">Welcome, foodie!</div> -->
                         </div>
                         <ul class="navbar-nav header-right">
-                            <li class="nav-item dropdown notification_dropdown">
+                            <!-- <li class="nav-item dropdown notification_dropdown">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                     <i class="mdi mdi-bell"></i>
                                     <div class="pulse-css"></div>
@@ -154,7 +160,7 @@
                                     <a class="all-notification" href="#">See all notifications <i
                                             class="ti-arrow-right"></i></a>
                                 </div>
-                            </li>
+                            </li> -->
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                     <i class="mdi mdi-account"></i>
@@ -373,6 +379,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Foodie Map</h4>
+                                <!-- <h4 class="card-title">Foodie Map Total 50 Restaurnts Match 義大利麵</h4> -->
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -604,7 +611,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive" id="review-content-container">
-                                    <div id="place-review-content-list-group" class="list-group dataTables_scrollBody">
+                                    <div id="place-review-content-list-group" class="list-group dataTables_scrollBody dataTables_scrollBody_reveiwContent">
                                     </div>
                                 </div>
                             </div>

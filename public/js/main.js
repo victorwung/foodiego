@@ -68,7 +68,8 @@ checkToken();
 // };
 
 function initMap() {
-  var uluru = {lat: 25.033, lng: 121.543};
+  var uluru = {lat: 25.041, lng: 121.550}; // 忠孝敦化
+  // var uluru = {lat: 25.033, lng: 121.543};
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
     center: uluru
@@ -103,13 +104,13 @@ function searchFood() {
   let food = document.querySelector("#search-food-text").value.replace(/\s+/g, ''); // remove blank space
   if (food === '') {
     console.log('No search food.');
-    Swal.fire('Please try again!', 'Type some food name in the search box.');
+    Swal.fire('Please try again!', 'Type anything food name in the search box.');
   } else {
     console.log('Search Food:', food);
     axios.post("/api/1.0/map/review",{food: food})
       .then(res=> {
         if(res.data.total === 0) {
-          Swal.fire('Please try again!', 'No related reviews about this food.').then((result) => {
+          Swal.fire('Please try again!', 'Sorry. No related reviews about this food.').then((result) => {
             if (result.isConfirmed) {
               document.querySelector("#search-food-text").value = '';
             }

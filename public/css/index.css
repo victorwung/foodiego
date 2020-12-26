@@ -565,7 +565,8 @@ legend {
 
 .s01 form .inner-form .input-field.third-wrap .btn-search:hover {
   /* background: #2d62d3; */
-  background: #4236a8;
+  /* background: #4236a8; */
+  background: #5436dd;
 }
 
 @media screen and (max-width: 992px) {
