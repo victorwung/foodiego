@@ -1,6 +1,7 @@
 let map;
 let markers = [];
 let beaches = [];
+let circles = [];
 let citymap = {
   chicago: {
     center: { lat: 41.878, lng: -87.629 },
@@ -118,6 +119,7 @@ function searchFood() {
         } else {
           addCirclesToMap(res.data.total, res.data.data);
           showReviewsList(res.data.data);
+          setSearchResult(food, res.data.data.length, res.data.total);
         }
       })
       .catch(err => {
@@ -184,15 +186,6 @@ function setMarkers(locations) {
           title: loc[0],
           zIndex: loc[4]
       });
-      // var marker = new google.maps.Circle({
-      //   center: myLatLng,
-      //   fillColor: "red",
-      //   fillOpacity: 0.4,
-      //   radius: 500,
-      //   // scale: Math.pow(2, magnitude) / 2,
-      //   strokeColor: "white",
-      //   strokeWeight: 0.5
-      // });
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
@@ -226,6 +219,7 @@ function addCirclesToMap(total_match_count, data) {
   // let citymap = {};
   console.log('Clear circles with reload map!');
   citymap = {};
+  circles = [];
   initMap();
 
   console.log('Draw circles!');
@@ -246,7 +240,6 @@ function addCirclesToMap(total_match_count, data) {
   console.log(citymap);
 
   const infowindow = new google.maps.InfoWindow();
-
   for (const city in citymap) {
     // Add the circle for this city to the map.
     const cityCircle = new google.maps.Circle({
@@ -276,7 +269,10 @@ function addCirclesToMap(total_match_count, data) {
       getReviewContents(citymap[city].id); // review content
       getReviewFeatureBar(citymap[city].id); // review feature bar
     });
+    circles.push(cityCircle);
   }
+  // click top circle
+  // google.maps.event.trigger(circles[0], 'click');
 }
 
 function showReviewsList(data) {
@@ -289,7 +285,7 @@ function showReviewsList(data) {
     var placeA = document.createElement("div");
     // placeA.setAttribute("href", "#");
     // placeA.setAttribute("href", `./bmap.html?place=${data[i].place_id}`);
-    placeA.setAttribute("class","list-group-item list-group-item-action");
+    placeA.setAttribute("class","list-group-item list-group-item-action list-group-item-place");
     placeA.addEventListener("click", () => {
       getPlaceInfo(data[i].place_id); // place info
       getPlacePeopleBar(data[i].place_id); // bar chart
@@ -297,6 +293,7 @@ function showReviewsList(data) {
       getReviewContents(data[i].place_id); // review content
       getPlaceTags(data[i].place_id); // place tags
       getReviewFeatureBar(data[i].place_id); // review feature bar
+      google.maps.event.trigger(circles[i], 'click'); // click circle on map
     });
 
     // section 1
@@ -362,6 +359,14 @@ function showReviewsList(data) {
     // total place list
     reviewContainer.append(placeList);
   }
+  // default click the top mathch place
+  let topPlace = document.getElementsByClassName("list-group-item-place")[0];
+  topPlace.click();
+}
+
+function setSearchResult(food, place_cnt, review_cnt){
+  let mapCardTitle = document.getElementById("card-map-title");
+  mapCardTitle.textContent = `Foodie Map ( ${place_cnt} restaurants contain ${food} / ${review_cnt} reviews mentioned )`
 }
 
 function drawPlaceNumber(data_length) {
@@ -436,7 +441,7 @@ function showReviewContentList(data) {
 
   for (let i = 0; i < data.length; i ++) {
     var placeA = document.createElement("div");
-    placeA.setAttribute("class","list-group-item list-group-item-action");
+    placeA.setAttribute("class","list-group-item list-group-item-action list-group-item-review");
     // placeA.addEventListener("click", () => {
     //   getRatingDistribution(data[i].place_id);
     // });
@@ -723,7 +728,8 @@ function showPlaceInfo(data, food) {
   let cnt = document.querySelector("#card-info-both-cnt");
   let detail = document.querySelector("#card-info-detail");
   title.innerHTML = data.place_name;
-  rating.innerHTML = data.place_rating;
+  rating.innerHTML = `${data.place_rating}`;
+  // rating.innerHTML = `${data.place_rating} ★`;
   cnt.innerHTML = `${data.total_count} reviews, ${data.match_count} reviews about ${food}`
   detail.innerHTML = `${data.place_addr}<br/> ${data.place_phone}<br/>`
 

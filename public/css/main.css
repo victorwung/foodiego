@@ -35,10 +35,13 @@
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #BDBDC7; }
-
+  
+#place-review-content-list-group,
 .dataTables_scrollBody_reveiwContent {
-  /* max-height: 45rem !important;  */
-  max-height: 43.5rem !important; }
+  /* height: 43.5rem !important;  */
+  max-height: 43.5rem !important; 
+  /* max-height: 48rem !important;  */
+}
 
 /* .list-group-item:hover {
   background-color: #9186ee !important;
