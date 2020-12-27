@@ -52,6 +52,12 @@
   background-color:#F0F0F0 !important;
 }
 
+.place-name {
+  /* color: #593DBD; */
+  /* font-size: 1.06rem; */
+  font-weight:bold;
+}
+
 .place-rating,
 .content-rating {
   color: #E7711b;

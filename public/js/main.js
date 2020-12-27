@@ -118,7 +118,7 @@ function searchFood() {
           })
         } else {
           addCirclesToMap(res.data.total, res.data.data);
-          showReviewsList(res.data.data);
+          showReviewsList(food, res.data.data);
           setSearchResult(food, res.data.data.length, res.data.total);
         }
       })
@@ -275,7 +275,7 @@ function addCirclesToMap(total_match_count, data) {
   // google.maps.event.trigger(circles[0], 'click');
 }
 
-function showReviewsList(data) {
+function showReviewsList(food, data) {
   let reviewContainer = document.querySelector("#review-container");
   let placeList = document.querySelector("#place-list-group");
   // remove all childs
@@ -323,6 +323,28 @@ function showReviewsList(data) {
     placeSection2.append(totalReviewCount);
     placeA.append(placeSection2);
 
+    // section 25
+    var placeSection25 = document.createElement("div");
+    placeSection25.setAttribute("class","d-flex w-100");
+    var bothCount = document.createElement("small");
+    bothCount.setAttribute("class","mb-1 new-both-count");
+    bothCount.innerHTML = `${data[i].total_count} reviews, ${data[i].match_count} reviews mention ${food}`;
+    placeSection25.append(bothCount);
+    placeA.append(placeSection25);
+
+    // // section 25
+    // var placeSection25 = document.createElement("div");
+    // placeSection25.setAttribute("class","d-flex w-100");
+    // var totalCount = document.createElement("h8");
+    // totalCount.setAttribute("class","mb-1 new-total-count");
+    // totalCount.innerHTML = `${data[i].total_count} reviews, `;
+    // placeSection25.append(totalCount);
+    // var matchCount = document.createElement("h8");
+    // matchCount.setAttribute("class","new-match-count");
+    // matchCount.innerHTML = `${data[i].match_count} reviews mention 牛排`; // test
+    // placeSection25.append(matchCount);
+    // placeA.append(placeSection25);
+
     // section 3
     var placeSection3 = document.createElement("div");
     placeSection3.setAttribute("class","mb-1 place-addr");
@@ -366,7 +388,9 @@ function showReviewsList(data) {
 
 function setSearchResult(food, place_cnt, review_cnt){
   let mapCardTitle = document.getElementById("card-map-title");
-  mapCardTitle.textContent = `Foodie Map ( ${place_cnt} restaurants contain ${food} / ${review_cnt} reviews mentioned )`
+  mapCardTitle.textContent = `Foodie Map ( ${place_cnt} restaurants / ${review_cnt} reviews mention ${food})`;
+  // mapCardTitle.textContent = `Foodie Map ( ${place_cnt} restaurants contain ${food} / ${review_cnt} reviews mentioned )`;
+
 }
 
 function drawPlaceNumber(data_length) {
@@ -730,7 +754,7 @@ function showPlaceInfo(data, food) {
   title.innerHTML = data.place_name;
   rating.innerHTML = `${data.place_rating}`;
   // rating.innerHTML = `${data.place_rating} ★`;
-  cnt.innerHTML = `${data.total_count} reviews, ${data.match_count} reviews about ${food}`
+  cnt.innerHTML = `${data.total_count} reviews, ${data.match_count} reviews mention ${food}`
   detail.innerHTML = `${data.place_addr}<br/> ${data.place_phone}<br/>`
 
   let likebtn = document.querySelector("#btn-like");
