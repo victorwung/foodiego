@@ -684,6 +684,7 @@ function showPlacePeopleBarPoltly(data) {
 
   var layout = {
     // title: 'Paticipants',
+    // autosize: false,
     title: {
       text:'Paticipants Mentioned',
       font: {
@@ -694,6 +695,9 @@ function showPlacePeopleBarPoltly(data) {
     font: {
       family: 'sans-serif',
       size: 13
+    },
+    xaxis: {
+      range: [0, 25]
     },
     height: 300,
     width: 400,
