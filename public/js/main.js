@@ -887,8 +887,13 @@ function likePlace() {
     });
   } else {
       console.log("no token");
-      alert('Please login');
-      window.location.href="/signin.html";
+      // alert('Please login');
+      // window.location.href="/signin.html";
+      Swal.fire('Please login!').then((result) => {
+        if (result.isConfirmed) {
+          window.location.href="/signin.html";
+        }
+      })
   }
 }
 
