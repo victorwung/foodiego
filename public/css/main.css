@@ -43,9 +43,14 @@
   /* max-height: 48rem !important;  */
 }
 
-/* .list-group-item:hover {
-  background-color: #9186ee !important;
-} */
+.list-group-item-place:hover {
+  cursor: pointer !important;
+  background-color:#F0F0F0 !important;
+}
+
+.list-group-item-review:hover {
+  background-color:#F0F0F0 !important;
+}
 
 .place-rating,
 .content-rating {
