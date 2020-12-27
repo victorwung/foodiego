@@ -452,6 +452,10 @@ function drawRatingDistribution(data) {
   
   var layout = {
     // title: data.place_name,
+    font: {
+      family: 'sans-serif',
+      size: 13
+    },
     height: 235,
     width: 235,
     margin: {
@@ -687,6 +691,10 @@ function showPlacePeopleBarPoltly(data) {
         size: 18
       }
     },
+    font: {
+      family: 'sans-serif',
+      size: 13
+    },
     height: 300,
     width: 400,
     margin: {
@@ -753,6 +761,10 @@ function showReviewFeatureBar(data) {
         family: 'Roboto',
         size: 18
       }
+    },
+    font: {
+      family: 'sans-serif',
+      size: 13
     },
     barmode: 'bar',
     height: 300,
