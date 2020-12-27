@@ -311,11 +311,31 @@ function showReviewsList(food, data) {
     placeA.append(placeSection1);
 
     // section 2
+    // starfigure start
+    var cur_rating = data[i].place_rating;
+    var star_figure;
+    if (cur_rating === 5) {
+      star_figure = '★★★★★';
+      // console.log(starFigure);
+    } else if (cur_rating >= 4) {
+      star_figure = '★★★★☆';
+      // console.log(starFigure);
+    } else if (cur_rating >= 3) {
+      star_figure = '★★★☆☆';
+      // console.log(starFigure);
+    } else if (cur_rating >= 2) {
+      star_figure = '★★☆☆☆';
+      // console.log(starFigure);
+    } else {
+      star_figure = '★☆☆☆☆';
+      // console.log(starFigure);
+    }
+    // starfigure end
     var placeSection2 = document.createElement("div");
     placeSection2.setAttribute("class","d-flex w-100");
     var placeRating = document.createElement("h6");
     placeRating.setAttribute("class","mb-1 place-rating");
-    placeRating.innerHTML = data[i].place_rating;
+    placeRating.innerHTML = `${data[i].place_rating} ${star_figure}`;
     placeSection2.append(placeRating);
     var totalReviewCount = document.createElement("h6");
     totalReviewCount.setAttribute("class","total-review-count");
@@ -485,11 +505,32 @@ function showReviewContentList(data) {
     placeA.append(placeSection1);
 
     // section 2
+    // starfigure start
+    var cur_rating = data[i].rating;
+    var star_figure;
+    if (cur_rating === 5) {
+      star_figure = '★★★★★';
+      // console.log(starFigure);
+    } else if (cur_rating >= 4) {
+      star_figure = '★★★★☆';
+      // console.log(starFigure);
+    } else if (cur_rating >= 3) {
+      star_figure = '★★★☆☆';
+      // console.log(starFigure);
+    } else if (cur_rating >= 2) {
+      star_figure = '★★☆☆☆';
+      // console.log(starFigure);
+    } else {
+      star_figure = '★☆☆☆☆';
+      // console.log(starFigure);
+    }
+    // starfigure end
     var placeSection2 = document.createElement("div");
     placeSection2.setAttribute("class","d-flex w-100");
     var placeRating = document.createElement("h6");
     placeRating.setAttribute("class","mb-1 content-rating");
-    placeRating.innerHTML = data[i].rating;
+    placeRating.innerHTML = `${star_figure}`;
+    // placeRating.innerHTML = `${data[i].rating} ${star_figure}`;
     placeSection2.append(placeRating);
     // var totalReviewCount = document.createElement("h6");
     // totalReviewCount.setAttribute("class","total-review-count");
@@ -746,13 +787,34 @@ function showPlaceInfo(data, food) {
   // save place_id
   window.localStorage.setItem("place", data.place_id);
 
+  // starfigure start
+  var cur_rating = data.place_rating;
+  var star_figure;
+  if (cur_rating === 5) {
+    star_figure = '★★★★★';
+    // console.log(starFigure);
+  } else if (cur_rating >= 4) {
+    star_figure = '★★★★☆';
+    // console.log(starFigure);
+  } else if (cur_rating >= 3) {
+    star_figure = '★★★☆☆';
+    // console.log(starFigure);
+  } else if (cur_rating >= 2) {
+    star_figure = '★★☆☆☆';
+    // console.log(starFigure);
+  } else {
+    star_figure = '★☆☆☆☆';
+    // console.log(starFigure);
+  }
+  // starfigure end
+
   let infoContainer = document.querySelector("#place-info-container");
   let title = document.querySelector("#card-info-title");
   let rating = document.querySelector("#card-info-rating");
   let cnt = document.querySelector("#card-info-both-cnt");
   let detail = document.querySelector("#card-info-detail");
   title.innerHTML = data.place_name;
-  rating.innerHTML = `${data.place_rating}`;
+  rating.innerHTML = `${data.place_rating} ${star_figure}`;
   // rating.innerHTML = `${data.place_rating} ★`;
   cnt.innerHTML = `${data.total_count} reviews, ${data.match_count} reviews mention ${food}`
   detail.innerHTML = `${data.place_addr}<br/> ${data.place_phone}<br/>`
