@@ -120,6 +120,8 @@ function searchFood() {
           addCirclesToMap(res.data.total, res.data.data);
           showReviewsList(food, res.data.data);
           setSearchResult(food, res.data.data.length, res.data.total);
+          // set food to local storage
+          window.localStorage.setItem("food", food);
         }
       })
       .catch(err => {
