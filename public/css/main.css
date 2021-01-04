@@ -1,46 +1,39 @@
-/* #main-header{
-  height: 4rem;
-} */
-
 #map {
   height: 28rem;
-  /* height: 45rem; */
-  width: 100%;
+  width: 100%; 
 }
-/* 
-#example2_wrapper .dataTables_scrollBody {
-  max-height: 33.25rem !important; } */
 
 .dataTables_scrollBody {
-  /* max-height: 45rem !important;  */
-  max-height: 28rem !important; }
+  max-height: 28rem !important; 
+}
   
 .jsgrid-grid-body::-webkit-scrollbar,
 .dataTables_scrollBody::-webkit-scrollbar,
 .table-responsive::-webkit-scrollbar {
   background-color: #F5F5F5;
   width: 8px;
-  height: 8px; }
+  height: 8px; 
+}
 
 .jsgrid-grid-body::-webkit-scrollbar-track,
 .dataTables_scrollBody::-webkit-scrollbar-track,
 .table-responsive::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  background-color: #F5F5F5; }
+  background-color: #F5F5F5; 
+}
 
 .jsgrid-grid-body::-webkit-scrollbar-thumb,
 .dataTables_scrollBody::-webkit-scrollbar-thumb,
 .table-responsive::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #BDBDC7; }
+  background-color: #BDBDC7; 
+}
   
 #place-review-content-list-group,
 .dataTables_scrollBody_reveiwContent {
-  /* height: 43.5rem !important;  */
   max-height: 43.5rem !important; 
-  /* max-height: 48rem !important;  */
 }
 
 .list-group-item-place:hover {
@@ -53,8 +46,6 @@
 }
 
 .place-name {
-  /* color: #593DBD; */
-  /* font-size: 1.06rem; */
   font-weight:bold;
 }
 
@@ -65,13 +56,11 @@
 
 .match-count {
   color: #6B5DEF;
-  /* color: #212529; */
 }
 
 #card-people,
 #card-feeling,
 #card-tag {
-  /* height: 15rem; */
   height: 20rem;
 }
 
@@ -84,16 +73,8 @@
   margin: 5px;
 }
 
-#bar-section-container {
-  /* height: 45rem !important; */
-  /* height: 45rem !important; */
-  /* max-height: 45rem !important; */
-}
-
 #bar-feature-container{
   margin-bottom: 3rem !important; 
-  /* margin-bottom: 7.5rem !important;  */
-  /* margin-bottom: 3.5rem !important;  */
 }
 
 #bar-people-container{
@@ -101,7 +82,6 @@
 }
 
 #card-info-title {
-  /* color: #593DBD; */
   font-size: 1.06rem;
   font-weight:bold;
 }
@@ -114,14 +94,9 @@
   display: none;
 }
 
-/* #search-food-text-container {
-  width: 6px !important;
-} */
-
 #search-food-text {
   min-width: 220px !important;
   width: 220px !important;
-  /* background-color: slategray !important; */
 }
 
 #main-search-food-btn {
@@ -130,7 +105,6 @@
 }
 
 #main-search-food-btn:hover {
-  /* background: #4236a8 !important; */
   background:#5436dd !important;
   border-color: #5436dd !important;
 }
