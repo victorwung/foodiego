@@ -1,24 +1,16 @@
 let map;
-let markers = [];
-let beaches = [];
 let circles = [];
-let citymap = {
-  chicago: {
-    center: { lat: 41.878, lng: -87.629 },
-    population: 2714856,
-  },
-};
+let citymap = {};
 
-// USER SECTION START
-const token = localStorage.getItem("token");
+const token = localStorage.getItem("token"); // user token
 
 function checkToken() {
   if (token) {
-    console.log("has token");
+    // has token
     getUserInfoName();
   }
   else {
-    console.log("no token");
+    // no token
   }
 }
 
@@ -32,8 +24,6 @@ function getUserInfoName(){
     }
   )
   .then(res=> {
-    // console.log(res.data.data);
-    console.log('username:', res.data.data.userinfo.name);
     setUserName(res.data.data.userinfo.name);
   })
   .catch(err => {
@@ -47,47 +37,18 @@ function setUserName(name){
 }
 
 checkToken();
-// USER SECTION END
-
-// const citymap = {
-//   chicago: {
-//     center: { lat: 41.878, lng: -87.629 },
-//     population: 2714856,
-//   },
-//   newyork: {
-//     center: { lat: 40.714, lng: -74.005 },
-//     population: 8405837,
-//   },
-//   losangeles: {
-//     center: { lat: 34.052, lng: -118.243 },
-//     population: 3857799,
-//   },
-//   vancouver: {
-//     center: { lat: 49.25, lng: -123.1 },
-//     population: 603502,
-//   },
-// };
 
 function initMap() {
-  var uluru = {lat: 25.041, lng: 121.550}; // 忠孝敦化
-  // var uluru = {lat: 25.033, lng: 121.543};
+  var uluru = {lat: 25.041, lng: 121.550}; // Zhongxiao Dunhua Station
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
     center: uluru
   });
 }
 
-// const searchBox = document.querySelector("#search-food-text");
-// searchBox.addEventListener("keyup", function(event) {
-//   if (event.keyCode === 13) {
-//    event.preventDefault();
-//    document.getElementById("search-food-btn").click();
-//   }
-// });
-
 const outerFood = localStorage.getItem("food");
 document.addEventListener("DOMContentLoaded", function(){
-  // DOM Ready!
+  // DOM ready
   checkOuterSearchFood();
 });
 
@@ -104,10 +65,8 @@ function checkOuterSearchFood() {
 function searchFood() {
   let food = document.querySelector("#search-food-text").value.replace(/\s+/g, ''); // remove blank space
   if (food === '') {
-    console.log('No search food.');
     Swal.fire('Please try again!', 'Type anything food name in the search box.');
   } else {
-    console.log('Search Food:', food);
     axios.post("/api/1.0/map/review",{food: food})
       .then(res=> {
         if(res.data.total === 0) {
@@ -130,102 +89,13 @@ function searchFood() {
   }
 }
 
-// function showReviews(data) {
-//   console.log('In show review');
-//   console.log(data);
-
-//   let reviewContainer = document.querySelector("#review-container");
-//   // remove all childs
-//   reviewContainer.innerHTML = '';
-
-//   for (let i = 0; i < data.length; i ++) {
-//     var oneReview = document.createElement("div");
-//     oneReview.setAttribute("class","review-list");
-//     // var oneReviewText = document.createTextNode(`ID: ${data[i].place_id}, 餐廳: ${data[i].place_name}, 經緯度: (${data[i].place_lat}, ${data[i].place_lng}),  match數: ${data[i].review_count}`);
-//     var oneReviewText = document.createTextNode(`餐廳: ${data[i].place_name}, match數: ${data[i].review_count}`);
-//     oneReview.appendChild(oneReviewText);
-//     reviewContainer.appendChild(oneReview);
-//   }  
-// }
-
-function addMarkersToMap(data) {
-  // let locations = [];
-  for (let i = 0; i < data.length; i ++) {
-    var curLoc = [];
-    curLoc.push(data[i].place_name);
-    curLoc.push(data[i].place_lat);
-    curLoc.push(data[i].place_lng);
-    curLoc.push(data[i].match_count);
-    // curLoc.push(data[i].review_count);
-    curLoc.push(data[i].total_count);
-    curLoc.push(i+1); // marker order
-    // locations.push(curLoc);
-    beaches.push(curLoc);
-  }
-  // beaches = locations;
-  console.log('beaches')
-  console.log(beaches);
-
-  console.log('To reload');
-  reloadMarkers();
-
-  // beaches=[]; // clear
-
-  console.log('Try add circle');
-}
-
-function setMarkers(locations) {
-  var infowindow = new google.maps.InfoWindow();
-
-  for (var i = 0; i < beaches.length; i++) {
-      // beach = locations[i];
-      var loc = locations[i]; // get each location
-      var myLatLng = new google.maps.LatLng(loc[1], loc[2]);
-      var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          animation: google.maps.Animation.DROP,
-          title: loc[0],
-          zIndex: loc[4]
-      });
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(`${locations[i][0]} (${locations[i][3]})`);
-          infowindow.setOptions({maxWidth: 200});
-          infowindow.open(map, marker);
-        }
-      }) (marker, i));
-
-      // Push marker to markers array
-      markers.push(marker);
-  }
-}
-
-function reloadMarkers() {
-
-  // Loop through markers and set map to null for each
-  for (var i=0; i<markers.length; i++) {
-
-      markers[i].setMap(null);
-  }
-
-  // Reset the markers array
-  markers = [];
-
-  // Call set markers to re-add markers
-  setMarkers(beaches);
-}
-
 function addCirclesToMap(total_match_count, data) {
-  // let citymap = {};
-  console.log('Clear circles with reload map!');
+  // clear circles with reload map
   citymap = {};
   circles = [];
   initMap();
 
-  console.log('Draw circles!');
-
+  // draw circles
   for (let i = 0; i < data.length; i ++) {
     var place = data[i].place_id;
     citymap[place] = {
@@ -239,11 +109,10 @@ function addCirclesToMap(total_match_count, data) {
       'total_count':data[i].total_count
     };
   }
-  console.log(citymap);
 
   const infowindow = new google.maps.InfoWindow();
   for (const city in citymap) {
-    // Add the circle for this city to the map.
+    // add the circle for this city to the map
     const cityCircle = new google.maps.Circle({
       strokeColor: "#FF0000",
       strokeOpacity: 0.8,
@@ -252,15 +121,12 @@ function addCirclesToMap(total_match_count, data) {
       fillOpacity: 0.35,
       map,
       center: citymap[city].center,
-      // radius:  Math.sqrt(citymap[city].match_count) * 20
       radius:  Math.sqrt(citymap[city].match_count/total_match_count ) * 300
-      // radius: Math.sqrt(citymap[city].population) * 100,
     });
 
     google.maps.event.addListener(cityCircle, 'click', function(ev){
       infowindow.setPosition(cityCircle.getCenter());
       infowindow.setContent(`${citymap[city].name} (${citymap[city].match_count})`);
-      // infowindow.setContent(city);
       infowindow.setOptions({maxWidth: 200});
       infowindow.open(map);
       // add listeners to call all dashboard items
@@ -273,8 +139,6 @@ function addCirclesToMap(total_match_count, data) {
     });
     circles.push(cityCircle);
   }
-  // click top circle
-  // google.maps.event.trigger(circles[0], 'click');
 }
 
 function showReviewsList(food, data) {
@@ -285,8 +149,6 @@ function showReviewsList(food, data) {
 
   for (let i = 0; i < data.length; i ++) {
     var placeA = document.createElement("div");
-    // placeA.setAttribute("href", "#");
-    // placeA.setAttribute("href", `./bmap.html?place=${data[i].place_id}`);
     placeA.setAttribute("class","list-group-item list-group-item-action list-group-item-place");
     placeA.addEventListener("click", () => {
       getPlaceInfo(data[i].place_id); // place info
@@ -308,31 +170,25 @@ function showReviewsList(food, data) {
     var matchCount = document.createElement("h6");
     matchCount.setAttribute("class","match-count");
     matchCount.innerHTML = data[i].match_count;
-    // matchCount.innerHTML = data[i].review_count;
     placeSection1.append(matchCount);
     placeA.append(placeSection1);
 
     // section 2
-    // starfigure start
+    // star figure
     var cur_rating = data[i].place_rating;
     var star_figure;
     if (cur_rating === 5) {
       star_figure = '★★★★★';
-      // console.log(starFigure);
     } else if (cur_rating >= 4) {
       star_figure = '★★★★☆';
-      // console.log(starFigure);
     } else if (cur_rating >= 3) {
       star_figure = '★★★☆☆';
-      // console.log(starFigure);
     } else if (cur_rating >= 2) {
       star_figure = '★★☆☆☆';
-      // console.log(starFigure);
     } else {
       star_figure = '★☆☆☆☆';
-      // console.log(starFigure);
     }
-    // starfigure end
+
     var placeSection2 = document.createElement("div");
     placeSection2.setAttribute("class","d-flex w-100");
     var placeRating = document.createElement("h6");
@@ -354,33 +210,17 @@ function showReviewsList(food, data) {
     placeSection25.append(bothCount);
     placeA.append(placeSection25);
 
-    // // section 25
-    // var placeSection25 = document.createElement("div");
-    // placeSection25.setAttribute("class","d-flex w-100");
-    // var totalCount = document.createElement("h8");
-    // totalCount.setAttribute("class","mb-1 new-total-count");
-    // totalCount.innerHTML = `${data[i].total_count} reviews, `;
-    // placeSection25.append(totalCount);
-    // var matchCount = document.createElement("h8");
-    // matchCount.setAttribute("class","new-match-count");
-    // matchCount.innerHTML = `${data[i].match_count} reviews mention 牛排`; // test
-    // placeSection25.append(matchCount);
-    // placeA.append(placeSection25);
-
     // section 3
     var placeSection3 = document.createElement("div");
     placeSection3.setAttribute("class","mb-1 place-addr");
-    // var placeTags = document.createElement("p");
     var placeAddr = document.createElement("small");
     placeAddr.innerHTML = data[i].place_addr;
     placeSection3.append(placeAddr);
     placeA.append(placeSection3);
-    // placeA.append(placeAddr);
 
     // section 4
     var placeSection4 = document.createElement("div");
     placeSection4.setAttribute("class","mb-1 place-tags");
-    // var placeTags = document.createElement("p");
     var placeTags = document.createElement("small");
     var tags = data[i].place_tags;
     var tagStr = '';
@@ -393,10 +233,8 @@ function showReviewsList(food, data) {
       }
     }
     placeTags.innerHTML = tagStr;
-    // placeTags.innerHTML = "#TAG1(65) #TAG2(50) #TAG3(20)";
     placeSection4.append(placeTags);
     placeA.append(placeSection4);
-    // placeA.append(placeTags);
 
     // one place
     placeList.append(placeA);
@@ -411,8 +249,6 @@ function showReviewsList(food, data) {
 function setSearchResult(food, place_cnt, review_cnt){
   let mapCardTitle = document.getElementById("card-map-title");
   mapCardTitle.textContent = `Foodie Map ( ${place_cnt} restaurants / ${review_cnt} reviews mention ${food})`;
-  // mapCardTitle.textContent = `Foodie Map ( ${place_cnt} restaurants contain ${food} / ${review_cnt} reviews mentioned )`;
-
 }
 
 function drawPlaceNumber(data_length) {
@@ -423,11 +259,8 @@ function drawPlaceNumber(data_length) {
 function getRatingDistribution(place_id) {
   let food = document.querySelector("#search-food-text").value.replace(/\s+/g, '');
 
-  // axios.post("/api/1.0/map/review/analysis_rating",{place: place_id, food: food})
   axios.post("/api/1.0/review/rating",{place: place_id, food: food})
     .then(res=> {
-      console.log(res.data);
-      // console.log(res.data.data[0]);
       drawRatingDistribution(res.data.data[0]);
     })
     .catch(err => {
@@ -435,14 +268,12 @@ function getRatingDistribution(place_id) {
     });
 }
 
-function drawRatingDistribution(data) {
-  
+function drawRatingDistribution(data) { 
   let feelingHeader = document.querySelector("#card-feeling-title");
   let food = document.querySelector("#search-food-text").value.replace(/\s+/g, ''); // get searchbox food
   feelingHeader.innerHTML = `Feeling About the Food ${food}`
 
   var colorList = ['#2A9D8F', '#E9C46A', '#F4A261'];
-  // var colorList = ['#2A9D8F', '#E9C46A', '#d598a3'];
   var ratingData = [{
     values: [data.positvie_cnt, data.neutral_cnt, data.negative_cnt],
     labels: ['好評', '普通', '負評'],
@@ -453,7 +284,6 @@ function drawRatingDistribution(data) {
   }];
   
   var layout = {
-    // title: data.place_name,
     font: {
       family: 'sans-serif',
       size: 13
@@ -468,14 +298,13 @@ function drawRatingDistribution(data) {
       pad: 0
     },
   };
-  
+
   Plotly.newPlot('pie', ratingData, layout);
 }
 
 function getReviewContents(place_id) {
   axios.post("/api/1.0/review/contents",{place: place_id})
     .then(res=> {
-      console.log(res.data.data);
       showReviewContentList(res.data.data);
     })
     .catch(err => {
@@ -492,9 +321,6 @@ function showReviewContentList(data) {
   for (let i = 0; i < data.length; i ++) {
     var placeA = document.createElement("div");
     placeA.setAttribute("class","list-group-item list-group-item-action list-group-item-review");
-    // placeA.addEventListener("click", () => {
-    //   getRatingDistribution(data[i].place_id);
-    // });
 
     // section 1
     var placeSection1 = document.createElement("div");
@@ -506,42 +332,31 @@ function showReviewContentList(data) {
     var matchCount = document.createElement("h6");
     matchCount.setAttribute("class","rel-date");
     matchCount.innerHTML = data[i].rel_date;
-    // matchCount.innerHTML = data[i].review_count;
     placeSection1.append(matchCount);
     placeA.append(placeSection1);
 
     // section 2
-    // starfigure start
+    // star figure
     var cur_rating = data[i].rating;
     var star_figure;
     if (cur_rating === 5) {
       star_figure = '★★★★★';
-      // console.log(starFigure);
     } else if (cur_rating >= 4) {
       star_figure = '★★★★☆';
-      // console.log(starFigure);
     } else if (cur_rating >= 3) {
       star_figure = '★★★☆☆';
-      // console.log(starFigure);
     } else if (cur_rating >= 2) {
       star_figure = '★★☆☆☆';
-      // console.log(starFigure);
     } else {
       star_figure = '★☆☆☆☆';
-      // console.log(starFigure);
     }
-    // starfigure end
+
     var placeSection2 = document.createElement("div");
     placeSection2.setAttribute("class","d-flex w-100");
     var placeRating = document.createElement("h6");
     placeRating.setAttribute("class","mb-1 content-rating");
     placeRating.innerHTML = `${star_figure}`;
-    // placeRating.innerHTML = `${data[i].rating} ${star_figure}`;
     placeSection2.append(placeRating);
-    // var totalReviewCount = document.createElement("h6");
-    // totalReviewCount.setAttribute("class","total-review-count");
-    // totalReviewCount.innerHTML = `(${data[i].total_count})`; // test
-    // placeSection2.append(totalReviewCount);
     placeA.append(placeSection2);
 
     // section 3
@@ -551,7 +366,6 @@ function showReviewContentList(data) {
     placeAddr.innerHTML = data[i].review_content;
     placeSection3.append(placeAddr);
     placeA.append(placeSection3);
-    // placeA.append(placeAddr);
 
     // one place
     reviewList.append(placeA);
@@ -563,47 +377,12 @@ function showReviewContentList(data) {
 function getPlaceTags(place_id) {
   axios.post("/api/1.0/review/tags",{place: place_id})
     .then(res=> {
-      // console.log(res.data.data[0]);
-      // showPlaceTags(res.data.data[0]);
       showPlaceTagsBtn(res.data.data[0]);
     })
     .catch(err => {
       console.log(err, err.response);
     });
 }
-
-// function showPlaceTags(data) {
-//   let tagContainer = document.querySelector("#place-tags-container");
-//   let tagList = document.querySelector("#place-tags-list-group");
-//   // remove all childs
-//   tagList.innerHTML = '';
-
-//   let tag_keys = data.token_key.split(",");
-//   let tag_values = data.token_value.split(",");
-//   console.log(tag_keys);
-//   console.log(tag_values);
-
-//   // show first 8 tags
-//   for (let i = 0; i < 8; i ++) {
-//     // section 2
-//     var placeSection2 = document.createElement("div");
-//     placeSection2.setAttribute("class","d-flex w-100");
-//     var placeRating = document.createElement("h6");
-//     placeRating.setAttribute("class","mb-1 tag-key");
-//     placeRating.innerHTML = tag_keys[i];
-//     placeSection2.append(placeRating);
-//     var totalReviewCount = document.createElement("h6");
-//     totalReviewCount.setAttribute("class","tag-value");
-//     totalReviewCount.innerHTML = `(${tag_values[i]})`; // test
-//     placeSection2.append(totalReviewCount);
-//     placeA.append(placeSection2);
-
-//     // one place
-//     tagList.append(placeA);
-//     // total place list
-//     tagContainer.append(tagList);
-//   }
-// }
 
 function showPlaceTagsBtn(data) {
   let tagContainer = document.querySelector("#place-tags-container");
@@ -630,9 +409,6 @@ function showPlaceTagsBtn(data) {
 function getPlacePeopleBar(place_id) {
   axios.post("/api/1.0/review/people",{place: place_id})
     .then(res=> {
-      console.log('getPlacePeopleBar');
-      console.log(res.data.data[0]);
-      // showPlacePeopleBar(res.data.data[0]);
       showPlacePeopleBarPoltly(res.data.data[0]);
     })
     .catch(err => {
@@ -640,29 +416,15 @@ function getPlacePeopleBar(place_id) {
     });
 }
 
-function showPlacePeopleBar(data) {
-  let familyBar = document.querySelector("#bar-family");
-  let friendBar = document.querySelector("#bar-friend");
-  let mateBar = document.querySelector("#bar-mate");
-  let childBar = document.querySelector("#bar-child");
-
-  console.log(data);
-
-  let familyCnt = data.family_cnt;
-  familyBar.classList.add(`w-${familyCnt}`);
-}
-
 function showPlacePeopleBarPoltly(data) { 
   var xValue = [data.pet_cnt, data.child_cnt, data.mate_cnt, data.friend_cnt, data.family_cnt];
   var yValue = ['寵物  ','兒童  ','情侶  ', '朋友  ', '家人  '];
-  // var yValue = ['Pets ','Children ','Mates ', 'Friends ', 'Family '];
 
   var textValue = [`${xValue[0]} `, 
   `${xValue[1]} `, 
   `${xValue[2]} `, 
   `${xValue[3]} `, 
   `${xValue[4]} `];
-
 
   var trace1 = {
     x: xValue,
@@ -673,11 +435,7 @@ function showPlacePeopleBarPoltly(data) {
     hoverinfo: 'none',
     marker: {
       color: 'rgb(89,59,219)',
-      opacity: 0.7,
-      // line: {
-      //   color: 'rgb(8,48,107)',
-      //   width: 1.5
-      // }
+      opacity: 0.7
     },
     orientation: 'h'
   };
@@ -685,8 +443,6 @@ function showPlacePeopleBarPoltly(data) {
   var data = [trace1];
 
   var layout = {
-    // title: 'Paticipants',
-    // autosize: false,
     title: {
       text:'Paticipants Mentioned',
       font: {
@@ -718,8 +474,6 @@ function showPlacePeopleBarPoltly(data) {
 function getReviewFeatureBar(place_id) {
   axios.post("/api/1.0/review/feature/stars",{place: place_id})
     .then(res=> {
-      console.log('getReviewFeatureBar');
-      console.log(res.data.data[0]);
       showReviewFeatureBar(res.data.data[0]);
     })
     .catch(err => {
@@ -730,7 +484,6 @@ function getReviewFeatureBar(place_id) {
 function showReviewFeatureBar(data) { 
   var xValue = [Math.round(data.price_star*10)/10, Math.round(data.cpvalue_star*10)/10, Math.round(data.environment_star*10)/10, Math.round(data.service_star*10)/10, Math.round(data.meal_star*10)/10];
   var yValue = ['價格  ','CP值  ','環境  ', '服務  ', '餐點  '];
-  // var yValue = ['Price ','CP value ','Environment ', 'Service ', 'Meal '];
 
   var textValue = [`${xValue[0]} (${data.price_cnt}) `, 
     `${xValue[1]} (${data.cpvalue_cnt}) `, 
@@ -745,22 +498,16 @@ function showReviewFeatureBar(data) {
     text: textValue.map(String),
     textposition: 'auto',
     textfont_size: 30,
-    // textposition: 'outside',
     hoverinfo: 'none',
     marker: {
       color: 'rgb(231,113,27)',
-      opacity: 0.86,
-      // line: {
-      //   color: 'rgb(8,48,107)',
-      //   width: 1.5
-      // }
+      opacity: 0.86
     },
     orientation: 'h',
   };
 
   var data = [trace1];
   var layout = {
-    // title: 'Rating of Each Items',
     title: {
       text:'Rating of Each Items',
       font: {
@@ -789,11 +536,9 @@ function showReviewFeatureBar(data) {
 
 function getPlaceInfo(place_id) {
   let food = document.querySelector("#search-food-text").value.replace(/\s+/g, ''); // get searchbox food
-  // console.log('food:',food,'place',place_id);
+
   axios.post('/api/1.0/review/placeinfo',{food: food, place: place_id})
     .then(res=> {
-      console.log('getPlaceInfo');
-      console.log(res.data.data[0], food);
       showPlaceInfo(res.data.data[0], food);
     })
     .catch(err => {
@@ -805,26 +550,20 @@ function showPlaceInfo(data, food) {
   // save place_id
   window.localStorage.setItem("place", data.place_id);
 
-  // starfigure start
+  // star figure
   var cur_rating = data.place_rating;
   var star_figure;
   if (cur_rating === 5) {
     star_figure = '★★★★★';
-    // console.log(starFigure);
   } else if (cur_rating >= 4) {
     star_figure = '★★★★☆';
-    // console.log(starFigure);
   } else if (cur_rating >= 3) {
     star_figure = '★★★☆☆';
-    // console.log(starFigure);
   } else if (cur_rating >= 2) {
     star_figure = '★★☆☆☆';
-    // console.log(starFigure);
   } else {
     star_figure = '★☆☆☆☆';
-    // console.log(starFigure);
   }
-  // starfigure end
 
   let infoContainer = document.querySelector("#place-info-container");
   let title = document.querySelector("#card-info-title");
@@ -833,13 +572,11 @@ function showPlaceInfo(data, food) {
   let detail = document.querySelector("#card-info-detail");
   title.innerHTML = data.place_name;
   rating.innerHTML = `${data.place_rating} ${star_figure}`;
-  // rating.innerHTML = `${data.place_rating} ★`;
   cnt.innerHTML = `${data.total_count} reviews, ${data.match_count} reviews mention ${food}`
   detail.innerHTML = `${data.place_addr}<br/> ${data.place_phone}<br/>`
 
   let likebtn = document.querySelector("#btn-like");
   likebtn.style.display = "block";
-  // likeBtn.innerHTML = 'Like';
 }
 
 function getUserInfoId(){
@@ -852,8 +589,7 @@ function getUserInfoId(){
     }
   )
   .then(res=> {
-    // console.log(res.data.data);
-    console.log('userid:', res.data.data.userinfo.id);
+    // console.log('userid:', res.data.data.userinfo.id);
   })
   .catch(err => {
     console.log(err, err.response);
@@ -863,10 +599,8 @@ function getUserInfoId(){
 function likePlace() {
   let place = localStorage.getItem("place");
   let likeBtn = document.querySelector("#btn-like");
-  console.log('click like!');
 
   if (token) {
-    console.log("has token");
     // get user id
     axios.get("/api/1.0/user/profile",
       {
@@ -877,10 +611,7 @@ function likePlace() {
       }
     )
     .then(res=> {
-      // console.log(res.data.data);
-      console.log('userid:', res.data.data.userinfo.id, 'place:', place);
       updateLikePlace(res.data.data.userinfo.id, place);
-
       // alter css
       likeBtn.innerHTML = 'Unlike';
     })
@@ -888,9 +619,7 @@ function likePlace() {
       console.log(err, err.response);
     });
   } else {
-      console.log("no token");
-      // alert('Please login');
-      // window.location.href="/signin.html";
+      // no token
       Swal.fire('Please login!').then((result) => {
         if (result.isConfirmed) {
           window.location.href="/signin.html";
@@ -902,9 +631,6 @@ function likePlace() {
 function updateLikePlace(user, place) {
   axios.post('/api/1.0/user/like', {user: user, place: place})
   .then(res=> {
-    console.log('updateLikePlace');
-    console.log(res.data.data);
-    // console.log(res.data.data[0], place);
     addLikeMarkerToMap(res.data.data.place_id, res.data.data.place_name, res.data.data.place_lat, res.data.data.place_lng);
   })
   .catch(err => {
@@ -913,33 +639,16 @@ function updateLikePlace(user, place) {
 }
 
 function addLikeMarkerToMap(place_id, place_name, place_lat, place_lng) {
-  console.log('to draw');
-
   var myLatlng = new google.maps.LatLng(place_lat, place_lng);
-
-  // const goldStar = {
-  //   path:
-  //     "M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z",
-  //   fillColor: "gold",
-  //   fillOpacity: 0.8,
-  //   scale: 1,
-  //   strokeColor: "gold",
-  //   strokeWeight: 14,
-  // };
-  
   var marker = new google.maps.Marker({
       position: myLatlng,
-      // icon: goldStar,
-      // icon: "../images/flag.png",
       icon: {
-        // url: "../images/star.png",
         url: "../images/flag.png",
         scaledSize: new google.maps.Size(25, 25)
       },
       title: place_name
   });
   
-  // To add the marker to the map, call setMap();
+  // add the marker to the map, call setMap();
   marker.setMap(map);
-  console.log(`Add marker ${place_id} done.`)
 }
