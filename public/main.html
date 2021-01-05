@@ -8,7 +8,6 @@
     <title>FoodieHelper </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="./images/foodie-favicon2.png">
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png"> -->
     <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.carousel.min.css">
     <link rel="stylesheet" href="./vendor/owl-carousel/css/owl.theme.default.min.css">
     <link href="./vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
@@ -51,9 +50,6 @@
         <div class="nav-header">
             <a href="main.html" class="brand-logo">
                 <img class="logo-abbr" src="./images/foodie-logo.png" alt="">
-                <!-- <img class="logo-abbr" src="./images/logo.png" alt=""> -->
-                <!-- <img class="logo-compact" src="./images/logo-text.png" alt=""> -->
-                <!-- <img class="brand-title" src="./images/logo-text.png" alt=""> -->
                 <img class="logo-compact" src="./images/foodie-logo-text.png" alt="">
                 <img class="brand-title" src="./images/foodie-logo-text.png" alt="">
             </a>
@@ -77,16 +73,10 @@
                     <div class="collapse navbar-collapse justify-content-between">
                         <div id="main-header-left" class="header-left">
                             <div id="main-search-bar" class="search_bar dropdown">
-                                <!-- <span class="search_icon p-3 c-pointer" data-toggle="dropdown"> -->
                                 <span id="search-food-btn" class="search_icon p-3 c-pointer" data-toggle="dropdown" onclick=searchFood()>
                                     <i class="mdi mdi-magnify"></i>
-                                    <!-- <button class="btn btn-outline-success my-2 my-sm-0 search-food-btn" onclick=searchFood()>Search</button> -->
                                 </span>
                                 <div class="dropdown-menu p-0 m-0">
-                                    <!-- <form>
-                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                                    </form> -->
-                                    <!-- <input id="search-food-text" class="form-control mr-sm-2" type="search" placeholder="Search Food" aria-label="Search" name="food"> -->
                                     <div id="search-food-text-container">  
                                         <input id="search-food-text" class="form-control mr-sm-2" type="search" placeholder="Food" aria-label="Search" name="food">
                                     </div>
@@ -94,93 +84,19 @@
                             </div>
                         </div>
                         <button id="main-search-food-btn" class="btn btn-success my-2 my-sm-0 search-food-btn" onclick=searchFood()>Search</button>
-                        <!-- <div class="form-inline my-2 my-lg-0">
-                            <div id="search-food-title">Wanna Eat</div>
-                            <input id="search-food-text" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="food" value="燉飯">
-                            <button class="btn btn-outline-success my-2 my-sm-0 search-food-btn" onclick=searchFood()>Search</button>
-                        </div> -->
-                        <!-- <div id="search-food-result">Total 50 Restaurnts Match 義大利麵</div> -->
                         <div id="welcome-user-section">
                             <div id="welcome-user-slogan">Welcome, Guest!</div>
-                            <!-- <div id="welcome-user-slogan">Welcome, foodie!</div> -->
                         </div>
                         <ul class="navbar-nav header-right">
-                            <!-- <li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <i class="mdi mdi-bell"></i>
-                                    <div class="pulse-css"></div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <ul class="list-unstyled">
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-user"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Martin</strong> has added a <strong>customer</strong> Successfully
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="primary"><i class="ti-shopping-cart"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Jennifer</strong> purchased Light Dashboard 2.0.</p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="danger"><i class="ti-bookmark"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>Robin</strong> marked a <strong>ticket</strong> as unsolved.
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="primary"><i class="ti-heart"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong>David</strong> purchased Light Dashboard 1.0.</p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                        <li class="media dropdown-item">
-                                            <span class="success"><i class="ti-image"></i></span>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    <p><strong> James.</strong> has added a<strong>customer</strong> Successfully
-                                                    </p>
-                                                </a>
-                                            </div>
-                                            <span class="notify-time">3:20 am</span>
-                                        </li>
-                                    </ul>
-                                    <a class="all-notification" href="#">See all notifications <i
-                                            class="ti-arrow-right"></i></a>
-                                </div>
-                            </li> -->
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                     <i class="mdi mdi-account"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <!-- <a href="./app-profile.html" class="dropdown-item"> -->
-                                    <a href="./main.html" class="dropdown-item">
+                                    <!-- <a href="./main.html" class="dropdown-item">
                                         <i class="icon-user"></i>
                                         <span class="ml-2">Profile </span>
-                                    </a>
-                                    <!-- <a href="./email-inbox.html" class="dropdown-item"> -->
-                                    <!-- <a href="./main.html" class="dropdown-item">
-                                        <i class="icon-envelope-open"></i>
-                                        <span class="ml-2">Inbox </span>
                                     </a> -->
-                                    <!-- <a href="./page-login.html" class="dropdown-item"> -->
                                     <a href="./main.html" class="dropdown-item">
                                         <i class="icon-key"></i>
                                         <span class="ml-2">Logout </span>
@@ -207,112 +123,9 @@
                                 class="icon icon-single-04"></i><span class="nav-text">Foodie</span></a>
                         <ul aria-expanded="false">
                             <li><a href="./main.html">Dashboard</a></li>
-                            <li><a href="./main.html">Profile</a></li>
-                            <!-- <li><a href="./app-profile.html">Profile</a></li> -->
+                            <!-- <li><a href="./main.html">Profile</a></li> -->
                         </ul>
                     </li>
-                    <!-- <li class="nav-label">Apps</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-app-store"></i><span class="nav-text">Apps</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./app-profile.html">Profile</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Email</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="./email-compose.html">Compose</a></li>
-                                    <li><a href="./email-inbox.html">Inbox</a></li>
-                                    <li><a href="./email-read.html">Read</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./app-calender.html">Calendar</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-chart-bar-33"></i><span class="nav-text">Charts</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./chart-flot.html">Flot</a></li>
-                            <li><a href="./chart-morris.html">Morris</a></li>
-                            <li><a href="./chart-chartjs.html">Chartjs</a></li>
-                            <li><a href="./chart-chartist.html">Chartist</a></li>
-                            <li><a href="./chart-sparkline.html">Sparkline</a></li>
-                            <li><a href="./chart-peity.html">Peity</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-label">Components</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-world-2"></i><span class="nav-text">Bootstrap</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./ui-accordion.html">Accordion</a></li>
-                            <li><a href="./ui-alert.html">Alert</a></li>
-                            <li><a href="./ui-badge.html">Badge</a></li>
-                            <li><a href="./ui-button.html">Button</a></li>
-                            <li><a href="./ui-modal.html">Modal</a></li>
-                            <li><a href="./ui-button-group.html">Button Group</a></li>
-                            <li><a href="./ui-list-group.html">List Group</a></li>
-                            <li><a href="./ui-media-object.html">Media Object</a></li>
-                            <li><a href="./ui-card.html">Cards</a></li>
-                            <li><a href="./ui-carousel.html">Carousel</a></li>
-                            <li><a href="./ui-dropdown.html">Dropdown</a></li>
-                            <li><a href="./ui-popover.html">Popover</a></li>
-                            <li><a href="./ui-progressbar.html">Progressbar</a></li>
-                            <li><a href="./ui-tab.html">Tab</a></li>
-                            <li><a href="./ui-typography.html">Typography</a></li>
-                            <li><a href="./ui-pagination.html">Pagination</a></li>
-                            <li><a href="./ui-grid.html">Grid</a></li>
-
-                        </ul>
-                    </li>
-
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-plug"></i><span class="nav-text">Plugins</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./uc-select2.html">Select 2</a></li>
-                            <li><a href="./uc-nestable.html">Nestedable</a></li>
-                            <li><a href="./uc-noui-slider.html">Noui Slider</a></li>
-                            <li><a href="./uc-sweetalert.html">Sweet Alert</a></li>
-                            <li><a href="./uc-toastr.html">Toastr</a></li>
-                            <li><a href="./map-jqvmap.html">Jqv Map</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="widget-basic.html" aria-expanded="false"><i class="icon icon-globe-2"></i><span
-                                class="nav-text">Widget</span></a></li>
-                    <li class="nav-label">Forms</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-form"></i><span class="nav-text">Forms</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./form-element.html">Form Elements</a></li>
-                            <li><a href="./form-wizard.html">Wizard</a></li>
-                            <li><a href="./form-editor-summernote.html">Summernote</a></li>
-                            <li><a href="form-pickers.html">Pickers</a></li>
-                            <li><a href="form-validation-jquery.html">Jquery Validate</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-label">Table</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-layout-25"></i><span class="nav-text">Table</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="table-bootstrap-basic.html">Bootstrap</a></li>
-                            <li><a href="table-datatable-basic.html">Datatable</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-label">Extra</li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-copy-06"></i><span class="nav-text">Pages</span></a>
-                        <ul aria-expanded="false">
-                            <li><a href="./page-register.html">Register</a></li>
-                            <li><a href="./page-login.html">Login</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="./page-error-400.html">Error 400</a></li>
-                                    <li><a href="./page-error-403.html">Error 403</a></li>
-                                    <li><a href="./page-error-404.html">Error 404</a></li>
-                                    <li><a href="./page-error-500.html">Error 500</a></li>
-                                    <li><a href="./page-error-503.html">Error 503</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./page-lock-screen.html">Lock Screen</a></li>
-                        </ul>
-                    </li> -->
                 </ul>
             </div>
 
@@ -328,71 +141,15 @@
         <div class="content-body">
             <!-- row -->
             <div class="container-fluid">
-                <!-- <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-two card-body">
-                                <div class="stat-content">
-                                    <div class="stat-text">Search Area </div>
-                                    <div class="stat-digit"> <i></i>大安區</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-success w-85" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-two card-body">
-                                <div class="stat-content">
-                                    <div class="stat-text">Restaurants</div>
-                                    <div class="stat-digit"> <i></i>100</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-primary w-75" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-two card-body">
-                                <div class="stat-content">
-                                    <div class="stat-text">Reviews</div>
-                                    <div class="stat-digit"> <i></i> 8352</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-warning w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="stat-widget-two card-body">
-                                <div class="stat-content">
-                                    <div class="stat-text">Reviewers</div>
-                                    <div class="stat-digit"> <i></i>7835</div>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-danger w-65" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="row">
                     <div class="col-xl-8 col-lg-8 col-md-8">
                         <div class="card">
                             <div class="card-header">
                                 <h4 id="card-map-title" class="card-title">Foodie Map</h4>
-                                <!-- <h4 class="card-title">Foodie Map Total 50 Restaurnts Match 義大利麵</h4> -->
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-xl-12 col-lg-8">
-                                        <!-- <div id="morris-bar-chart"></div> -->
                                         <div id="map"></div>
                                         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSRW2nLmUc9T0QdJNNt5ME9HlYWAIsXDQ&callback=initMap">
                                         </script>
@@ -402,23 +159,6 @@
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 ">
-                        <!-- <div class="card">
-                            <div class="card-body text-center">
-                                <div class="m-t-10">
-                                    <h4 class="card-title">Customer Feedback</h4>
-                                    <h2 class="mt-3">385749</h2>
-                                </div>
-                                <div class="widget-card-circle mt-5 mb-5" id="info-circle-card">
-                                    <i class="ti-control-shuffle pa"></i>
-                                </div>
-                                <ul class="widget-line-list m-b-15">
-                                    <li class="border-right">92% <br><span class="text-success"><i
-                                                class="ti-hand-point-up"></i> Positive</span></li>
-                                    <li>8% <br><span class="text-danger"><i
-                                                class="ti-hand-point-down"></i>Negative</span></li>
-                                </ul>
-                            </div>
-                        </div> -->
                         <div class="card">
                           <div class="card-header">
                               <h4 class="card-title">Restaurants</h4>
@@ -426,43 +166,7 @@
                           <div class="card-body">
                               <div class="table-responsive" id="review-container">
                                   <div id="place-list-group" class="list-group dataTables_scrollBody">
-                                    <!-- <div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">Snail 蝸牛義大利餐廳 民生店</h6><h6 class="match-count">24</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.6</h6><h6 class="total-review-count">(341)</h6></div><div class="mb-1 place-addr"><p>105台灣台北市松山區民生東路四段56巷3弄10號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">Snail 蝸牛義大利餐廳 敦南店</h6><h6 class="match-count">19</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.6</h6><h6 class="total-review-count">(342)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區敦化南路二段81巷49號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">醉貓Drunk Cat 餐酒</h6><h6 class="match-count">9</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.9</h6><h6 class="total-review-count">(39)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區忠孝東路四段181巷40弄11號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">HIVE 巢 • 餐廳 /台北美食/台北歐式料理/信義區早午餐/信義區美食/信義區餐廳/市政府美食/市政府餐廳</h6><h6 class="match-count">8</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.6</h6><h6 class="total-review-count">(29)</h6></div><div class="mb-1 place-addr"><p>110台灣台北市信義區逸仙路42巷19號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">L'IDIOT RESTAURANT 驢子餐廳</h6><h6 class="match-count">6</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.5</h6><h6 class="total-review-count">(109)</h6></div><div class="mb-1 place-addr"><p>10491台灣台北市中山區林森北路369號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">Bianco Taipei 義式餐廳</h6><h6 class="match-count">5</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.1</h6><h6 class="total-review-count">(19)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區仁愛路四段112巷19號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">AgustoChef 奧古斯托餐廳 餐酒館 大安店</h6><h6 class="match-count">4</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.9</h6><h6 class="total-review-count">(128)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區忠孝東路四段216巷27弄15號1樓</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">Oregano奧瑞岡義式餐廳</h6><h6 class="match-count">3</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.4</h6><h6 class="total-review-count">(53)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區四維路96號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">DOMANI 義式餐廳</h6><h6 class="match-count">3</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.3</h6><h6 class="total-review-count">(43)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區建國南路一段65巷7號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">曜日義式餐酒館</h6><h6 class="match-count">3</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.4</h6><h6 class="total-review-count">(46)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區東豐街53號1 樓</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">樂野食</h6><h6 class="match-count">3</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.3</h6><h6 class="total-review-count">(37)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區忠孝東路三段217巷2弄16號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">廚藏室STOREROOM</h6><h6 class="match-count">3</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.4</h6><h6 class="total-review-count">(26)</h6></div><div class="mb-1 place-addr"><p>10656台灣台北市大安區復興南路一段340巷26號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">好米亞 Goodies Cuisine Bistrot</h6><h6 class="match-count">2</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.4</h6><h6 class="total-review-count">(76)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區敦化南路一段270巷6號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">PS TAPAS 西班牙餐酒館</h6><h6 class="match-count">2</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.3</h6><h6 class="total-review-count">(70)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區安和路一段21巷19號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">The Tavernist</h6><h6 class="match-count">2</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.1</h6><h6 class="total-review-count">(53)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區仁愛路四段27巷25號12F</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">TUGA葡萄牙餐廳</h6><h6 class="match-count">2</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.4</h6><h6 class="total-review-count">(47)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區忠孝東路四段216巷11弄12號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">Moomin café 嚕嚕米主題餐廳</h6><h6 class="match-count">2</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.4</h6><h6 class="total-review-count">(31)</h6></div><div class="mb-1 place-addr"><p>110台灣台北市信義區松壽路12號4樓</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">Herban Kitchen &amp; Bar 二本餐廳</h6><h6 class="match-count">1</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.3</h6><h6 class="total-review-count">(36)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區忠孝東路四段101巷27號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">Waypoint Sante' 鐵人伙房餐廳</h6><h6 class="match-count">1</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.3</h6><h6 class="total-review-count">(16)</h6></div><div class="mb-1 place-addr"><p>105台灣台北市松山區八德路三段8巷23號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div><div class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h6 class="mb-1 place-name">貳樓餐廳Second Floor Cafe 敦南店</h6><h6 class="match-count">1</h6></div><div class="d-flex w-100"><h6 class="mb-1 place-rating">4.2</h6><h6 class="total-review-count">(92)</h6></div><div class="mb-1 place-addr"><p>106台灣台北市大安區敦化南路二段63巷14號</p></div><div class="mb-1 place-tags"><p>#TAG1(65) #TAG2(50) #TAG3(20)</p></div></div> -->
                                   </div>
-                                  <!-- <table class="table mb-0">
-                                      <thead>
-                                          <tr>
-                                              <th>#</th>
-                                              <th>Name</th>
-                                              <th>Product</th>
-                                              <th>quantity</th>
-                                              <th>Status</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                          <tr>
-                                              <td>
-                                                  <div class="round-img">
-                                                      <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                  </div>
-                                              </td>
-                                              <td>Lew Shawon</td>
-                                              <td><span>Dell-985</span></td>
-                                              <td><span>456 pcs</span></td>
-                                              <td><span class="badge badge-success">Done</span></td>
-                                          </tr>
-                                          <tr>
-                                              <td>
-                                                  <div class="round-img">
-                                                      <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
-                                                  </div>
-                                              </td>
-                                              <td>Lew Shawon</td>
-                                              <td><span>Asus-565</span></td>
-                                              <td><span>456 pcs</span></td>
-                                              <td><span class="badge badge-warning">Pending</span></td>
-                                          </tr>
-                                      </tbody>
-                                  </table> -->
                               </div>
                           </div>
                       </div>
@@ -481,121 +185,34 @@
                                     <h6 id="card-info-both-cnt" class="card-subtitle mb-2 text-muted"></h6>
                                     <p id="card-info-detail" class="card-text">
                                     </p>
-                                    <!-- <a href="#" class="btn btn-secondary">Like</a> -->
                                     <button id="btn-like" class="btn btn-secondary" onclick=likePlace()>Like</button>
-                                    <!-- <button id="btn-like" class="btn btn-secondary" onclick=clickLikePlace()>Like</button> -->
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- pie section -->
                     <div class="col-sm-12 col-md-12 col-xxl-6 col-xl-4 col-lg-6">
-                    <!-- <div class="col-lg-4"> -->
                         <div class="card" id="card-feeling">
                             <div class="card-header">
                                 <h4 id="card-feeling-title" class="card-title">Feeling About the Food</h4>
-                                <!-- <div class="card-action">
-                                    <div class="dropdown custom-dropdown">
-                                        <div data-toggle="dropdown">
-                                            <i class="ti-more-alt"></i>
-                                        </div>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Option 1</a>
-                                            <a class="dropdown-item" href="#">Option 2</a>
-                                            <a class="dropdown-item" href="#">Option 3</a>
-                                        </div>
-                                    </div>
-                                </div> -->
                             </div>
                             <div class="card-body">
                                 <div id="pie-container">
                                     <div id="pie" class="info_block js-plotly-plot"></div>
                                 </div>
-                                <!-- <div class="chart py-4"> -->
-                                    <!-- <canvas id="sold-product"></canvas> -->
-                                    <!-- <div id="pie-container">
-                                        <div id="pie" class="info_block js-plotly-plot"></div>
-                                    </div> -->
-                                <!-- </div> -->
                             </div>
                         </div>
                     </div>
-                    <!-- quote section -->
-                    <!-- <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="testimonial-widget-one p-17">
-                                    <div class="testimonial-widget-one owl-carousel owl-theme">
-                                        <div class="item">
-                                            <div class="testimonial-content">
-                                                <div class="testimonial-text">
-                                                    <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-                                                    consectetur adipisicing elit.
-                                                    <i class="fa fa-quote-right"></i>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <div class="testimonial-author">TYRION LANNISTER</div>
-                                                        <div class="testimonial-author-position">Founder-Ceo. Dell Corp
-                                                        </div>
-                                                    </div>
-                                                    <img class="testimonial-author-img ml-3" src="./images/avatar/1.png" alt="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="testimonial-content">
-                                                <div class="testimonial-text">
-                                                    <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-                                                    consectetur adipisicing elit.
-                                                    <i class="fa fa-quote-right"></i>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <div class="testimonial-author">TYRION LANNISTER</div>
-                                                        <div class="testimonial-author-position">Founder-Ceo. Dell Corp
-                                                        </div>
-                                                    </div>
-                                                    <img class="testimonial-author-img ml-3" src="./images/avatar/1.png" alt="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="testimonial-content">
-                                                <div class="testimonial-text">
-                                                    <i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-                                                    consectetur adipisicing elit.
-                                                    <i class="fa fa-quote-right"></i>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <div class="testimonial-author">TYRION LANNISTER</div>
-                                                        <div class="testimonial-author-position">Founder-Ceo. Dell Corp
-                                                        </div>
-                                                    </div>
-                                                    <img class="testimonial-author-img ml-3" src="./images/avatar/1.png" alt="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="col-lg-4">
                         <div class="card" id="card-tag">
                             <div class="card-header">
                                 <h4 class="card-title">Tags</h4>
                             </div>
                             <div class="card-body">
-                                <!-- <div class="cpu-load-chart">
-                                    <div id="cpu-load" class="cpu-load"></div>
-                                </div> -->
                                 <div class="table-responsive" id="place-tags-container">
                                 </div>
                             </div>
                         </div>
-                        <!-- /# card -->
                     </div>
                     <div id="bar-section-container" class="col-lg-6">
                         <div class="card">
@@ -626,230 +243,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- REF SECTION -->
-                <!-- <div class="row">
-                    <div class="col-lg-6 col-xl-4 col-xxl-6 col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Timeline</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="widget-timeline">
-                                    <ul class="timeline">
-                                        <li>
-                                            <div class="timeline-badge primary"></div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>10 minutes ago</span>
-                                                <h6 class="m-t-5">Youtube, a video-sharing website, goes live.</h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge warning">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>20 minutes ago</span>
-                                                <h6 class="m-t-5">Mashable, a news website and blog, goes live.</h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge danger">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>30 minutes ago</span>
-                                                <h6 class="m-t-5">Google acquires Youtube.</h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge success">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>15 minutes ago</span>
-                                                <h6 class="m-t-5">StumbleUpon is acquired by eBay. </h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge warning">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>20 minutes ago</span>
-                                                <h6 class="m-t-5">Mashable, a news website and blog, goes live.</h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge dark">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>20 minutes ago</span>
-                                                <h6 class="m-t-5">Mashable, a news website and blog, goes live.</h6>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <div class="timeline-badge info">
-                                            </div>
-                                            <a class="timeline-panel text-muted" href="#">
-                                                <span>30 minutes ago</span>
-                                                <h6 class="m-t-5">Google acquires Youtube.</h6>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-xxl-6 col-lg-6 col-md-6 col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Todo</h4>
-                            </div>
-                            <div class="card-body px-0">
-                                <div class="todo-list">
-                                    <div class="tdl-holder">
-                                        <div class="tdl-content widget-todo mr-4">
-                                            <ul id="todo_list">
-                                                <li><label><input type="checkbox"><i></i><span>Get up</span><a href='#'
-                                                            class="ti-trash"></a></label></li>
-                                                <li><label><input type="checkbox" checked><i></i><span>Stand up</span><a
-                                                            href='#' class="ti-trash"></a></label></li>
-                                                <li><label><input type="checkbox"><i></i><span>Don't give up the
-                                                            fight.</span><a href='#' class="ti-trash"></a></label></li>
-                                                <li><label><input type="checkbox" checked><i></i><span>Do something
-                                                            else</span><a href='#' class="ti-trash"></a></label></li>
-                                                <li><label><input type="checkbox" checked><i></i><span>Stand up</span><a
-                                                            href='#' class="ti-trash"></a></label></li>
-                                                <li><label><input type="checkbox"><i></i><span>Don't give up the
-                                                            fight.</span><a href='#' class="ti-trash"></a></label></li>
-                                            </ul>
-                                        </div>
-                                        <div class="px-4">
-                                            <input type="text" class="tdl-new form-control" placeholder="Write new item and hit 'Enter'...">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-xxl-6 col-xl-4 col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Product Sold</h4>
-                                <div class="card-action">
-                                    <div class="dropdown custom-dropdown">
-                                        <div data-toggle="dropdown">
-                                            <i class="ti-more-alt"></i>
-                                        </div>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Option 1</a>
-                                            <a class="dropdown-item" href="#">Option 2</a>
-                                            <a class="dropdown-item" href="#">Option 3</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="chart py-4">
-                                    <canvas id="sold-product"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-12 col-xxl-6 col-lg-6 col-md-12">
-                        <div class="row">
-                            <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6 col-md-6">
-                                <div class="card">
-                                    <div class="social-graph-wrapper widget-facebook">
-                                        <span class="s-icon"><i class="fa fa-facebook"></i></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 border-right">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">89</span> k</h4>
-                                                <p class="m-0">Friends</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">119</span> k</h4>
-                                                <p class="m-0">Followers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6 col-md-6">
-                                <div class="card">
-                                    <div class="social-graph-wrapper widget-linkedin">
-                                        <span class="s-icon"><i class="fa fa-linkedin"></i></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 border-right">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">89</span> k</h4>
-                                                <p class="m-0">Friends</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">119</span> k</h4>
-                                                <p class="m-0">Followers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6 col-md-6">
-                                <div class="card">
-                                    <div class="social-graph-wrapper widget-googleplus">
-                                        <span class="s-icon"><i class="fa fa-google-plus"></i></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 border-right">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">89</span> k</h4>
-                                                <p class="m-0">Friends</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">119</span> k</h4>
-                                                <p class="m-0">Followers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-sm-6 col-xxl-6 col-md-6">
-                                <div class="card">
-                                    <div class="social-graph-wrapper widget-twitter">
-                                        <span class="s-icon"><i class="fa fa-twitter"></i></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 border-right">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">89</span> k</h4>
-                                                <p class="m-0">Friends</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="pt-3 pb-3 pl-0 pr-0 text-center">
-                                                <h4 class="m-1"><span class="counter">119</span> k</h4>
-                                                <p class="m-0">Followers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div> -->
         <!--**********************************
             Content body end
         ***********************************-->
