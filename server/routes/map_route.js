@@ -1,12 +1,12 @@
 const router = require('express').Router();
 
 const {
-    getReviews,
+    getPlaces,
     getReviewContents,
 } = require('../controllers/map_controller');
 
-router.route('/map/review')
-    .post(getReviews);
+router.route('/map/places')
+    .post(getPlaces);
     
 router.route('/map/review_content')
     .get(getReviewContents);

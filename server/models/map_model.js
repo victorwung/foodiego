@@ -1,19 +1,6 @@
 const {query, transaction, commit, rollback} = require('./mysqlcon');
 
-const getReviewContents = async (food) => {
-    const reviewContents = await query(
-      "SELECT review_id \
-       FROM review \
-       WHERE review_content LIKE ?", ['%'+food+'%']);
-
-    if (reviewContents.length === 0) {
-        return {result: 'Not Found'};
-    } else {
-        return reviewContents;
-    }
-};
-
-const getReviews = async (food) => {
+const getPlaces = async (food) => {
     const reviewGroupByCnt = await query(
       "SELECT t1.place_id, t1.place_name, t2.place_lat, t2.place_lng, t2.place_rating, \
         COUNT(t1.review_id) AS total_count, \
@@ -33,7 +20,20 @@ const getReviews = async (food) => {
     }
 };
 
+const getReviewContents = async (food) => {
+    const reviewContents = await query(
+      "SELECT review_id \
+       FROM review \
+       WHERE review_content LIKE ?", ['%'+food+'%']);
+
+    if (reviewContents.length === 0) {
+        return {result: 'Not Found'};
+    } else {
+        return reviewContents;
+    }
+};
+
 module.exports = {
-    getReviews,
+    getPlaces,
     getReviewContents,
 };

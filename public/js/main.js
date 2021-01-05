@@ -67,7 +67,7 @@ function searchFood() {
   if (food === '') {
     Swal.fire('Please try again!', 'Type anything food name in the search box.');
   } else {
-    axios.post("/api/1.0/map/review",{food: food})
+    axios.post("/api/1.0/map/places",{food: food})
       .then(res=> {
         if(res.data.total === 0) {
           Swal.fire('Please try again!', 'Sorry. No related reviews about this food.').then((result) => {

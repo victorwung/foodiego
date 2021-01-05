@@ -1,23 +1,13 @@
 require('dotenv').config();
-const MapReview = require('../models/map_model');
+const MapPlace = require('../models/map_model');
 
-const getReviewContents = async (req, res) => {
+const getPlaces = async (req, res) => {
   const {food} = req.body;
   if(!food) {
     res.status(400).send({error:'Request Error: food is required.'});
     return;
   }
-  const matchReviewContents = await MapReview.getReviewContents(food);
-  res.status(200).send({data: matchReviewContents});
-};
-
-const getReviews = async (req, res) => {
-  const {food} = req.body;
-  if(!food) {
-    res.status(400).send({error:'Request Error: food is required.'});
-    return;
-  }
-  const matchReviews = await MapReview.getReviews(food);
+  const matchReviews = await MapPlace.getPlaces(food);
   const places = [];
   let total = 0;
   for (let i = 0; i < matchReviews.length; i ++) {
@@ -45,7 +35,17 @@ const getReviews = async (req, res) => {
   });
 };
 
+const getReviewContents = async (req, res) => {
+  const {food} = req.body;
+  if(!food) {
+    res.status(400).send({error:'Request Error: food is required.'});
+    return;
+  }
+  const matchReviewContents = await MapPlace.getReviewContents(food);
+  res.status(200).send({data: matchReviewContents});
+};
+
 module.exports = {
-    getReviews,
+    getPlaces,
     getReviewContents
 };
