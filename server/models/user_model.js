@@ -1,6 +1,6 @@
 require('dotenv').config();
 const bcrypt = require('bcrypt');
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 const {query, transaction, commit, rollback} = require('./mysqlcon');
 const salt = parseInt(process.env.BCRYPT_SALT);
 
@@ -36,7 +36,7 @@ const signUp = async (name, email, password, expire) => {
             name: user.name,
             email: user.email
         };
-        const accessToken = jwt.sign({userinfo}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30d' }) // 30 days
+        const accessToken = jwt.sign({userinfo}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30d' }); // 30 days
         // const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10800s' }) // 3 hrs 
 
         return {accessToken, loginAt, user};
@@ -69,7 +69,7 @@ const nativeSignIn = async (email, password, expire) => {
           name: user.name,
           email: user.email
         };
-        const accessToken = jwt.sign({userinfo}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30d' }) // 30 days
+        const accessToken = jwt.sign({userinfo}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30d' }); // 30 days
         // const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10800s' }) // 3 hrs 
 
         return {accessToken, loginAt, user};
@@ -97,9 +97,9 @@ const likePlace = async (user, place) => {
         await commit();
 
         const placeInfo = await query(
-            "SELECT t1.place_id, t1.place_name, t1.place_lat, t1.place_lng \
+            'SELECT t1.place_id, t1.place_name, t1.place_lat, t1.place_lng \
             FROM place AS t1 \
-            WHERE t1.place_id=?", [place]);
+            WHERE t1.place_id=?', [place]);
 
         if (placeInfo.length === 0){
             await commit();

@@ -1,6 +1,6 @@
 require('dotenv').config();
 const validator = require('validator');
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 const User = require('../models/user_model');
 const expire = process.env.TOKEN_EXPIRE; // 30 days by seconds
 
@@ -104,10 +104,10 @@ const signIn = async (req, res) => {
 
 const getUserInfo = async (req, res) => {
   // Get auth header value
-  const bearerHeader = req.headers["authorization"];
+  const bearerHeader = req.headers['authorization'];
 
-  if(typeof bearerHeader !== "undefined") {
-    const bearer = bearerHeader.split(" ");
+  if(typeof bearerHeader !== 'undefined') {
+    const bearer = bearerHeader.split(' ');
     const bearerToken = bearer[1];
     req.token = bearerToken;
 

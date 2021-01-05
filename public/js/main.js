@@ -2,7 +2,7 @@ let map;
 let circles = [];
 let citymap = {};
 
-const token = localStorage.getItem("token"); // user token
+const token = localStorage.getItem('token'); // user token
 
 function checkToken() {
   if (token) {
@@ -15,11 +15,11 @@ function checkToken() {
 }
 
 function getUserInfoName(){
-  axios.get("/api/1.0/user/profile",
+  axios.get('/api/1.0/user/profile',
     {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer" + " " + localStorage.getItem("token")
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer' + ' ' + localStorage.getItem('token')
       }
     }
   )
@@ -32,7 +32,7 @@ function getUserInfoName(){
 }
 
 function setUserName(name){
-  let welcome = document.querySelector("#welcome-user-slogan");
+  let welcome = document.querySelector('#welcome-user-slogan');
   welcome.innerHTML = `Welcome, ${name}!`;
 }
 
@@ -46,15 +46,15 @@ function initMap() {
   });
 }
 
-const outerFood = localStorage.getItem("food");
-document.addEventListener("DOMContentLoaded", function(){
+const outerFood = localStorage.getItem('food');
+document.addEventListener('DOMContentLoaded', function(){
   // DOM ready
   checkOuterSearchFood();
 });
 
 function checkOuterSearchFood() {
   if (outerFood) {
-    let foodbox = document.querySelector("#search-food-text");
+    let foodbox = document.querySelector('#search-food-text');
     foodbox.value = outerFood;
     searchFood();
   } else {
@@ -63,24 +63,24 @@ function checkOuterSearchFood() {
 }
 
 function searchFood() {
-  let food = document.querySelector("#search-food-text").value.replace(/\s+/g, ''); // remove blank space
+  let food = document.querySelector('#search-food-text').value.replace(/\s+/g, ''); // remove blank space
   if (food === '') {
     Swal.fire('Please try again!', 'Type anything food name in the search box.');
   } else {
-    axios.post("/api/1.0/map/places",{food: food})
+    axios.post('/api/1.0/map/places',{food: food})
       .then(res=> {
         if(res.data.total === 0) {
           Swal.fire('Please try again!', 'Sorry. No related reviews about this food.').then((result) => {
             if (result.isConfirmed) {
-              document.querySelector("#search-food-text").value = '';
+              document.querySelector('#search-food-text').value = '';
             }
-          })
+          });
         } else {
           addCirclesToMap(res.data.total, res.data.data);
           showReviewsList(food, res.data.data);
           setSearchResult(food, res.data.data.length, res.data.total);
           // set food to local storage
-          window.localStorage.setItem("food", food);
+          window.localStorage.setItem('food', food);
         }
       })
       .catch(err => {
@@ -114,10 +114,10 @@ function addCirclesToMap(total_match_count, data) {
   for (const city in citymap) {
     // add the circle for this city to the map
     const cityCircle = new google.maps.Circle({
-      strokeColor: "#FF0000",
+      strokeColor: '#FF0000',
       strokeOpacity: 0.8,
       strokeWeight: 2,
-      fillColor: "#FF0000",
+      fillColor: '#FF0000',
       fillOpacity: 0.35,
       map,
       center: citymap[city].center,
@@ -142,15 +142,15 @@ function addCirclesToMap(total_match_count, data) {
 }
 
 function showReviewsList(food, data) {
-  let reviewContainer = document.querySelector("#review-container");
-  let placeList = document.querySelector("#place-list-group");
+  let reviewContainer = document.querySelector('#review-container');
+  let placeList = document.querySelector('#place-list-group');
   // remove all childs
   placeList.innerHTML = '';
 
   for (let i = 0; i < data.length; i ++) {
-    var placeA = document.createElement("div");
-    placeA.setAttribute("class","list-group-item list-group-item-action list-group-item-place");
-    placeA.addEventListener("click", () => {
+    var placeA = document.createElement('div');
+    placeA.setAttribute('class','list-group-item list-group-item-action list-group-item-place');
+    placeA.addEventListener('click', () => {
       getPlaceInfo(data[i].place_id); // place info
       getPlacePeopleBar(data[i].place_id); // bar chart
       getRatingDistribution(data[i].place_id); // pie chart
@@ -161,14 +161,14 @@ function showReviewsList(food, data) {
     });
 
     // section 1
-    var placeSection1 = document.createElement("div");
-    placeSection1.setAttribute("class","d-flex w-100 justify-content-between");
-    var placeName = document.createElement("h6");
-    placeName.setAttribute("class","mb-1 place-name");
+    var placeSection1 = document.createElement('div');
+    placeSection1.setAttribute('class','d-flex w-100 justify-content-between');
+    var placeName = document.createElement('h6');
+    placeName.setAttribute('class','mb-1 place-name');
     placeName.innerHTML = data[i].place_name;
     placeSection1.append(placeName);
-    var matchCount = document.createElement("h6");
-    matchCount.setAttribute("class","match-count");
+    var matchCount = document.createElement('h6');
+    matchCount.setAttribute('class','match-count');
     matchCount.innerHTML = data[i].match_count;
     placeSection1.append(matchCount);
     placeA.append(placeSection1);
@@ -189,39 +189,39 @@ function showReviewsList(food, data) {
       star_figure = '★☆☆☆☆';
     }
 
-    var placeSection2 = document.createElement("div");
-    placeSection2.setAttribute("class","d-flex w-100");
-    var placeRating = document.createElement("h6");
-    placeRating.setAttribute("class","mb-1 place-rating");
+    var placeSection2 = document.createElement('div');
+    placeSection2.setAttribute('class','d-flex w-100');
+    var placeRating = document.createElement('h6');
+    placeRating.setAttribute('class','mb-1 place-rating');
     placeRating.innerHTML = `${data[i].place_rating} ${star_figure}`;
     placeSection2.append(placeRating);
-    var totalReviewCount = document.createElement("h6");
-    totalReviewCount.setAttribute("class","total-review-count");
+    var totalReviewCount = document.createElement('h6');
+    totalReviewCount.setAttribute('class','total-review-count');
     totalReviewCount.innerHTML = `(${data[i].total_count})`; // test
     placeSection2.append(totalReviewCount);
     placeA.append(placeSection2);
 
     // section 25
-    var placeSection25 = document.createElement("div");
-    placeSection25.setAttribute("class","d-flex w-100");
-    var bothCount = document.createElement("small");
-    bothCount.setAttribute("class","mb-1 new-both-count");
+    var placeSection25 = document.createElement('div');
+    placeSection25.setAttribute('class','d-flex w-100');
+    var bothCount = document.createElement('small');
+    bothCount.setAttribute('class','mb-1 new-both-count');
     bothCount.innerHTML = `${data[i].total_count} reviews, ${data[i].match_count} reviews mention ${food}`;
     placeSection25.append(bothCount);
     placeA.append(placeSection25);
 
     // section 3
-    var placeSection3 = document.createElement("div");
-    placeSection3.setAttribute("class","mb-1 place-addr");
-    var placeAddr = document.createElement("small");
+    var placeSection3 = document.createElement('div');
+    placeSection3.setAttribute('class','mb-1 place-addr');
+    var placeAddr = document.createElement('small');
     placeAddr.innerHTML = data[i].place_addr;
     placeSection3.append(placeAddr);
     placeA.append(placeSection3);
 
     // section 4
-    var placeSection4 = document.createElement("div");
-    placeSection4.setAttribute("class","mb-1 place-tags");
-    var placeTags = document.createElement("small");
+    var placeSection4 = document.createElement('div');
+    placeSection4.setAttribute('class','mb-1 place-tags');
+    var placeTags = document.createElement('small');
     var tags = data[i].place_tags;
     var tagStr = '';
     for (let i = 0; i < 5; i ++) {
@@ -242,24 +242,24 @@ function showReviewsList(food, data) {
     reviewContainer.append(placeList);
   }
   // default click the top mathch place
-  let topPlace = document.getElementsByClassName("list-group-item-place")[0];
+  let topPlace = document.getElementsByClassName('list-group-item-place')[0];
   topPlace.click();
 }
 
 function setSearchResult(food, place_cnt, review_cnt){
-  let mapCardTitle = document.getElementById("card-map-title");
+  let mapCardTitle = document.getElementById('card-map-title');
   mapCardTitle.textContent = `Foodie Map ( ${place_cnt} restaurants / ${review_cnt} reviews mention ${food})`;
 }
 
 function drawPlaceNumber(data_length) {
-  let placeNumber = document.getElementById("place-number");
+  let placeNumber = document.getElementById('place-number');
   placeNumber.textContent = `餐廳數: ${data_length}`;
 }
 
 function getRatingDistribution(place_id) {
-  let food = document.querySelector("#search-food-text").value.replace(/\s+/g, '');
+  let food = document.querySelector('#search-food-text').value.replace(/\s+/g, '');
 
-  axios.post("/api/1.0/review/rating",{place: place_id, food: food})
+  axios.post('/api/1.0/review/rating',{place: place_id, food: food})
     .then(res=> {
       drawRatingDistribution(res.data.data[0]);
     })
@@ -269,9 +269,9 @@ function getRatingDistribution(place_id) {
 }
 
 function drawRatingDistribution(data) { 
-  let feelingHeader = document.querySelector("#card-feeling-title");
-  let food = document.querySelector("#search-food-text").value.replace(/\s+/g, ''); // get searchbox food
-  feelingHeader.innerHTML = `Feeling About the Food ${food}`
+  let feelingHeader = document.querySelector('#card-feeling-title');
+  let food = document.querySelector('#search-food-text').value.replace(/\s+/g, ''); // get searchbox food
+  feelingHeader.innerHTML = `Feeling About the Food ${food}`;
 
   var colorList = ['#2A9D8F', '#E9C46A', '#F4A261'];
   var ratingData = [{
@@ -303,7 +303,7 @@ function drawRatingDistribution(data) {
 }
 
 function getReviewContents(place_id) {
-  axios.post("/api/1.0/review/contents",{place: place_id})
+  axios.post('/api/1.0/review/contents',{place: place_id})
     .then(res=> {
       showReviewContentList(res.data.data);
     })
@@ -313,24 +313,24 @@ function getReviewContents(place_id) {
 }
 
 function showReviewContentList(data) {
-  let reviewContainer = document.querySelector("#review-content-container");
-  let reviewList = document.querySelector("#place-review-content-list-group");
+  let reviewContainer = document.querySelector('#review-content-container');
+  let reviewList = document.querySelector('#place-review-content-list-group');
   // remove all childs
   reviewList.innerHTML = '';
 
   for (let i = 0; i < data.length; i ++) {
-    var placeA = document.createElement("div");
-    placeA.setAttribute("class","list-group-item list-group-item-action list-group-item-review");
+    var placeA = document.createElement('div');
+    placeA.setAttribute('class','list-group-item list-group-item-action list-group-item-review');
 
     // section 1
-    var placeSection1 = document.createElement("div");
-    placeSection1.setAttribute("class","d-flex w-100 justify-content-between");
-    var placeName = document.createElement("h6");
-    placeName.setAttribute("class","mb-1 user-name");
+    var placeSection1 = document.createElement('div');
+    placeSection1.setAttribute('class','d-flex w-100 justify-content-between');
+    var placeName = document.createElement('h6');
+    placeName.setAttribute('class','mb-1 user-name');
     placeName.innerHTML = data[i].user_name;
     placeSection1.append(placeName);
-    var matchCount = document.createElement("h6");
-    matchCount.setAttribute("class","rel-date");
+    var matchCount = document.createElement('h6');
+    matchCount.setAttribute('class','rel-date');
     matchCount.innerHTML = data[i].rel_date;
     placeSection1.append(matchCount);
     placeA.append(placeSection1);
@@ -351,18 +351,18 @@ function showReviewContentList(data) {
       star_figure = '★☆☆☆☆';
     }
 
-    var placeSection2 = document.createElement("div");
-    placeSection2.setAttribute("class","d-flex w-100");
-    var placeRating = document.createElement("h6");
-    placeRating.setAttribute("class","mb-1 content-rating");
+    var placeSection2 = document.createElement('div');
+    placeSection2.setAttribute('class','d-flex w-100');
+    var placeRating = document.createElement('h6');
+    placeRating.setAttribute('class','mb-1 content-rating');
     placeRating.innerHTML = `${star_figure}`;
     placeSection2.append(placeRating);
     placeA.append(placeSection2);
 
     // section 3
-    var placeSection3 = document.createElement("div");
-    placeSection3.setAttribute("class","mb-1 review-content");
-    var placeAddr = document.createElement("p");
+    var placeSection3 = document.createElement('div');
+    placeSection3.setAttribute('class','mb-1 review-content');
+    var placeAddr = document.createElement('p');
     placeAddr.innerHTML = data[i].review_content;
     placeSection3.append(placeAddr);
     placeA.append(placeSection3);
@@ -375,7 +375,7 @@ function showReviewContentList(data) {
 }
 
 function getPlaceTags(place_id) {
-  axios.post("/api/1.0/review/tags",{place: place_id})
+  axios.post('/api/1.0/review/tags',{place: place_id})
     .then(res=> {
       showPlaceTagsBtn(res.data.data[0]);
     })
@@ -385,12 +385,12 @@ function getPlaceTags(place_id) {
 }
 
 function showPlaceTagsBtn(data) {
-  let tagContainer = document.querySelector("#place-tags-container");
+  let tagContainer = document.querySelector('#place-tags-container');
   // remove all childs
   tagContainer.innerHTML = '';
 
-  let tag_keys = data.token_key.split(",");
-  let tag_values = data.token_value.split(",");
+  let tag_keys = data.token_key.split(',');
+  let tag_values = data.token_value.split(',');
 
   // show first 8 tags
   for (let i = 0; i < 8; i ++) {
@@ -398,8 +398,8 @@ function showPlaceTagsBtn(data) {
     if (!tag_keys[i]) {
       break;
     } else {
-      var tag = document.createElement("button");
-      tag.setAttribute("class","btn btn-secondary btn-rounded btn-tag");
+      var tag = document.createElement('button');
+      tag.setAttribute('class','btn btn-secondary btn-rounded btn-tag');
       tag.innerHTML = `${tag_keys[i]} ${tag_values[i]}`;
       tagContainer.append(tag);
     }
@@ -407,7 +407,7 @@ function showPlaceTagsBtn(data) {
 }
 
 function getPlacePeopleBar(place_id) {
-  axios.post("/api/1.0/review/people",{place: place_id})
+  axios.post('/api/1.0/review/people',{place: place_id})
     .then(res=> {
       showPlacePeopleBarPoltly(res.data.data[0]);
     })
@@ -472,7 +472,7 @@ function showPlacePeopleBarPoltly(data) {
 }
 
 function getReviewFeatureBar(place_id) {
-  axios.post("/api/1.0/review/feature/stars",{place: place_id})
+  axios.post('/api/1.0/review/feature/stars',{place: place_id})
     .then(res=> {
       showReviewFeatureBar(res.data.data[0]);
     })
@@ -535,7 +535,7 @@ function showReviewFeatureBar(data) {
 }
 
 function getPlaceInfo(place_id) {
-  let food = document.querySelector("#search-food-text").value.replace(/\s+/g, ''); // get searchbox food
+  let food = document.querySelector('#search-food-text').value.replace(/\s+/g, ''); // get searchbox food
 
   axios.post('/api/1.0/review/placeinfo',{food: food, place: place_id})
     .then(res=> {
@@ -548,7 +548,7 @@ function getPlaceInfo(place_id) {
 
 function showPlaceInfo(data, food) {
   // save place_id
-  window.localStorage.setItem("place", data.place_id);
+  window.localStorage.setItem('place', data.place_id);
 
   // star figure
   var cur_rating = data.place_rating;
@@ -565,26 +565,26 @@ function showPlaceInfo(data, food) {
     star_figure = '★☆☆☆☆';
   }
 
-  let infoContainer = document.querySelector("#place-info-container");
-  let title = document.querySelector("#card-info-title");
-  let rating = document.querySelector("#card-info-rating");
-  let cnt = document.querySelector("#card-info-both-cnt");
-  let detail = document.querySelector("#card-info-detail");
+  let infoContainer = document.querySelector('#place-info-container');
+  let title = document.querySelector('#card-info-title');
+  let rating = document.querySelector('#card-info-rating');
+  let cnt = document.querySelector('#card-info-both-cnt');
+  let detail = document.querySelector('#card-info-detail');
   title.innerHTML = data.place_name;
   rating.innerHTML = `${data.place_rating} ${star_figure}`;
-  cnt.innerHTML = `${data.total_count} reviews, ${data.match_count} reviews mention ${food}`
-  detail.innerHTML = `${data.place_addr}<br/> ${data.place_phone}<br/>`
+  cnt.innerHTML = `${data.total_count} reviews, ${data.match_count} reviews mention ${food}`;
+  detail.innerHTML = `${data.place_addr}<br/> ${data.place_phone}<br/>`;
 
-  let likebtn = document.querySelector("#btn-like");
-  likebtn.style.display = "block";
+  let likebtn = document.querySelector('#btn-like');
+  likebtn.style.display = 'block';
 }
 
 function getUserInfoId(){
-  axios.get("/api/1.0/user/profile",
+  axios.get('/api/1.0/user/profile',
     {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer" + " " + localStorage.getItem("token")
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer' + ' ' + localStorage.getItem('token')
       }
     }
   )
@@ -597,16 +597,16 @@ function getUserInfoId(){
 }
 
 function likePlace() {
-  let place = localStorage.getItem("place");
-  let likeBtn = document.querySelector("#btn-like");
+  let place = localStorage.getItem('place');
+  let likeBtn = document.querySelector('#btn-like');
 
   if (token) {
     // get user id
-    axios.get("/api/1.0/user/profile",
+    axios.get('/api/1.0/user/profile',
       {
         headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer" + " " + localStorage.getItem("token")
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer' + ' ' + localStorage.getItem('token')
         }
       }
     )
@@ -622,9 +622,9 @@ function likePlace() {
       // no token
       Swal.fire('Please login!').then((result) => {
         if (result.isConfirmed) {
-          window.location.href="/signin.html";
+          window.location.href='/signin.html';
         }
-      })
+      });
   }
 }
 
@@ -643,7 +643,7 @@ function addLikeMarkerToMap(place_id, place_name, place_lat, place_lng) {
   var marker = new google.maps.Marker({
       position: myLatlng,
       icon: {
-        url: "../images/flag.png",
+        url: '../images/flag.png',
         scaledSize: new google.maps.Size(25, 25)
       },
       title: place_name
