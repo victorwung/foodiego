@@ -1,49 +1,10 @@
 require('dotenv').config();
-// const validator = require('validator');
-// const User = require('../models/user_model');
 const Review = require('../models/review_model');
-// const expire = process.env.TOKEN_EXPIRE; // 30 days by seconds
-
-const getReviewCategories = async (req, res) => {
-  // const {place} = req.body;
-  const categoryService = '服務';
-  const categoryEnvironment = '環境';
-  const place = 'ChIJwQPcmc-rQjQRtXDQA__PPwg';
-  // const place = 'ChIJV-_wCdCrQjQRqOP_SmDYbZs';
-  // console.log('In controller')
-  // console.log(categoryService, categoryEnvironment, place);
-
-  if(!place) {
-    res.status(400).send({error:'Request Error: place is required.'});
-    return;
-  }
-  const reviewService = await Review.getReviewService(categoryService, place);
-  const reviewEnvironment = await Review.getReviewEnvironment(categoryEnvironment, place);
-  res.status(200).send({
-    data: {
-      place_id: reviewService[0].place_id,
-      place_name: reviewService[0].place_name,
-      service: {
-        total_cnt: reviewService[0].total_cnt,
-        positvie_cnt: reviewService[0].positvie_cnt,
-        neutral_cnt: reviewService[0].neutral_cnt,
-        negative_cnt: reviewService[0].negative_cnt
-      },
-      environment: {
-        total_cnt: reviewEnvironment[0].total_cnt,
-        positvie_cnt: reviewEnvironment[0].positvie_cnt,
-        neutral_cnt: reviewEnvironment[0].neutral_cnt,
-        negative_cnt: reviewEnvironment[0].negative_cnt
-      }
-    }
-  });
-};
 
 const getPlaceRatingDistribution = async (req, res) => {
   const {place} = req.body;
   const {food} = req.body;
-  // const {place} = req.query;
-  // const place = 'ChIJhyEhFcWrQjQRgght_BCEXyU';
+
   if(!place || !food) {
     res.status(400).send({error:'Request Error: place and food is required.'});
     return;
@@ -54,9 +15,7 @@ const getPlaceRatingDistribution = async (req, res) => {
 
 const getReviewContentByPlace = async (req, res) => {
   const {place} = req.body;
-  // const {place} = req.query;
-  // const place = 'ChIJaU_-FyqrQjQRbLmzDXFaj5E';
-  console.log(place);
+
   if(!place) {
     res.status(400).send({error:'Request Error: place is required.'});
     return;
@@ -67,9 +26,7 @@ const getReviewContentByPlace = async (req, res) => {
 
 const getPlaceTags = async (req, res) => {
   const {place} = req.body;
-  // const {place} = req.query;
-  // const place = 'ChIJaU_-FyqrQjQRbLmzDXFaj5E';
-  console.log(place);
+
   if(!place) {
     res.status(400).send({error:'Request Error: place is required.'});
     return;
@@ -81,9 +38,6 @@ const getPlaceTags = async (req, res) => {
 const getPlacePeople = async (req, res) => {
   const {place} = req.body;
   const category = '與會人';
-  // const place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0';
-  // const category = '與會人';
-  // console.log(place, category);
 
   if(!place||!category) {
     res.status(400).send({error:'Request Error: place is required.'});
@@ -94,20 +48,19 @@ const getPlacePeople = async (req, res) => {
 };
 
 const getReviewFeatures = async (req, res) => {
-  // const {place} = req.body;
-  const place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0';
+  const {place} = req.body;
 
   if(!place) {
     res.status(400).send({error:'Request Error: place is required.'});
     return;
   }
-  // const feature = await Review.getReviewFeature(place);
+
   const featureService = await Review.getReviewFeatureService(place);
   const featureEnvironment = await Review.getReviewFeatureEnvironment(place);
   const featurePrice = await Review.getReviewFeaturePrice(place);
   const featureCpvalue = await Review.getReviewFeatureCpvalue(place);
   const featureMeal = await Review.getReviewFeatureMeal(place);
-  // res.status(200).send({data: featureService});
+
   res.status(200).send({
     data: {
       place_id: place,
@@ -147,10 +100,7 @@ const getReviewFeatures = async (req, res) => {
 
 const getReviewFeatureStars = async (req, res) => {
   const {place} = req.body;
-  // const place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0'; // 凱恩
-  // const place = 'ChIJaU_-FyqrQjQRbLmzDXFaj5E'; // 馬友友
-  // const place = 'ChIJzzXuMcSrQjQRG5ig5eeROuQ'; // 波記W
-
+  
   if(!place) {
     res.status(400).send({error:'Request Error: place is required.'});
     return;
@@ -163,11 +113,6 @@ const getPlaceInfo = async (req, res) => {
   const {food} = req.body;
   const {place} = req.body;
 
-  // const food = '牛排'; // food
-  // const place = 'ChIJC0ET6dGrQjQRXAeCB9_CIQ0'; // 凱恩
-  // constplace = 'ChIJaU_-FyqrQjQRbLmzDXFaj5E'; // 馬友友
-  // const place = 'ChIJzzXuMcSrQjQRG5ig5eeROuQ'; // 波記W 
-
   if(!food||!place) {
     res.status(400).send({error:'Request Error: place is required.'});
     return;
@@ -177,7 +122,6 @@ const getPlaceInfo = async (req, res) => {
 };
 
 module.exports = {
-  // getReviewCategories,
   getPlaceRatingDistribution,
   getReviewContentByPlace,
   getPlaceTags,

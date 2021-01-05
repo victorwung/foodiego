@@ -1,55 +1,6 @@
 const {query, transaction, commit, rollback} = require('./mysqlcon');
 
-const getReviewService = async (category, place) => {
-    console.log('In model');
-    console.log(category, place);
-    const reviewService = await query(
-      "SELECT t.place_id, t.place_name, COUNT(DISTINCT t.review_id) AS total_cnt, \
-        SUM(CASE WHEN t.rating IN (4,5) THEN 1 ELSE 0 END) AS positvie_cnt, \
-        SUM(CASE WHEN t.rating IN (3) THEN 1 ELSE 0 END) AS neutral_cnt, \
-        SUM(CASE WHEN t.rating IN (1,2) THEN 1 ELSE 0 END) AS negative_cnt \
-       FROM \
-        (SELECT DISTINCT t1.place_id, t1.place_name, t1.review_id, t1.rating, t1.review_content \
-        FROM review t1 \
-        JOIN (SELECT DISTINCT word FROM review_category WHERE category_name=?) t2 \
-        ON t1.review_content LIKE CONCAT('%',word,'%') \
-        WHERE place_id=?) AS t", [category, place]);
-
-    if (reviewService.length === 0) {
-        // return {error: 'Invalid Access Token'};
-        return {result: 'Not Found'};
-    } else {
-        // console.log(results); // check
-        return reviewService;
-    }
-};
-
-const getReviewEnvironment = async (category, place) => {
-    console.log('In model');
-    console.log(category, place);
-    const reviewEnvironment = await query(
-      "SELECT t.place_id, t.place_name, COUNT(DISTINCT t.review_id) AS total_cnt, \
-        SUM(CASE WHEN t.rating IN (4,5) THEN 1 ELSE 0 END) AS positvie_cnt, \
-        SUM(CASE WHEN t.rating IN (3) THEN 1 ELSE 0 END) AS neutral_cnt, \
-        SUM(CASE WHEN t.rating IN (1,2) THEN 1 ELSE 0 END) AS negative_cnt \
-       FROM \
-        (SELECT DISTINCT t1.place_id, t1.place_name, t1.review_id, t1.rating, t1.review_content \
-        FROM review t1 \
-        JOIN (SELECT DISTINCT word FROM review_category WHERE category_name=?) t2 \
-        ON t1.review_content LIKE CONCAT('%',word,'%') \
-        WHERE place_id=?) AS t", [category, place]);
-
-    if (reviewEnvironment.length === 0) {
-        // return {error: 'Invalid Access Token'};
-        return {result: 'Not Found'};
-    } else {
-        // console.log(results); // check
-        return reviewEnvironment;
-    }
-};
-
 const getPlaceRatingDistribution = async (place, food) => {
-
     const ratingDistribution = await query(
       "SELECT place_id, place_name, COUNT(review_id) AS total_cnt, ROUND(AVG(t.rating),1) AS avg_rating,\
         SUM(CASE WHEN t.rating IN (4,5) THEN 1 ELSE 0 END) AS positvie_cnt, \
@@ -61,14 +12,11 @@ const getPlaceRatingDistribution = async (place, food) => {
     if (ratingDistribution.length === 0) {
         return {result: 'Not Found'};
     } else {
-        // console.log(results); // check
         return ratingDistribution;
     }
 };
 
 const getReviewContentByPlace = async (place) => {
-    // console.log('In model getReviewContentBtPlac');
-    // console.log(place);
     const reviewContents = await query(
       "SELECT t.place_id, t.review_id, t.user_name, t.review_content, t.rating, t.rel_date \
        FROM review AS t\
@@ -77,14 +25,11 @@ const getReviewContentByPlace = async (place) => {
     if (reviewContents.length === 0) {
         return {result: 'Not Found'};
     } else {
-        // console.log(results); // check
         return reviewContents;
     }
 };
 
 const getPlaceTags = async (place) => {
-    // console.log('In model getReviewContentBtPlac');
-    // console.log(place);
     const placeTags = await query(
       "SELECT t.place_id, t.place_name, t.token_key, t.token_value \
        FROM place_token AS t \
@@ -98,7 +43,6 @@ const getPlaceTags = async (place) => {
 };
 
 const getPlacePeople = async (place, category) => {
-    // console.log(place, category);
     const people = await query(
             "SELECT t.place_id, t.place_name, COUNT(t.review_id) AS total_cnt, \
               SUM(CASE WHEN t.subcategory_name='家人' THEN 1 ELSE 0 END) AS family_cnt, \
@@ -120,8 +64,6 @@ const getPlacePeople = async (place, category) => {
 };
 
 const getReviewFeatureService = async (place) => {
-    console.log('In model getReviewFeatureService');
-    console.log(place);
     const service = await query(
       "SELECT t1.place_id, COUNT(t1.review_id) AS total_cnt, \
         SUM(CASE WHEN t1.service_score >=0.3 THEN 1 ELSE 0 END) AS positvie_cnt, \
@@ -138,8 +80,6 @@ const getReviewFeatureService = async (place) => {
 };
 
 const getReviewFeatureEnvironment = async (place) => {
-    console.log('In model getReviewFeatureEnvironment');
-    console.log(place);
     const environment = await query(
       "SELECT t1.place_id, COUNT(t1.review_id) AS total_cnt, \
         SUM(CASE WHEN t1.environment_score >=0.3 THEN 1 ELSE 0 END) AS positvie_cnt, \
@@ -156,8 +96,6 @@ const getReviewFeatureEnvironment = async (place) => {
 };
 
 const getReviewFeaturePrice = async (place) => {
-    console.log('In model getReviewFeaturePrice');
-    console.log(place);
     const price = await query(
       "SELECT t1.place_id, COUNT(t1.review_id) AS total_cnt, \
         SUM(CASE WHEN t1.price_score >=0.3 THEN 1 ELSE 0 END) AS positvie_cnt, \
@@ -174,8 +112,6 @@ const getReviewFeaturePrice = async (place) => {
 };
 
 const getReviewFeatureCpvalue = async (place) => {
-    console.log('In model getReviewFeatureCpvalue');
-    console.log(place);
     const cpvalue = await query(
       "SELECT t1.place_id, COUNT(t1.review_id) AS total_cnt, \
         SUM(CASE WHEN t1.cpvalue_score >=0.3 THEN 1 ELSE 0 END) AS positvie_cnt, \
@@ -192,8 +128,6 @@ const getReviewFeatureCpvalue = async (place) => {
 };
 
 const getReviewFeatureMeal = async (place) => {
-    console.log('In model getReviewFeatureMeal');
-    console.log(place);
     const cpvalue = await query(
       "SELECT t1.place_id, COUNT(t1.review_id) AS total_cnt, \
         SUM(CASE WHEN t1.meal_score >=0.3 THEN 1 ELSE 0 END) AS positvie_cnt, \
@@ -210,7 +144,6 @@ const getReviewFeatureMeal = async (place) => {
 };
 
 const getReviewFeatureStars = async (place) => {
-    // console.log(place);
     const stars = await query(
         "SELECT t1.place_id, \
           (SUM(t1.service_star)/COUNT(t1.service)) AS service_star, COUNT(t1.service) AS service_cnt, \
@@ -229,7 +162,6 @@ const getReviewFeatureStars = async (place) => {
 };
 
 const getPlaceInfo = async (food, place) => {
-    // console.log(place);
     const info = await query(
         "SELECT t1.place_id, t1.place_name, t2.place_lat, t2.place_lng, \
             t2.place_rating, t2.place_addr, t2.place_phone, \
@@ -247,8 +179,6 @@ const getPlaceInfo = async (food, place) => {
 };
 
 module.exports = {
-    // getReviewService,
-    // getReviewEnvironment,
     getPlaceRatingDistribution,
     getReviewContentByPlace,
     getPlaceTags,

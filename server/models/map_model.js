@@ -6,13 +6,7 @@ const getReviewContents = async (food) => {
        FROM review \
        WHERE review_content LIKE ?", ['%'+food+'%']);
 
-    // const reviewContents = await query(
-    //     "SELECT place_id, place_name, review_id, review_content \
-    //      FROM review3 \
-    //      WHERE review_content LIKE ?", ['%'+food+'%']);
-
     if (reviewContents.length === 0) {
-        // return {error: 'Invalid Access Token'};
         return {result: 'Not Found'};
     } else {
         return reviewContents;
@@ -20,9 +14,6 @@ const getReviewContents = async (food) => {
 };
 
 const getReviews = async (food) => {
-    // const reveiwsMatch = await getReviewContents(food);
-    // console.log(reveiwsMatch);
-
     const reviewGroupByCnt = await query(
       "SELECT t1.place_id, t1.place_name, t2.place_lat, t2.place_lng, t2.place_rating, \
         COUNT(t1.review_id) AS total_count, \
@@ -35,20 +26,9 @@ const getReviews = async (food) => {
        HAVING match_count > 0 \
        ORDER BY match_count DESC", ['%'+food+'%']);
 
-    // const reviewGroupByCnt = await query(
-    // "SELECT t1.place_id, t1.place_name, t2.place_lat, t2.place_lng, t2.place_rating, \
-    //     count(t1.review_id) AS review_count, \
-    //     t2.place_addr \
-    //     FROM review AS t1 LEFT JOIN place AS t2 ON t1.place_id = t2.place_id \
-    //     WHERE review_content LIKE ? \
-    //     GROUP BY place_id \
-    //     ORDER BY review_count DESC", ['%'+food+'%']);
-
     if (reviewGroupByCnt.length === 0) {
-        // return {error: 'Invalid Access Token'};
         return {result: 'Not Found'};
     } else {
-        // console.log(results); // check
         return reviewGroupByCnt;
     }
 };
