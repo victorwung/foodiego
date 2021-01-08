@@ -575,8 +575,8 @@ function showPlaceInfo(data, food) {
   cnt.innerHTML = `${data.total_count} reviews, ${data.match_count} reviews mention ${food}`;
   detail.innerHTML = `${data.place_addr}<br/> ${data.place_phone}<br/>`;
 
-  let likebtn = document.querySelector('#btn-like');
-  likebtn.style.display = 'block';
+  // let likebtn = document.querySelector('#btn-like');
+  // likebtn.style.display = 'block';
 }
 
 function getUserInfoId(){
