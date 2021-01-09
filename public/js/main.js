@@ -34,6 +34,16 @@ function getUserInfoName(){
 function setUserName(name){
   let welcome = document.querySelector('#welcome-user-slogan');
   welcome.innerHTML = `Welcome, ${name}!`;
+  changeMenuItem();
+}
+
+function changeMenuItem(){
+  let itemHref = document.querySelector('#sign-in-menu-item');
+  let itemTitle = document.querySelector('#sign-in-menu-title');
+  itemHref.href = './index.html';
+  itemTitle.innerHTML = 'Logout ';
+  // if logout, remove token from local storage
+  window.localStorage.removeItem('token');
 }
 
 checkToken();

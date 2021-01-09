@@ -5,11 +5,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Focus - Bootstrap Admin Dashboard </title>
+    <title>FoodieHelper </title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/foodie-favicon2.png">
     <link href="./css/style.css" rel="stylesheet">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="./css/signinup.css" rel="stylesheet">
     <script src="js/signinup.js"></script>
 
 </head>
@@ -24,25 +25,25 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
                                     <h4 class="text-center mb-4">Sign up your account</h4>
-                                    <form action="index.html">
+                                    <div id="sign-in-section"></div>
                                         <div class="form-group">
-                                            <label><strong>Username</strong></label>
-                                            <input type="text" class="form-control" placeholder="username">
+                                            <label><strong>Name</strong></label>
+                                            <input type="text" id="sign-up-name" class="form-control" value="Eater">
                                         </div>
                                         <div class="form-group">
                                             <label><strong>Email</strong></label>
-                                            <input type="email" class="form-control" placeholder="hello@example.com">
+                                            <input type="email" id="sign-up-email" class="form-control" value="eat@gmail.com">
                                         </div>
                                         <div class="form-group">
                                             <label><strong>Password</strong></label>
-                                            <input type="password" class="form-control" value="Password">
+                                            <input type="password" id="sign-up-password" class="form-control">
                                         </div>
-                                        <div class="text-center mt-4">
-                                            <button type="submit" class="btn btn-primary btn-block">Sign me up</button>
+                                        <div class="text-center">
+                                            <button id="sign-up-btn" class="btn btn-primary btn-block" onclick=goSignUp()>Sign me up</button>                                        
                                         </div>
-                                    </form>
+                                    </div>
                                     <div class="new-account mt-3">
-                                        <p>Already have an account? <a class="text-primary" href="signin.html">Sign in</a></p>
+                                        <p class="question-for-sign-in-up">Already have an account? <a class="text-primary" href="signin.html">Sign in</a></p>
                                     </div>
                                 </div>
                             </div>

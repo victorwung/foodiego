@@ -26,16 +26,14 @@ function goSignIn() {
 function goSignUp() {
   let name = document.querySelector('#sign-up-name').value;
   let email = document.querySelector('#sign-up-email').value;
-  let pswd = document.querySelector('#sign-up-password').value;
-  let picture = document.querySelector('#sign-up-picture').value;
+  let password = document.querySelector('#sign-up-password').value;
   let provider = 'native';
 
   axios.post('/api/1.0/user/signup',
       { 
         name: name,
         email: email,
-        pswd: pswd,
-        picture: picture,
+        password: password,
         provider: provider
       }
     )
@@ -45,7 +43,7 @@ function goSignUp() {
     })
     .then(res=> {
       // redirect
-      window.location.href='/profile.html';
+      window.location.href='/main.html';
     })
     .catch(err => {
       console.log(err, err.response);
