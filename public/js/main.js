@@ -34,6 +34,16 @@ function getUserInfoName(){
 function setUserName(name){
   let welcome = document.querySelector('#welcome-user-slogan');
   welcome.innerHTML = `Welcome, ${name}!`;
+  changeMenuItem();
+}
+
+function changeMenuItem(){
+  let itemHref = document.querySelector('#sign-in-menu-item');
+  let itemTitle = document.querySelector('#sign-in-menu-title');
+  itemHref.href = './index.html';
+  itemTitle.innerHTML = 'Logout ';
+  // if logout, remove token from local storage
+  window.localStorage.removeItem('token');
 }
 
 checkToken();
@@ -575,8 +585,8 @@ function showPlaceInfo(data, food) {
   cnt.innerHTML = `${data.total_count} reviews, ${data.match_count} reviews mention ${food}`;
   detail.innerHTML = `${data.place_addr}<br/> ${data.place_phone}<br/>`;
 
-  let likebtn = document.querySelector('#btn-like');
-  likebtn.style.display = 'block';
+  // let likebtn = document.querySelector('#btn-like');
+  // likebtn.style.display = 'block';
 }
 
 function getUserInfoId(){

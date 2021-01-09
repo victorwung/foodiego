@@ -45,7 +45,8 @@
   background-color:#F0F0F0 !important;
 }
 
-.place-name {
+.place-name,
+.user-name {
   font-weight:bold;
 }
 

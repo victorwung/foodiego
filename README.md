@@ -1,2 +1,2 @@
-# foodiego
+# FoodieHelper
 https://foodiehelper.online/
