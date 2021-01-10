@@ -50,6 +50,7 @@ An online dashboard service which helps users find suitable restaurants from Goo
 
 ## Features
 [![demo_v1_gif](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/demo_v1.gif "demo_v1_gif")](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/demo_v1.gif "demo_v1_gif")
+<img src="https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/demo_v1.gif" width="200" />
 
 ## Account
 - Demo E-mail: test@gmail.com
