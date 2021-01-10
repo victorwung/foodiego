@@ -6,7 +6,7 @@ An online dashboard service which helps users find suitable restaurants from Goo
 ## Table of Contents
 - [Technologies](#Technologies)
 - [Architecture](#Architecture)
-- [Database](#Database)
+- [Database Schema](#database-schema)
 - [Features](#Features)
 - [Account](#Account)
 
@@ -29,7 +29,7 @@ An online dashboard service which helps users find suitable restaurants from Goo
 - EC2
 - RDS
 
-### Database
+### Database 
 - MySQL
 
 ### Networking
@@ -49,7 +49,7 @@ An online dashboard service which helps users find suitable restaurants from Goo
 ## Architecture
 [![architecture_figure](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/architecture.png "architecture_figure")](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/architecture.png "architecture_figure")
 
-## Database
+## Database Schema
 [![db_schema](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/database_schema.png "db_schema")](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/database_schema.png "db_schema")
 
 ## Features
