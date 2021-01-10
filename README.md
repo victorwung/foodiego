@@ -8,7 +8,7 @@ An online dashboard service which helps users find suitable restaurants from Goo
 - [Architecture](#Architecture)
 - [Database Schema](#database-schema)
 - [Features](#Features)
-- [Account](#Account)
+- [Demo Account](#demo-account)
 
 ## Technologies
 ### Back-End
@@ -69,6 +69,6 @@ An online dashboard service which helps users find suitable restaurants from Goo
 	- Top keywords
 	- Location
 
-## Account
-- Demo E-mail: test@gmail.com
-- Demo Password: test
+## Demo Account
+- Welcome try the service without sign in or sing up!
+- E-mail: test@gmail.com / password: test
