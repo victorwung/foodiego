@@ -26,8 +26,8 @@ An online dashboard service which helps users find suitable restaurants from Goo
 - jieba
 
 ### Third-party APIs
-- Google JavaScript API
-- Google Places API
+- Google Maps JavaScript API
+- Google Maps Places API
 - Google Natural Language API
 
 ### Cloud Service (AWS)
