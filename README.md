@@ -54,6 +54,20 @@ An online dashboard service which helps users find suitable restaurants from Goo
 
 ## Features
 ![](https://github.com/victorwung/mydata/blob/master/foodiehelper/demo_v3.gif)
+- Efficient restaurant search:
+	- Restaurants that mentioned the target food in Google Maps reviews will be visualized on Google Maps
+	- Review counts of the mentioned target food on Google Maps are displayed with differentiated circle sizes
+- Extra insights from the reviews:
+	- Feeling about the target food
+	- Informative tags extracted from the reviews
+	- Detailed rating items including meal, service, environment, CP value, and price
+	- Participants mentioned
+- Restaurant information:
+	- Rating
+	- Number of total reviews
+	- Number of reviews that mentioned the target food
+	- Top keywords
+	- Location
 
 ## Account
 - Demo E-mail: test@gmail.com
