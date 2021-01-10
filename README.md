@@ -6,7 +6,6 @@ An online dashboard service which helps users find suitable restaurants from Goo
 ## Table of Contents
 - [Technologies](#Technologies)
 - [Architecture](#Architecture)
-- [Database](#Database)
 - [Features](#Features)
 - [Account](#Account)
 
@@ -25,11 +24,6 @@ An online dashboard service which helps users find suitable restaurants from Goo
 - Python
 - jieba
 
-### Third-party APIs
-- Google Maps JavaScript API
-- Google Maps Places API
-- Google Natural Language API
-
 ### Cloud Service (AWS)
 - EC2
 - RDS
@@ -45,14 +39,17 @@ An online dashboard service which helps users find suitable restaurants from Goo
 ### Others
 - Design Pattern: MVC
 - Version Control: Git, GitHub
+- Third-party APIs: 
+	- Google Maps JavaScript API
+	- Google Maps Places API
+	- Google Natural Language API
 - Agile: Trello (Scrum)
 
 ## Architecture
 [![architecture_figure](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/architecture.png "architecture_figure")](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/architecture.png "architecture_figure")
 
-## Database
-
 ## Features
+[![demo_v1_gif](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/demo_v1.gif "demo_v1_gif")](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/demo_v1.gif "demo_v1_gif")
 
 ## Account
 - Demo E-mail: test@gmail.com
