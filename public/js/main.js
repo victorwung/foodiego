@@ -75,7 +75,7 @@ function checkOuterSearchFood() {
 function searchFood() {
   let food = document.querySelector('#search-food-text').value.replace(/\s+/g, ''); // remove blank space
   if (food === '') {
-    Swal.fire('Please try again!', 'Type anything food name in the search box.');
+    Swal.fire('Please try again!', 'Type any food name in the search box.');
   } else {
     axios.post('/api/1.0/map/places',{food: food})
       .then(res=> {
