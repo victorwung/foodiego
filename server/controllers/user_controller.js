@@ -20,13 +20,13 @@ const signUp = async (req, res) => {
 
     name = validator.escape(name);
 
-    const result = await User.signUp(name, email, password, expire);
+    const result = await User.signUp(name, email, password);
     if (result.error) {
         res.status(403).send({error: result.error});
         return;
     }
 
-    const {accessToken, loginAt, user} = result;
+    const {accessToken, user} = result;
 
     if (!user) {
         res.status(500).send({error: 'Database Query Error'});
@@ -36,8 +36,6 @@ const signUp = async (req, res) => {
     res.status(200).send({
         data: {
             access_token: accessToken,
-            access_expired: expire,
-            login_at: loginAt,
             user: {
                 id: user.id,
                 provider: user.provider,
