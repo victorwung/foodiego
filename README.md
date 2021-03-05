@@ -50,7 +50,7 @@ An online dashboard service which helps users find suitable restaurants from Goo
 [![architecture_figure](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/architecture.png "architecture_figure")](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/architecture.png "architecture_figure")
 
 ## Database Schema
-[![db_schema](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/database_schema.png "db_schema")](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/database_schema.png "db_schema")
+[![db_schema](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/database_schema_new2.png "db_schema")](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/database_schema_new2.png "db_schema")
 
 ## Features
 ![](https://github.com/victorwung/mydata/blob/master/foodiehelper/demo_v3.gif)
