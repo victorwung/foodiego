@@ -44,7 +44,7 @@ const signUp = async (name, email, password) => {
     }
 };
 
-const nativeSignIn = async (email, password, expire) => {
+const nativeSignIn = async (email, password) => {
     try {
         await transaction();
 
@@ -55,8 +55,6 @@ const nativeSignIn = async (email, password, expire) => {
             await commit();
             return {error: 'Password is wrong'};
         }
-
-        const loginAt = new Date();
 
         await commit();
      
@@ -70,7 +68,7 @@ const nativeSignIn = async (email, password, expire) => {
         const accessToken = jwt.sign({userinfo}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30d' }); // 30 days
         // const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10800s' }) // 3 hrs 
 
-        return {accessToken, loginAt, user};
+        return {accessToken, user};
     } catch (error) {
         await rollback();
         return {error};
