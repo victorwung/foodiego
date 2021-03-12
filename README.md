@@ -6,6 +6,7 @@ An online dashboard service which helps users find suitable restaurants from Goo
 ## Table of Contents
 - [Technologies](#Technologies)
 - [Architecture](#Architecture)
+- [Data Flow](#data-flow)
 - [Database Schema](#database-schema)
 - [Features](#Features)
 - [Demo Account](#demo-account)
@@ -48,6 +49,9 @@ An online dashboard service which helps users find suitable restaurants from Goo
 
 ## Architecture
 [![architecture_figure](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/architecture.png "architecture_figure")](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/architecture.png "architecture_figure")
+
+## Data Flow
+[![dataflow](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/dataflow2.png "dataflow")](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/dataflow2.png "dataflow")
 
 ## Database Schema
 [![db_schema](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/database_schema_new2.png "db_schema")](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/database_schema_new2.png "db_schema")
