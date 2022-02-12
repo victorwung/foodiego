@@ -1,7 +1,7 @@
 # FoodieHelper
 An online dashboard service which helps users find suitable restaurants from Google Maps reviews and brings insights through multiple aspects of dining experience.
 
-- Link: https://foodiehelper.online
+- Link: http://www.foodiehelper.space
 
 ## Table of Contents
 - [Technologies](#Technologies)
@@ -57,7 +57,7 @@ An online dashboard service which helps users find suitable restaurants from Goo
 [![db_schema](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/database_schema_new2.png "db_schema")](https://stylishbucket.s3-ap-northeast-1.amazonaws.com/foodiehelper/database_schema_new2.png "db_schema")
 
 ## Features
-![](https://github.com/victorwung/mydata/blob/master/foodiehelper/demo_v3.gif)
+![](https://stylishbucket.s3.ap-northeast-1.amazonaws.com/foodiehelper/demo_v3.gif)
 - Efficient restaurant search:
 	- Restaurants that mentioned the target food in Google Maps reviews will be visualized on Google Maps
 	- Review counts of the mentioned target food on Google Maps are displayed with differentiated circle sizes
